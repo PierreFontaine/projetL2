@@ -6,21 +6,22 @@
 
 ### pré requis
 
-Vous êtes sous UNIX (Linux ou Mac)
+Vous êtes sous UNIX (Linux ou Mac), et disposez de Make.
 
 ### Make fait le taff pour vous !
 
 Télechargez le dossier et accedez y avec le terminal !
 
 ```sh
-  cd pathToDir/
+  cd pathToDir/game/
   make
+  ./programme
 ```
 
 ## Tetris
 
 ### Objectifs
-
+  Dans un premier temps réaliser un Tetris en ASCII pour y jouer dans le terminal et dans un deuxième temps l'implémenter avec GTK+
 ### En cours
-
+  Creation du stuff
 ## Bataille Navale
