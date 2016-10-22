@@ -1,4 +1,4 @@
-# projetL2
+# projetL2 [![Build Status](https://travis-ci.org/PierreFontaine/projetL2.svg?branch=master)](https://travis-ci.org/PierreFontaine/projetL2)
 
 ## Compilation
 
