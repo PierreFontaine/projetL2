@@ -1,10 +1,10 @@
 language: 
-	- c
+	-c
 
 compiler: 
-	- gcc
+	-gcc
 
 script:
-	- cd ./tetris/
-	- make
+	-cd ./tetris/
+	-make
 
