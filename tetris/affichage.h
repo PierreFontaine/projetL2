@@ -9,7 +9,7 @@
 typedef struct figure{
   int heigth;
   int width;
-  char forme[PIECE_MAX_WIDTH][PIECE_MAX_HEIGHT];
+  char forme[PIECE_MAX_HEIGHT][PIECE_MAX_WIDTH];
 }block_s;
 
 typedef struct pos{
@@ -17,12 +17,15 @@ typedef struct pos{
   int y;
 }pos;
 
-void makeBackGround(); //creer une matrice hauteur+1*largeur+1 de type char
-void makeBorder(); //remplis les contours de la matrice pour délimiter
+typedef char layout[GAME_HEIGHT][GAME_WIDTH];
+
+void makeBackGround(layout l); //creer une matrice hauteur+1*largeur+1 de type char
+void makeBorder(layout l); //remplis les contours de la matrice pour délimiter
 void makeFigure(); //creer des figures avec la bonne forme
 void displayPieceAt(pos a); //affiche une piece à la pos{x,y}
 void clearScreen(); //efface le terminal
 void displayScore(); //permet d'afficher le score sur le terminal
 void eraseLine();
+void displayGame(layout l);
 
 #endif
