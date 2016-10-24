@@ -1,6 +1,8 @@
 #ifndef affichage_h
 #define affichage_h
 
+#include "tetris.h"
+
 #define GAME_HEIGHT       12
 #define GAME_WIDTH        10
 #define PIECE_MAX_WIDTH   4
@@ -10,7 +12,7 @@ typedef struct figure{
   int heigth;
   int width;
   char forme[PIECE_MAX_HEIGHT][PIECE_MAX_WIDTH];
-}block_s;
+}figure;
 
 typedef struct pos{
   int x;
@@ -21,7 +23,7 @@ typedef char layout[GAME_HEIGHT][GAME_WIDTH];
 
 void makeBackGround(layout l); //creer une matrice hauteur+1*largeur+1 de type char
 void makeBorder(layout l); //remplis les contours de la matrice pour délimiter
-void makeFigure(); //creer des figures avec la bonne forme
+figure makeFigure(piece name); //creer des figures avec la bonne forme
 void displayPieceAt(pos a); //affiche une piece à la pos{x,y}
 void clearScreen(); //efface le terminal
 void displayScore(); //permet d'afficher le score sur le terminal

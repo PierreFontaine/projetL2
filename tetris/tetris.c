@@ -7,6 +7,6 @@
 void selectPiece(piece _p[NB_PIECE]) {
   int alea;
   srand(time(NULL));
-  alea = rand();
+  alea = rand()%(5-1)+1;
   printf("%d\n", alea);
 }

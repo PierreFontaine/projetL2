@@ -1,5 +1,7 @@
 #include "affichage.h"
 #include "stdio.h"
+#include "tetris.h"
+#include "string.h"
 
 void makeBackGround(layout l){
   int i,j;
@@ -34,4 +36,54 @@ void displayGame(layout l){
     }
     printf("\n");
   }
+}
+
+figure makeFigure(piece name){
+  figure res;
+  switch (name) {
+    /*
+       @@
+      @@
+    */
+    case S:
+      res.heigth = 2;
+      res.width = 3;
+      strcpy(res.forme[0]," @@");
+      strcpy(res.forme[1],"@@ ");
+      break;
+
+    /*
+      @@
+       @@
+    */
+    case Z:
+      res.heigth = 2;
+      res.width = 3;
+      strcpy(res.forme[0],"@@ ");
+      strcpy(res.forme[1]," @@");
+      break;
+
+    /*
+      @
+      @
+      @@
+    */
+    case L:
+      res.heigth = 3;
+      res.width = 2;
+      strcpy(res.forme[0],"@ ");
+      strcpy(res.forme[1],"@ ");
+      strcpy(res.forme[2],"@@");
+      break;
+    case J:
+      break;
+    case T:
+      break;
+    case I:
+      break;
+    default:
+      printf("%s\n","error somewhere");
+  }
+
+  return res;
 }
