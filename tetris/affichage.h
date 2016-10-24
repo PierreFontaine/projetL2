@@ -3,10 +3,22 @@
 
 #include "tetris.h"
 
-#define GAME_HEIGHT       12
-#define GAME_WIDTH        10
-#define PIECE_MAX_WIDTH   4
-#define PIECE_MAX_HEIGHT  4
+#define clrscr() printf("\033[H\033[2J");
+#define couleur(param) printf("\033[%sm",param)
+
+#define GAME_HEIGHT         12
+#define GAME_WIDTH          10
+#define PIECE_MAX_WIDTH     4
+#define PIECE_MAX_HEIGHT    4
+
+#define UNIX_COLOR_BLACK    30
+#define UNIX_COLOR_RED      31
+#define UNIX_COLOR_GREEN    32
+#define UNIX_COLOR_YELLOW   33
+#define UNIX_COLOR_BLUE     34
+#define UNIX_COLOR_MAGENTA  35
+#define UNIX_COLOR_CYAN     36
+#define UNIX_COLOR_WHITE    37
 
 typedef struct figure{
   int heigth;

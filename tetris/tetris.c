@@ -4,9 +4,33 @@
 #include "stdio.h"
 
 
-void selectPiece(piece _p[NB_PIECE]) {
+piece selectPiece() {
   int alea;
+  piece res;
+
   srand(time(NULL));
-  alea = rand()%(5-1)+1;
-  printf("%d\n", alea);
+  alea = rand()%(6);
+  switch (alea) {
+    case 0:
+      res = S;
+      break;
+    case 1:
+      res = Z;
+      break;
+    case 2:
+      res = L;
+      break;
+    case 3:
+      res = J;
+      break;
+    case 4:
+      res = T;
+      break;
+    case 5:
+      res = I;
+      break;
+    default:
+      printf("error somewhere\n");
+  }
+  return res;
 }

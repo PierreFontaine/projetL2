@@ -75,11 +75,44 @@ figure makeFigure(piece name){
       strcpy(res.forme[1],"@ ");
       strcpy(res.forme[2],"@@");
       break;
+
+    /*
+       @
+       @
+      @@
+    */
     case J:
+      res.heigth = 3;
+      res.width = 2;
+      strcpy(res.forme[0]," @");
+      strcpy(res.forme[1]," @");
+      strcpy(res.forme[2],"@@");
       break;
+
+    /*
+      @@@
+       @
+    */
     case T:
+      res.heigth = 2;
+      res.width = 3;
+      strcpy(res.forme[0],"@@@");
+      strcpy(res.forme[1]," @ ");
       break;
+
+    /*
+      @
+      @
+      @
+      @
+    */
     case I:
+      res.heigth = 4;
+      res.width = 1;
+      strcpy(res.forme[0],"@");
+      strcpy(res.forme[1],"@");
+      strcpy(res.forme[2],"@");
+      strcpy(res.forme[3],"@");
       break;
     default:
       printf("%s\n","error somewhere");
