@@ -120,3 +120,16 @@ figure makeFigure(piece name){
 
   return res;
 }
+
+void displayPieceAt(pos a,layout l, piece name){
+  figure shape;
+  int i,j;
+
+  shape = makeFigure(name);
+
+  for (i = 0; i < shape.heigth; i++) {
+    for(j = 0; j < shape.width; j++) {
+      l[a.y+i][a.x + j] = shape.forme[i][j];
+    }
+  }
+}

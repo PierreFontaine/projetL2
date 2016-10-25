@@ -36,7 +36,7 @@ typedef char layout[GAME_HEIGHT][GAME_WIDTH];
 void makeBackGround(layout l); //creer une matrice hauteur+1*largeur+1 de type char
 void makeBorder(layout l); //remplis les contours de la matrice pour délimiter
 figure makeFigure(piece name); //creer des figures avec la bonne forme
-void displayPieceAt(pos a); //affiche une piece à la pos{x,y}
+void displayPieceAt(pos a,layout l, piece name); //affiche une piece à la pos{x,y}
 void clearScreen(); //efface le terminal
 void displayScore(); //permet d'afficher le score sur le terminal
 void eraseLine();
