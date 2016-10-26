@@ -5,6 +5,7 @@
 
 typedef enum piece {S,Z,L,J,T,I}piece;
 
+void game();
 int score();
 piece selectPiece();
 int isLineFull();

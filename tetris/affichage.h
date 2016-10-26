@@ -11,14 +11,15 @@
 #define PIECE_MAX_WIDTH     4
 #define PIECE_MAX_HEIGHT    4
 
-#define UNIX_COLOR_BLACK    30
-#define UNIX_COLOR_RED      31
-#define UNIX_COLOR_GREEN    32
-#define UNIX_COLOR_YELLOW   33
-#define UNIX_COLOR_BLUE     34
-#define UNIX_COLOR_MAGENTA  35
-#define UNIX_COLOR_CYAN     36
-#define UNIX_COLOR_WHITE    37
+#define UNIX_COLOR_BLACK    "30"
+#define UNIX_COLOR_RED      "31"
+#define UNIX_COLOR_GREEN    "32"
+#define UNIX_COLOR_YELLOW   "33"
+#define UNIX_COLOR_BLUE     "34"
+#define UNIX_COLOR_MAGENTA  "35"
+#define UNIX_COLOR_CYAN     "36"
+#define UNIX_COLOR_WHITE    "37"
+#define UNIX_COLOR_RESET    "0"
 
 typedef struct figure{
   int heigth;
@@ -37,9 +38,9 @@ void makeBackGround(layout l); //creer une matrice hauteur+1*largeur+1 de type c
 void makeBorder(layout l); //remplis les contours de la matrice pour délimiter
 figure makeFigure(piece name); //creer des figures avec la bonne forme
 void displayPieceAt(pos a,layout l, piece name); //affiche une piece à la pos{x,y}
-void clearScreen(); //efface le terminal
 void displayScore(); //permet d'afficher le score sur le terminal
 void eraseLine();
 void displayGame(layout l);
+void erasePieceAt(pos a,layout l, piece name);
 
 #endif

@@ -32,7 +32,14 @@ void displayGame(layout l){
 
   for (i = 0; i < GAME_HEIGHT; i++) {
     for (j = 0; j < GAME_WIDTH; j++) {
+      if (l[i][j] == '#') {
+        couleur(UNIX_COLOR_BLUE);
+      }
+      if (l[i][j] == '|') {
+        couleur(UNIX_COLOR_RED);
+      }
       printf("%c ", l[i][j]);
+      couleur(UNIX_COLOR_RESET);
     }
     printf("\n");
   }
@@ -121,7 +128,35 @@ figure makeFigure(piece name){
   return res;
 }
 
+/*
+  @{param} pos [a]
+    spécifie les coordonnées où afficher la pièce
+  @{param} layout [l]
+    donne le layout du jeu
+  @{param} piece [name]
+    donne le nom de la pièce a aff cf enum pièce
+*/
 void displayPieceAt(pos a,layout l, piece name){
+  figure shape;
+  int i,j;
+
+  shape = makeFigure(name);
+  for (i = 0; i < shape.heigth; i++) {
+    for(j = 0; j < shape.width; j++) {
+      l[a.y+i][a.x + j] = shape.forme[i][j];
+    }
+  }
+}
+
+/*
+  @{param} pos [a]
+    spécifie les coordonnées où afficher la pièce
+  @{param} layout [l]
+    donne le layout du jeu
+  @{param} piece [name]
+    donne le nom de la pièce a aff cf enum pièce
+*/
+void erasePieceAt(pos a, layout l, piece name){
   figure shape;
   int i,j;
 
@@ -129,7 +164,9 @@ void displayPieceAt(pos a,layout l, piece name){
 
   for (i = 0; i < shape.heigth; i++) {
     for(j = 0; j < shape.width; j++) {
-      l[a.y+i][a.x + j] = shape.forme[i][j];
+      if (shape.forme[i][j] == '@') {
+        l[a.y+i][a.x + j] = ' ';
+      }
     }
   }
 }
