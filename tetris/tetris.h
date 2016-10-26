@@ -6,5 +6,5 @@
 void game();
 int score();
 piece selectPiece();
-//int isLineFull(layout l);
+int isLineFull(layout l);
 #endif

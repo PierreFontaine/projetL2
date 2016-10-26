@@ -42,7 +42,7 @@ piece selectPiece() {
     retourne le n° de la ligne si elle est remplie
     si aucune ligne remplie alors retourne -1
 */
-/*
+
 int isLineFull(layout l){
   int i,j;
   int isFull;
@@ -72,4 +72,3 @@ int isLineFull(layout l){
     return -1;
   }
 }
-*/

@@ -1,3 +1,7 @@
+#ifndef data_h
+#define data_h
+
+
 #define NB_PIECE 20
 
 typedef enum piece {S,Z,L,J,T,I}piece;
@@ -34,3 +38,5 @@ typedef char layout[GAME_HEIGHT][GAME_WIDTH];
 #define KEY_MOVE_RIGHT  'd'
 #define KEY_MOVE_LEFT   'q'
 #define KEY_REACH_FLOOR 's'
+
+#endif
