@@ -6,6 +6,7 @@
 #define KEY_MOVE_LEFT   'q'
 #define KEY_REACH_FLOOR 's'
 
+void capture();
 void pause();
 void moveRigth();
 void moveLeft();

@@ -196,7 +196,7 @@ int getCharAt(pos a,layout l, char *elt){
     perror("erreur de position\n");
     return 0;
   } else {
-    *elt = l[a.x][a.y];
+    *elt = l[a.y][a.x];
     return 1;
   }
 }
