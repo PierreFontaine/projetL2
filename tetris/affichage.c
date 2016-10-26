@@ -3,6 +3,10 @@
 #include "tetris.h"
 #include "string.h"
 
+/*
+  @{param} layout [l]
+    donne le layout sur lequel on travail
+*/
 void makeBackGround(layout l){
   int i,j;
 
@@ -13,6 +17,10 @@ void makeBackGround(layout l){
   }
 }
 
+/*
+  @{param} layout [l]
+    donne le layout sur lequel on travail
+*/
 void makeBorder(layout l){
   int i,j;
 
@@ -199,4 +207,8 @@ int getCharAt(pos a,layout l, char *elt){
     *elt = l[a.y][a.x];
     return 1;
   }
+}
+
+void eraseLine(int n,layout l){
+  //ToDo
 }
