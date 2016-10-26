@@ -27,6 +27,10 @@ void makeBorder(layout l){
   }
 }
 
+/*
+  @{param} layout [l]
+    spécifie le layout à afficher
+*/
 void displayGame(layout l){
   int i,j;
 
@@ -45,6 +49,12 @@ void displayGame(layout l){
   }
 }
 
+/*
+  @{param} piece [name]
+    spécifie le nom de la piece à créer
+  @{return} figure
+    retourne la figure
+*/
 figure makeFigure(piece name){
   figure res;
   switch (name) {
@@ -168,5 +178,25 @@ void erasePieceAt(pos a, layout l, piece name){
         l[a.y+i][a.x + j] = ' ';
       }
     }
+  }
+}
+
+/*
+  @{param} pos [a]
+    spécifie les coordonnées où afficher la pièce
+  @{param} layout [l]
+    donne le layout du jeu
+  @{param} char [elt]
+    donne le resultat de la recherche
+  @{return} int
+    renvoi 1 si correct, 0 si incorrect
+*/
+int getCharAt(pos a,layout l, char *elt){
+  if ((a.x < 0 && a.y<0) || (a.x < 0 && a.y >= GAME_HEIGHT) || (a.x >= GAME_WIDTH && a.y < 0) || (a.x >= GAME_WIDTH && a.y >= GAME_HEIGHT) ) {
+    perror("erreur de position\n");
+    return 0;
+  } else {
+    *elt = l[a.x][a.y];
+    return 1;
   }
 }

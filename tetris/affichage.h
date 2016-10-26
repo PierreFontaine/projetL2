@@ -42,5 +42,6 @@ void displayScore(); //permet d'afficher le score sur le terminal
 void eraseLine();
 void displayGame(layout l);
 void erasePieceAt(pos a,layout l, piece name);
+int getCharAt(pos a,layout l,char *res);
 
 #endif
