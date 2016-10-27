@@ -23,5 +23,9 @@ Télechargez le dossier et accedez y avec le terminal !
 ### Objectifs
   Dans un premier temps réaliser un Tetris en ASCII pour y jouer dans le terminal et dans un deuxième temps l'implémenter avec GTK+
 ### En cours
-  Creation du stuff
+  Création du stuff
+
+  - Fonctions spé d'affichage console
+  - Fonctions spé liées au fonctionnement du jeu
+  - Fonctions spé liées à l'interaction H/M
 ## Bataille Navale
