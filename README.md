@@ -25,7 +25,7 @@ Télechargez le dossier et accedez y avec le terminal !
 ### En cours
   Création du stuff
 
-  - Fonctions spé d'affichage console
-  - Fonctions spé liées au fonctionnement du jeu
-  - Fonctions spé liées à l'interaction H/M
+  - [x] Fonctions spé d'affichage console
+  - [ ] Fonctions spé liées au fonctionnement du jeu
+  - [ ] Fonctions spé liées à l'interaction H/M
 ## Bataille Navale
