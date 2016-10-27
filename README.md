@@ -26,6 +26,9 @@ Télechargez le dossier et accedez y avec le terminal !
   Création du stuff
 
   - [x] Fonctions spé d'affichage console
+    - [x] Couleurs
+    - [x] Layout
   - [ ] Fonctions spé liées au fonctionnement du jeu
   - [ ] Fonctions spé liées à l'interaction H/M
+    - [ ] Association des touches à un evt
 ## Bataille Navale
