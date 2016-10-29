@@ -6,6 +6,8 @@
 
 typedef enum piece {S,Z,L,J,T,I}piece;
 
+typedef enum direction {SUD,WEST,EST}direction;
+
 #define GAME_HEIGHT         12
 #define GAME_WIDTH          10
 #define PIECE_MAX_WIDTH     4

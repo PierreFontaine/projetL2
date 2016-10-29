@@ -31,4 +31,5 @@ Télechargez le dossier et accedez y avec le terminal !
   - [ ] Fonctions spé liées au fonctionnement du jeu
   - [ ] Fonctions spé liées à l'interaction H/M
     - [ ] Association des touches à un evt
+    
 ## Bataille Navale

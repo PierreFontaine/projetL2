@@ -4,6 +4,10 @@
 #include "stdlib.h"
 #include "stdio.h"
 
+/*
+* @{return} piece [res]
+*   retourne une piece choisie aléatoirement
+*/
 piece selectPiece() {
   int alea;
   piece res;
@@ -36,11 +40,11 @@ piece selectPiece() {
 }
 
 /*
-  @{param} layout [l]
-    donne le layout sur lequel on cherche les lignes remplies
-  @{return}
-    retourne le n° de la ligne si elle est remplie
-    si aucune ligne remplie alors retourne -1
+*  @{param} layout [l]
+*    donne le layout sur lequel on cherche les lignes remplies
+*  @{return}
+*    retourne le n° de la ligne si elle est remplie
+*    si aucune ligne remplie alors retourne -1
 */
 
 int isLineFull(layout l){
@@ -71,4 +75,67 @@ int isLineFull(layout l){
   } else {
     return -1;
   }
+}
+
+/*
+* Determine si une piece peut se déplacer vers la direction souhaité
+* @{param} piece [p]
+*   donne la piece sur laquel on souhaite tiré des infos
+* @{param} direction [dir]
+*   donne la direction vers laquelle on souhaite verifier le mouvement
+* @{param} pos [a]
+*   donne la position de la piece dans le layout
+* @{param} layout [l]
+*   donne le layout dans lequel on travail
+*/
+int canMoveToward(piece p,direction dir,pos a, layout l){
+  figure f;
+  int canMove,i,j;
+
+  f = makeFigure(p);
+  canMove = 1;
+  switch (dir) {
+    case SUD:
+      i = 0;
+      while(canMove == 1 && i < f.width){
+        j = f.heigth - 1;
+        while(f.forme[j][i] != '@' && j>= 0){
+          j--;
+        }
+        if (l[a.y + j+1][a.x + i] == '@') {
+          canMove = 0;
+        }
+        i++;
+      }
+      break;
+
+    case EST:
+      j = 0;
+      while (canMove == 1 && j < f.heigth) {
+        i = f.width - 1;
+        while (f.forme[j][i] != '@' && i >= 0) {
+          i--;
+        }
+        if (l[a.y + j][a.x + i+1] == '@') {
+          canMove = 0;
+        }
+        j++;
+      }
+      break;
+
+    case WEST:
+      j = 0;
+      while(canMove == 1 && j < f.heigth){
+        i = 0;
+        while (f.forme[j][i] != '@' && i < f.width){
+          i++;
+        }
+        if(l[a.y + j][a.x - i+1]){
+          canMove = 0;
+        }
+        j++;
+      }
+      break;
+  }
+  return canMove;
 }
