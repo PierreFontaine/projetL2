@@ -141,3 +141,16 @@ int canMoveToward(piece p,direction dir,pos a, layout l){
   }
   return canMove;
 }
+
+void pieceMoveToward(piece p,direction dir,pos a,layout l){
+  
+}
+
+int gameOver(layout l, piece p){
+  //Utiliser canMoveToward SUD sur la position initial, si faux alors gameOver !
+  return EXIT_SUCCESS;
+}
+
+void rotatePiece(){
+  //ToDo : verifcation de débordement et rotation de pièce
+}

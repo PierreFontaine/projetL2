@@ -3,11 +3,11 @@
 
 #include "data.h"
 
+
 void capture();
 void pause();
 void moveRigth();
 void moveLeft();
 void drop();
-void rotate(int angle);
 
 #endif

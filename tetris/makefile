@@ -1,5 +1,5 @@
-all: affichage.o main.o tetris.o liste.o
-	gcc affichage.o liste.o main.o tetris.o -o programme
+all: affichage.o main.o tetris.o liste.o keyboard.o
+	gcc keyboard.o affichage.o liste.o main.o tetris.o -o programme
 
 main.o : main.c
 	gcc -c main.c -o main.o
@@ -12,3 +12,6 @@ tetris.o : tetris.c
 
 liste.o : liste.c
 	gcc -c liste.c -o liste.o
+
+keyboard.o : keyboard.c
+	gcc -c keyboard.c -o keyboard.o

@@ -9,4 +9,7 @@ int score();
 piece selectPiece();
 int isLineFull(layout l);
 int canMoveToward(piece p,direction dir,pos a,layout l);
+int gameOver(layout l, piece p);
+void pieceMoveToward(piece p,direction dir,pos a,layout l);
+void rotatePiece();
 #endif

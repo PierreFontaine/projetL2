@@ -12,8 +12,6 @@ int main(int argc, char const *argv[]) {
   pos p_posInit,p_posUnderPiece;
   figure f_jeu;
 
-
-
   makeBackGround(l_jeu);
   makeBorder(l_jeu);
   displayGame(l_jeu);

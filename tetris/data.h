@@ -40,5 +40,6 @@ typedef char layout[GAME_HEIGHT][GAME_WIDTH];
 #define KEY_MOVE_RIGHT  'd'
 #define KEY_MOVE_LEFT   'q'
 #define KEY_REACH_FLOOR 's'
+#define KEY_ROTATE      'z'
 
 #endif
