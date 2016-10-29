@@ -161,7 +161,9 @@ void displayPieceAt(pos a,layout l, piece name){
   shape = makeFigure(name);
   for (i = 0; i < shape.heigth; i++) {
     for(j = 0; j < shape.width; j++) {
-      l[a.y+i][a.x + j] = shape.forme[i][j];
+      if (shape.forme[i][j] == '@') {
+        l[a.y+i][a.x + j] = shape.forme[i][j];
+      }
     }
   }
 }
