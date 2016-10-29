@@ -87,6 +87,8 @@ int isLineFull(layout l){
 *   donne la position de la piece dans le layout
 * @{param} layout [l]
 *   donne le layout dans lequel on travail
+* @{return} int [canMove]
+    retourne 1 si la piece peut se diriger dans la direction souhaité, O sinon
 */
 int canMoveToward(piece p,direction dir,pos a, layout l){
   figure f;
@@ -99,10 +101,10 @@ int canMoveToward(piece p,direction dir,pos a, layout l){
       i = 0;
       while(canMove == 1 && i < f.width){
         j = f.heigth - 1;
-        while(f.forme[j][i] != '@' && j>= 0){
+        while((f.forme[j][i] != '@') && j > 0){
           j--;
         }
-        if (l[a.y + j+1][a.x + i] == '@') {
+        if (l[a.y + j+1][a.x + i] == '@' || l[a.y + j+1][a.x + i] == '#') {
           canMove = 0;
         }
         i++;
@@ -113,10 +115,10 @@ int canMoveToward(piece p,direction dir,pos a, layout l){
       j = 0;
       while (canMove == 1 && j < f.heigth) {
         i = f.width - 1;
-        while (f.forme[j][i] != '@' && i >= 0) {
+        while ((f.forme[j][i] != '@') && i > 0) {
           i--;
         }
-        if (l[a.y + j][a.x + i+1] == '@') {
+        if (l[a.y + j][a.x + i+1] == '@' || l[a.y + j][a.x + i+1] == '|') {
           canMove = 0;
         }
         j++;
@@ -127,10 +129,10 @@ int canMoveToward(piece p,direction dir,pos a, layout l){
       j = 0;
       while(canMove == 1 && j < f.heigth){
         i = 0;
-        while (f.forme[j][i] != '@' && i < f.width){
+        while ((f.forme[j][i] != '@') && i < f.width){
           i++;
         }
-        if(l[a.y + j][a.x - i+1]){
+        if(l[a.y + j][a.x - i+1] == '@' || l[a.y + j][a.x - i+1] == '|'){
           canMove = 0;
         }
         j++;
