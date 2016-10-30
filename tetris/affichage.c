@@ -139,8 +139,14 @@ figure makeFigure(piece name){
       strcpy(res.forme[2],"@");
       strcpy(res.forme[3],"@");
       break;
+    case C:
+      res.heigth = 2;
+      res.width = 2;
+      strcpy(res.forme[0],"@@");
+      strcpy(res.forme[1],"@@");
+      break;
     default:
-      printf("%s\n","error somewhere");
+      printf("%s\n","error in piece choice");
   }
 
   return res;

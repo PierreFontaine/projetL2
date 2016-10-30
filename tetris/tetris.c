@@ -13,7 +13,8 @@ piece selectPiece() {
   piece res;
 
   srand(time(NULL));
-  alea = rand()%(6);
+  alea = rand()%6;
+  printf("%d\n",alea);
   switch (alea) {
     case 0:
       res = S;
@@ -33,8 +34,11 @@ piece selectPiece() {
     case 5:
       res = I;
       break;
+    case 6:
+      res = C;
+      break;
     default:
-      printf("error somewhere\n");
+      printf("error in tetris.c selectPiece()\n");
   }
   return res;
 }
@@ -143,7 +147,7 @@ int canMoveToward(piece p,direction dir,pos a, layout l){
 }
 
 void pieceMoveToward(piece p,direction dir,pos a,layout l){
-  
+
 }
 
 int gameOver(layout l, piece p){

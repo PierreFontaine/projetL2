@@ -2,9 +2,9 @@
 #define data_h
 
 
-#define NB_PIECE 20
+#define NB_PIECE 7
 
-typedef enum piece {S,Z,L,J,T,I}piece;
+typedef enum piece {S,Z,L,J,T,I,C}piece;
 
 typedef enum direction {SUD,WEST,EST}direction;
 
