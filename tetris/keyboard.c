@@ -13,10 +13,10 @@ void capture(piece p, layout l, pos a){
       pause();
       break;
     case KEY_MOVE_RIGHT:
-      pieceMoveToward(p,EST,a,l);
+      pieceMoveToward(p,EST,&a,l);
       break;
     case KEY_MOVE_LEFT:
-      pieceMoveToward(p,WEST,a,l);
+      pieceMoveToward(p,WEST,&a,l);
       break;
     case KEY_ROTATE:
       rotatePiece();
