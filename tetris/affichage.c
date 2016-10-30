@@ -217,6 +217,21 @@ int getCharAt(pos a,layout l, char *elt){
   }
 }
 
+/*
+* @{param} int [n]
+*   donne le numéro de la ligne à supp entre 0 et GAME_HEIGHT
+* @{param} layout [l]
+*   donne le layout dans lequel on travail
+*/
 void eraseLine(int n,layout l){
-  //ToDo
+  int i,j;
+
+  for (i = n; i > 0; i++) {
+    for (j = 0; j < GAME_WIDTH; j++) {
+      l[i][j] = l[i-1][j];
+    }
+  }
+  for (i = 0; i < GAME_WIDTH; i++) {
+    l[0][i] = ' ';
+  }
 }

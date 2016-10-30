@@ -12,4 +12,5 @@ int canMoveToward(piece p,direction dir,pos a,layout l);
 int gameOver(layout l, piece p);
 void pieceMoveToward(piece p,direction dir,pos a,layout l);
 void rotatePiece();
+void reachFloor();
 #endif

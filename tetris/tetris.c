@@ -146,13 +146,51 @@ int canMoveToward(piece p,direction dir,pos a, layout l){
   return canMove;
 }
 
-void pieceMoveToward(piece p,direction dir,pos a,layout l){
-
+/*
+* @{param} piece [p]
+*   donne la piece qui doit bouger
+* @{param} direction [dir]
+*   donne la direction [EST,WEST,SUD] souhaité pour bouger la piece
+* @{param} pos [a]
+*   passage par ref de la position de la piece
+* @{param} layout [l]
+*   donne le layout du jeu
+*/
+void pieceMoveToward(piece p,direction dir,pos *a,layout l){
+  if (canMoveToward(p,dir,a,l)) {
+    erasePieceAt(a,l,p); //on supp la piece dans le layout du jeu à la pos actuelle
+    switch (dir) {
+      //cas issu de l'interaction H/M
+      case EST:
+        a.x = a.x+ 1;
+        break;
+      case WEST:
+        a.x = a.x - 1;
+        break;
+      //cas par défaut
+      case SUD:
+        a.y = a.y + 1;
+        break;
+    }
+    displayPieceAt(a,l,p);
+  }
 }
 
-int gameOver(layout l, piece p){
-  //Utiliser canMoveToward SUD sur la position initial, si faux alors gameOver !
-  return EXIT_SUCCESS;
+/*
+* @{param} layout [l]
+*   donne le layout dans lequel on travail
+* @{param} piece [p]
+*   donne la piece qui vient d'etre généré
+* @{return} int
+*   1 si gameover sinon 0
+*/
+int gameOver(layout l, piece p,pos a){
+  if (!canMoveToward(p,SUD,a,l) && a.y == 0) {
+    return 1;
+  }
+  else {
+    return 0;
+  }
 }
 
 void rotatePiece(){
