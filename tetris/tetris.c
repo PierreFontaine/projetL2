@@ -157,22 +157,22 @@ int canMoveToward(piece p,direction dir,pos a, layout l){
 *   donne le layout du jeu
 */
 void pieceMoveToward(piece p,direction dir,pos *a,layout l){
-  if (canMoveToward(p,dir,a,l)) {
-    erasePieceAt(a,l,p); //on supp la piece dans le layout du jeu à la pos actuelle
+  if (canMoveToward(p,dir,*a,l)) {
+    erasePieceAt(*a,l,p); //on supp la piece dans le layout du jeu à la pos actuelle
     switch (dir) {
       //cas issu de l'interaction H/M
       case EST:
-        a.x = a.x+ 1;
+        a->x = a->x+ 1;
         break;
       case WEST:
-        a.x = a.x - 1;
+        a->x = a->x - 1;
         break;
       //cas par défaut
       case SUD:
-        a.y = a.y + 1;
+        a->y = a->y + 1;
         break;
     }
-    displayPieceAt(a,l,p);
+    displayPieceAt(*a,l,p);
   }
 }
 
