@@ -28,12 +28,19 @@ int main(int argc, char const *argv[]) {
     displayGame(l_jeu); //affichage du jeux
     clrscr(); //effacage écran
     sleep(1);
+    if (gameOver(l_jeu,p_jeu,p_posInit)) {
+      printf("game over \n");
+      return 0;
+    }
     while(canMoveToward(p_jeu,SUD,p_posInit,l_jeu) == 1){
-      erasePieceAt(p_posInit,l_jeu,p_jeu);
-      p_posInit.y += 1;
-      displayPieceAt(p_posInit,l_jeu,p_jeu);
+      pieceMoveToward(p_jeu,SUD,&p_posInit,l_jeu);
       displayGame(l_jeu);
       clrscr();
+      /*
+      if (isLineFull(l_jeu) != (-1)) {
+        eraseLine(isLineFull(l_jeu),l_jeu);
+      }
+      */
       sleep(1);
     }
   }
