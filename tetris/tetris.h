@@ -13,4 +13,5 @@ int gameOver(layout l, piece p, pos a);
 void pieceMoveToward(piece p,direction dir,pos *a,layout l);
 void rotatePiece();
 void reachFloor();
+void resume();
 #endif

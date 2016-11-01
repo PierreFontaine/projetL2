@@ -1,9 +1,26 @@
 #include "affichage.h"
+#include "keyboard.h"
 #include "tetris.h"
 #include "stdlib.h"
 #include "stdio.h"
 #include "unistd.h"
+#include "pthread.h"
 
+void *thread_1(void *arg){
+  printf("Nous sommes dans le thread.\n");
+  char touche;
+  while(1){
+    touche = getchar();
+    if (touche == 'z') {
+      printf("monter piece \n");
+      sleep(1);
+    }
+  }
+
+  /* Pour enlever le warning */
+  (void) arg;
+  pthread_exit(NULL);
+}
 
 int main(int argc, char const *argv[]) {
   layout l_jeu;
@@ -11,6 +28,12 @@ int main(int argc, char const *argv[]) {
   char key,underPiece;
   pos p_posInit,p_posUnderPiece;
   figure f_jeu;
+  pthread_t thread1;
+
+  if(pthread_create(&thread1, NULL, thread_1, NULL) == -1) {
+  	perror("pthread_create");
+  	return EXIT_FAILURE;
+  }
 
   makeBackGround(l_jeu);
   makeBorder(l_jeu);

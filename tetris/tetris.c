@@ -196,3 +196,7 @@ int gameOver(layout l, piece p,pos a){
 void rotatePiece(){
   //ToDo : verifcation de débordement et rotation de pièce
 }
+
+void resume(){
+  //ToDo
+}

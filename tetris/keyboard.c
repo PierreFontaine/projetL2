@@ -10,7 +10,7 @@ void capture(piece p, layout l, pos a){
 
   switch (choix) {
     case KEY_PAUSE:
-      pause();
+      resume();
       break;
     case KEY_MOVE_RIGHT:
       pieceMoveToward(p,EST,&a,l);

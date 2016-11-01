@@ -5,9 +5,4 @@
 
 
 void capture();
-void pause();
-void moveRigth();
-void moveLeft();
-void drop();
-
 #endif
