@@ -136,7 +136,7 @@ int canMoveToward(piece p,direction dir,pos a, layout l){
         while ((f.forme[j][i] != '@') && i < f.width){
           i++;
         }
-        if(l[a.y + j][a.x - i+1] == '@' || l[a.y + j][a.x - i+1] == '|'){
+        if(l[a.y + j][a.x +i-1] == '@' || l[a.y + j][a.x + i-1] == '|'){
           canMove = 0;
         }
         j++;
