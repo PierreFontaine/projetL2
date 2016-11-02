@@ -4,9 +4,23 @@
 
 #define NB_PIECE 7
 
-typedef enum piece {S,Z,L,J,T,I,C}piece;
+typedef enum piece {
+  S,S_90,
+  Z,Z_90,
+  L,L_90,L_180,L_270,
+  J,J_90,J_180,J_270,
+  T,T_90,T_180,T_270,
+  I,I_90,
+  C,
+  }piece;
 
 typedef enum direction {SUD,WEST,EST}direction;
+
+/* SPRITE */
+#define spriteS piece sprite[4] = {S,S_90,S,S_90};
+#define spriteZ piece sprite[4] = {Z,Z_90,Z,Z_90};
+#define spriteL piece sprite[4] = {L,L_90,L_180,L_270};
+/* PARAMETRE DE JEU */
 
 #define GAME_HEIGHT         12
 #define GAME_WIDTH          10

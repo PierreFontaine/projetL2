@@ -77,6 +77,13 @@ figure makeFigure(piece name){
       strcpy(res.forme[1],"@@ ");
       break;
 
+    case S_90:
+      res.heigth = 3;
+      res.width = 2;
+      strcpy(res.forme[0],"@ ");
+      strcpy(res.forme[1],"@@");
+      strcpy(res.forme[2]," @");
+      break;
     /*
       @@
        @@
@@ -88,6 +95,13 @@ figure makeFigure(piece name){
       strcpy(res.forme[1]," @@");
       break;
 
+    case Z_90:
+      res.heigth = 2;
+      res.width = 3;
+      strcpy(res.forme[0]," @");
+      strcpy(res.forme[1],"@@");
+      strcpy(res.forme[2],"@ ");
+      break;
     /*
       @
       @
@@ -100,7 +114,24 @@ figure makeFigure(piece name){
       strcpy(res.forme[1],"@ ");
       strcpy(res.forme[2],"@@");
       break;
-
+    case L_90:
+      res.heigth = 2;
+      res.width = 3;
+      strcpy(res.forme[0],"  @");
+      strcpy(res.forme[1],"@@@");
+      break;
+    case L_180:
+      res.heigth = 3;
+      res.width = 2;
+      strcpy(res.forme[0],"@@");
+      strcpy(res.forme[0]," @");
+      strcpy(res.forme[0]," @");
+    case L_270:
+      res.heigth = 3;
+      res.width = 2;
+      strcpy(res.forme[0],"  @");
+      strcpy(res.forme[1],"@@@");
+      break;
     /*
        @
        @
@@ -114,6 +145,28 @@ figure makeFigure(piece name){
       strcpy(res.forme[2],"@@");
       break;
 
+    case J_180:
+      res.heigth = 3;
+      res.width = 2;
+      strcpy(res.forme[0],"@@");
+      strcpy(res.forme[1],"@");
+      strcpy(res.forme[2],"@");
+      break;
+
+    case J_90:
+      res.heigth = 2;
+      res.width = 3;
+      strcpy(res.forme[0],"@@@");
+      strcpy(res.forme[1],"  @");
+      break;
+
+    case J_270:
+      res.heigth = 2;
+      res.width = 3;
+      strcpy(res.forme[0],"@  ");
+      strcpy(res.forme[1],"@@@");
+      break;
+
     /*
       @@@
        @
@@ -125,6 +178,26 @@ figure makeFigure(piece name){
       strcpy(res.forme[1]," @ ");
       break;
 
+    case T_90:
+      res.heigth = 3;
+      res.width = 2;
+      strcpy(res.forme[0],"@ ");
+      strcpy(res.forme[1],"@@");
+      strcpy(res.forme[2],"@ ");
+      break;
+    case T_180:
+      res.heigth = 2;
+      res.width = 3;
+      strcpy(res.forme[0]," @ ");
+      strcpy(res.forme[1],"@@@");
+      break;
+    case T_270:
+      res.heigth = 3;
+      res.width = 2;
+      strcpy(res.forme[0]," @");
+      strcpy(res.forme[1],"@@");
+      strcpy(res.forme[2]," @");
+      break;
     /*
       @
       @
@@ -139,6 +212,16 @@ figure makeFigure(piece name){
       strcpy(res.forme[2],"@");
       strcpy(res.forme[3],"@");
       break;
+
+    case I_90:
+      res.heigth = 1;
+      res.width = 4;
+      strcpy(res.forme[0],"@@@@");
+      break;
+    /*
+    * @@
+    * @@
+    */
     case C:
       res.heigth = 2;
       res.width = 2;
