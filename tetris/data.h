@@ -17,11 +17,8 @@ typedef enum piece {
 typedef enum direction {SUD,WEST,EST}direction;
 
 /* SPRITE */
-#define spriteS piece sprite[4] = {S,S_90,S,S_90};
-#define spriteZ piece sprite[4] = {Z,Z_90,Z,Z_90};
-#define spriteL piece sprite[4] = {L,L_90,L_180,L_270};
-/* PARAMETRE DE JEU */
 
+/* PARAMETRE DE JEU */
 #define GAME_HEIGHT         12
 #define GAME_WIDTH          10
 #define PIECE_MAX_WIDTH     4

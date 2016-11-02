@@ -3,6 +3,7 @@
 #include "time.h"
 #include "stdlib.h"
 #include "stdio.h"
+#include "data.h"
 
 /*
 * @{return} piece [res]
@@ -193,8 +194,55 @@ int gameOver(layout l, piece p,pos a){
   }
 }
 
-void rotatePiece(layout l,piece p,pos a){
+void rotatePiece(layout l,piece *p,pos a,int *compteur){
+  piece spriteS[] = {S,S_90,S,S_90};
+  piece spriteZ[] = {Z,Z_90,Z,Z_90};
+  piece spriteL[] = {L,L_90,L_180,L_270};
+  piece spriteJ[] = {J,J_90,J_180,J_270};
+  piece spriteT[] = {T,T_90,T_180,T_270};
+  piece spriteI[] = {I,I_90,I,I_90};
+  piece spriteC[] = {C,C,C,C};
 
+  *compteur= *compteur + 1;
+  switch (*p) {
+    case S:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteS[*compteur %5]);
+      *p = spriteS[*compteur % 5];
+      break;
+    case Z:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteZ[*compteur %5]);
+      *p = spriteZ[*compteur % 5];
+      break;
+    case L:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteL[*compteur %5]);
+      *p = spriteL[*compteur % 5];
+      break;
+    case J:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteJ[*compteur %5]);
+      *p = spriteJ[*compteur % 5];
+      break;
+    case T:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteT[*compteur %5]);
+      *p = spriteT[*compteur % 5];
+      break;
+    case I:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteI[*compteur %5]);
+      *p = spriteI[*compteur % 5];
+      break;
+    case C:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteC[*compteur %5]);
+      *p = spriteC[*compteur % 5];
+      break;
+    default:
+      perror("erreur rotate piece\n");
+  }
 }
 
 void resume(){

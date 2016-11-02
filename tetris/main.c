@@ -10,6 +10,7 @@
 layout l_jeu;
 piece p_jeu;
 pos p_posInit;
+int compteur;
 
 void *thread_1(void *arg){
   printf("Nous sommes dans le thread.\n");
@@ -21,6 +22,9 @@ void *thread_1(void *arg){
     }
     if (touche == 'd') {
       pieceMoveToward(p_jeu,EST,&p_posInit,l_jeu);
+    }
+    if (touche == 'z') {
+      rotatePiece(l_jeu,&p_jeu,p_posInit,&compteur);
     }
   }
 
@@ -58,7 +62,7 @@ int main(int argc, char const *argv[]) {
   displayGame(l_jeu);
 
   while(1){
-
+    compteur = 0;
     p_posInit.x = 5;
     p_posInit.y = 0;
 

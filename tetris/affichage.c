@@ -1,8 +1,7 @@
 #include "affichage.h"
 #include "stdio.h"
-#include "tetris.h"
 #include "string.h"
-
+#include "data.h"
 /*
   @{param} layout [l]
     donne le layout sur lequel on travail
@@ -96,8 +95,8 @@ figure makeFigure(piece name){
       break;
 
     case Z_90:
-      res.heigth = 2;
-      res.width = 3;
+      res.heigth = 3;
+      res.width = 2;
       strcpy(res.forme[0]," @");
       strcpy(res.forme[1],"@@");
       strcpy(res.forme[2],"@ ");
@@ -124,11 +123,11 @@ figure makeFigure(piece name){
       res.heigth = 3;
       res.width = 2;
       strcpy(res.forme[0],"@@");
-      strcpy(res.forme[0]," @");
-      strcpy(res.forme[0]," @");
+      strcpy(res.forme[1]," @");
+      strcpy(res.forme[2]," @");
     case L_270:
-      res.heigth = 3;
-      res.width = 2;
+      res.heigth = 2;
+      res.width = 3;
       strcpy(res.forme[0],"  @");
       strcpy(res.forme[1],"@@@");
       break;
