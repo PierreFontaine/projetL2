@@ -212,7 +212,17 @@ void rotatePiece(layout l,piece *p,pos a,int *compteur){
       displayPieceAt(a,l,spriteS[*compteur]);
       *p = spriteS[*compteur % 6];
       break;
+    case S_90:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteS[*compteur]);
+      *p = spriteS[*compteur % 6];
+      break;
     case Z:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteZ[*compteur]);
+      *p = spriteZ[*compteur];
+      break;
+    case Z_90:
       erasePieceAt(a,l,*p);
       displayPieceAt(a,l,spriteZ[*compteur]);
       *p = spriteZ[*compteur];
@@ -222,7 +232,37 @@ void rotatePiece(layout l,piece *p,pos a,int *compteur){
       displayPieceAt(a,l,spriteL[*compteur]);
       *p = spriteL[*compteur];
       break;
+    case L_90:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteL[*compteur]);
+      *p = spriteL[*compteur];
+      break;
+    case L_180:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteL[*compteur]);
+      *p = spriteL[*compteur];
+      break;
+    case L_270:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteL[*compteur]);
+      *p = spriteL[*compteur];
+      break;
     case J:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteJ[*compteur]);
+      *p = spriteJ[*compteur];
+      break;
+    case J_90:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteJ[*compteur]);
+      *p = spriteJ[*compteur];
+      break;
+    case J_180:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteJ[*compteur]);
+      *p = spriteJ[*compteur];
+      break;
+    case J_270:
       erasePieceAt(a,l,*p);
       displayPieceAt(a,l,spriteJ[*compteur]);
       *p = spriteJ[*compteur];
@@ -232,7 +272,29 @@ void rotatePiece(layout l,piece *p,pos a,int *compteur){
       displayPieceAt(a,l,spriteT[*compteur]);
       *p = spriteT[*compteur];
       break;
+    case T_90:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteT[*compteur]);
+      *p = spriteT[*compteur];
+      break;
+    case T_180:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteT[*compteur]);
+      *p = spriteT[*compteur];
+      break;
+    case T_270:
+      erasePieceAt(a,l,*p);
+      displayPieceAt(a,l,spriteT[*compteur]);
+      *p = spriteT[*compteur];
+      break;
     case I:
+      erasePieceAt(a,l,*p);
+      printf("après erase piece\n");
+      displayPieceAt(a,l,spriteI[*compteur]);
+      printf("après display piece\n");
+      *p = spriteI[*compteur];
+      break;
+    case I_90:
       erasePieceAt(a,l,*p);
       displayPieceAt(a,l,spriteI[*compteur]);
       *p = spriteI[*compteur];
