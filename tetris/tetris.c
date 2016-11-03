@@ -203,42 +203,44 @@ void rotatePiece(layout l,piece *p,pos a,int *compteur){
   piece spriteI[] = {I,I_90,I,I_90};
   piece spriteC[] = {C,C,C,C};
 
-  *compteur= *compteur + 1;
+  *compteur = ((*compteur + 1) % 5);
+
+  printf("%d",*compteur);
   switch (*p) {
     case S:
       erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteS[*compteur %5]);
-      *p = spriteS[*compteur % 5];
+      displayPieceAt(a,l,spriteS[*compteur]);
+      *p = spriteS[*compteur % 6];
       break;
     case Z:
       erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteZ[*compteur %5]);
-      *p = spriteZ[*compteur % 5];
+      displayPieceAt(a,l,spriteZ[*compteur]);
+      *p = spriteZ[*compteur];
       break;
     case L:
       erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteL[*compteur %5]);
-      *p = spriteL[*compteur % 5];
+      displayPieceAt(a,l,spriteL[*compteur]);
+      *p = spriteL[*compteur];
       break;
     case J:
       erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteJ[*compteur %5]);
-      *p = spriteJ[*compteur % 5];
+      displayPieceAt(a,l,spriteJ[*compteur]);
+      *p = spriteJ[*compteur];
       break;
     case T:
       erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteT[*compteur %5]);
-      *p = spriteT[*compteur % 5];
+      displayPieceAt(a,l,spriteT[*compteur]);
+      *p = spriteT[*compteur];
       break;
     case I:
       erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteI[*compteur %5]);
-      *p = spriteI[*compteur % 5];
+      displayPieceAt(a,l,spriteI[*compteur]);
+      *p = spriteI[*compteur];
       break;
     case C:
       erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteC[*compteur %5]);
-      *p = spriteC[*compteur % 5];
+      displayPieceAt(a,l,spriteC[*compteur]);
+      *p = spriteC[*compteur];
       break;
     default:
       perror("erreur rotate piece\n");
@@ -246,5 +248,14 @@ void rotatePiece(layout l,piece *p,pos a,int *compteur){
 }
 
 void resume(){
-  //ToDo
+  char touche;
+  system("cls");
+  printf("####################\n");
+  printf("#######PAUSE########\n");
+  printf("####################\n");
+  printf("#APPUYEZ SUR UNE ###\n");
+  printf("#TOUCHE POUR #######\n");
+  printf("#REPRENDRE##########\n");
+
+  scanf("%c",&touche);
 }

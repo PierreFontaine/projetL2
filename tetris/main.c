@@ -26,6 +26,9 @@ void *thread_1(void *arg){
     if (touche == 'z') {
       rotatePiece(l_jeu,&p_jeu,p_posInit,&compteur);
     }
+    if (touche == 'p') {
+      resume();
+    }
   }
 
   /* Pour enlever le warning */
