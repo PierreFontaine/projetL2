@@ -68,7 +68,7 @@ int isLineFull(layout l){
     j = 1;
     //Warn: l[x][GAME_WIDTH - 1] vaut '|' pour tout x
     while (isFull == 1 && j < GAME_WIDTH-1) {
-      if (l[i][j] == '@') {
+      if (l[i][j] != '@') {
         isFull = 0;
       }
       j++;
@@ -194,6 +194,16 @@ int gameOver(layout l, piece p,pos a){
   }
 }
 
+/*
+* @{param} layout [l]
+*   donne le layout du jeu
+* @{param} piece [p]
+*   donne par ref la piece
+* @{param} pos [a]
+*   donne la position de la piece
+* @{param} int [compteur]
+*   donne par ref la valeur du compteur pour connaitre la prochaine version du sprite
+*/
 void rotatePiece(layout l,piece *p,pos a,int *compteur){
   piece spriteS[] = {S,S_90,S,S_90};
   piece spriteZ[] = {Z,Z_90,Z,Z_90};
@@ -309,6 +319,9 @@ void rotatePiece(layout l,piece *p,pos a,int *compteur){
   }
 }
 
+/*
+* permet de mettre le jeu sur pose
+*/
 void resume(){
   char touche;
   system("cls");
@@ -319,5 +332,5 @@ void resume(){
   printf("#TOUCHE POUR #######\n");
   printf("#REPRENDRE##########\n");
 
-  scanf("%c",&touche);
+  sleep(10);
 }

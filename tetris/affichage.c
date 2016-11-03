@@ -184,12 +184,14 @@ figure makeFigure(piece name){
       strcpy(res.forme[1],"@@");
       strcpy(res.forme[2],"@ ");
       break;
+
     case T_180:
       res.heigth = 2;
       res.width = 3;
       strcpy(res.forme[0]," @ ");
       strcpy(res.forme[1],"@@@");
       break;
+
     case T_270:
       res.heigth = 3;
       res.width = 2;
@@ -308,12 +310,12 @@ int getCharAt(pos a,layout l, char *elt){
 void eraseLine(int n,layout l){
   int i,j;
 
-  for (i = n; i > 0; i++) {
-    for (j = 0; j < GAME_WIDTH; j++) {
+  for (i = n-1; i > 0; i--) {
+    for (j = 1; j < GAME_WIDTH-1; j++) {
       l[i][j] = l[i-1][j];
     }
   }
-  for (i = 0; i < GAME_WIDTH; i++) {
+  for (i = 1; i < GAME_WIDTH-1; i++) {
     l[0][i] = ' ';
   }
 }

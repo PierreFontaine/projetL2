@@ -86,11 +86,11 @@ int main(int argc, char const *argv[]) {
       pieceMoveToward(p_jeu,SUD,&p_posInit,l_jeu);
       displayGame(l_jeu);
       clrscr();
-      /*
+      
       if (isLineFull(l_jeu) != (-1)) {
         eraseLine(isLineFull(l_jeu),l_jeu);
       }
-      */
+
       sleep(1);
     }
   }
