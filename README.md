@@ -21,15 +21,37 @@ Télechargez le dossier et accedez y avec le terminal !
 ## Tetris
 
 ### Objectifs
+
   Dans un premier temps réaliser un Tetris en ASCII pour y jouer dans le terminal et dans un deuxième temps l'implémenter avec GTK+
+
 ### En cours
+
+  Utilisation massive de structure pour faire un maximum d'encapsulation.
+
+  Utilisation d'un Thread pour la lecture des touches.
+
+  Création de bibliothèque sans problème de "circular depedencies"
+  <!-- -->
   Création du stuff
 
   - [x] Fonctions spé d'affichage console
     - [x] Couleurs
     - [x] Layout
+    - [x] Affichage des pieces
+    - [x] Suppression de pieces
   - [ ] Fonctions spé liées au fonctionnement du jeu
+    - [ ] rotation et verification
+    - [x] déplacement et verification
+    - [ ] mise en pause
+    - [ ] gestion du score
   - [ ] Fonctions spé liées à l'interaction H/M
-    - [ ] Association des touches à un evt
-    
+    - [ ] Association des touches à un évenement
+  - [x] makefile
+### Problèmes actuels
+
+- débordement de tableau
+- problème de rotation => changement de figure
+- fonction lancée du Thread ne bloque pas le main
+
+
 ## Bataille Navale

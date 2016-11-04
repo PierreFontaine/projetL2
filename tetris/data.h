@@ -38,7 +38,6 @@ typedef struct figure{
   int heigth;
   int width;
   char forme[PIECE_MAX_HEIGHT][PIECE_MAX_WIDTH];
-  int sprite;
 }figure;
 
 typedef struct pos{
