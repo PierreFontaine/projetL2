@@ -205,118 +205,25 @@ int gameOver(layout l, piece p,pos a){
 *   donne par ref la valeur du compteur pour connaitre la prochaine version du sprite
 */
 void rotatePiece(layout l,piece *p,pos a,int *compteur){
-  piece spriteS[] = {S,S_90,S,S_90};
-  piece spriteZ[] = {Z,Z_90,Z,Z_90};
-  piece spriteL[] = {L,L_90,L_180,L_270};
-  piece spriteJ[] = {J,J_90,J_180,J_270};
-  piece spriteT[] = {T,T_90,T_180,T_270};
-  piece spriteI[] = {I,I_90,I,I_90};
-  piece spriteC[] = {C,C,C,C};
+  erasePieceAt(a,l,*p);
+  *p = makeFigure(*p).suivante;
+  displayPieceAt(a,l,*p);
+}
 
-  *compteur = ((*compteur + 1) % 5);
-
-  printf("%d",*compteur);
-  switch (*p) {
-    case S:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteS[*compteur]);
-      *p = spriteS[*compteur % 6];
-      break;
-    case S_90:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteS[*compteur]);
-      *p = spriteS[*compteur % 6];
-      break;
-    case Z:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteZ[*compteur]);
-      *p = spriteZ[*compteur];
-      break;
-    case Z_90:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteZ[*compteur]);
-      *p = spriteZ[*compteur];
-      break;
-    case L:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteL[*compteur]);
-      *p = spriteL[*compteur];
-      break;
-    case L_90:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteL[*compteur]);
-      *p = spriteL[*compteur];
-      break;
-    case L_180:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteL[*compteur]);
-      *p = spriteL[*compteur];
-      break;
-    case L_270:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteL[*compteur]);
-      *p = spriteL[*compteur];
-      break;
-    case J:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteJ[*compteur]);
-      *p = spriteJ[*compteur];
-      break;
-    case J_90:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteJ[*compteur]);
-      *p = spriteJ[*compteur];
-      break;
-    case J_180:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteJ[*compteur]);
-      *p = spriteJ[*compteur];
-      break;
-    case J_270:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteJ[*compteur]);
-      *p = spriteJ[*compteur];
-      break;
-    case T:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteT[*compteur]);
-      *p = spriteT[*compteur];
-      break;
-    case T_90:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteT[*compteur]);
-      *p = spriteT[*compteur];
-      break;
-    case T_180:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteT[*compteur]);
-      *p = spriteT[*compteur];
-      break;
-    case T_270:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteT[*compteur]);
-      *p = spriteT[*compteur];
-      break;
-    case I:
-      erasePieceAt(a,l,*p);
-      printf("après erase piece\n");
-      displayPieceAt(a,l,spriteI[*compteur]);
-      printf("après display piece\n");
-      *p = spriteI[*compteur];
-      break;
-    case I_90:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteI[*compteur]);
-      *p = spriteI[*compteur];
-      break;
-    case C:
-      erasePieceAt(a,l,*p);
-      displayPieceAt(a,l,spriteC[*compteur]);
-      *p = spriteC[*compteur];
-      break;
-    default:
-      perror("erreur rotate piece\n");
-  }
+/*
+* @{param} layout [l]
+*   donne le layout du jeu
+* @{param} piece [p]
+*   donne par ref la piece
+* @{param} pos [a]
+*   donne la position de la piece
+* @{param} int [compteur]
+*   donne par ref la valeur du compteur pour connaitre la prochaine version du sprite
+* @{return} int
+*   retourne 1 si la piece peut faire une rotation 0 sinon
+*/
+int canRotate(layout l, piece *p,pos a,int compteur){
+  return 0;
 }
 
 /*
