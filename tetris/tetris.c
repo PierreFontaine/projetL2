@@ -4,7 +4,7 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include "data.h"
-
+#include "string.h"
 /*
 * @{return} piece [res]
 *   retourne une piece choisie aléatoirement
@@ -211,6 +211,51 @@ void rotatePiece(layout l,piece *p,pos a,int *compteur){
 }
 
 /*
+* retourne 1 si la piece est en dehors du layout sinon 0
+*/
+int pieceIsOutOfLayout(piece p,pos a){
+  figure fig;
+  int res;
+
+  fig = makeFigure(p); //recuperation des propriétes
+
+  res = 0;
+
+  if (a.y + fig.heigth >= GAME_HEIGHT || a.x + fig.width >= GAME_WIDTH) {
+    res = 1;
+  }
+
+  return res;
+}
+
+/*
+* permet de copier le layout a dans le layout b
+*/
+void copieLayout(layout a,layout b){
+  int i,j;
+
+  for (i = 0; i < GAME_HEIGHT; i++) {
+    for (j = 0; j < GAME_WIDTH; j++) {
+      b[i][j] = a[i][j];
+    }
+  }
+}
+
+/*
+* retourne 1 si la piece superpose une autre piece 0 sinon
+*/
+int pieceOverlap(piece p,pos a,layout l){
+  layout copie;
+
+  copieLayout(l,copie);
+  erasePieceAt(a,copie,p);
+
+
+
+  return 0;
+}
+
+/*
 * @{param} layout [l]
 *   donne le layout du jeu
 * @{param} piece [p]
@@ -222,7 +267,19 @@ void rotatePiece(layout l,piece *p,pos a,int *compteur){
 * @{return} int
 *   retourne 1 si la piece peut faire une rotation 0 sinon
 */
-int canRotate(layout l, piece *p,pos a,int compteur){
+int canRotate(layout l, piece p,pos a){
+  //verification de débordement de jeu
+  int res;
+  piece p_suiv;
+  figure f_suiv,f_act;
+
+  f_act = makeFigure(p);
+  p_suiv = f_act.suivante;
+  f_suiv = makeFigure(p_suiv);
+
+  if (pieceIsOutOfLayout(p_suiv,a) == 1) {
+    res = 0;
+  }
   return 0;
 }
 
