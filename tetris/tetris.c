@@ -205,9 +205,11 @@ int gameOver(layout l, piece p,pos a){
 *   donne par ref la valeur du compteur pour connaitre la prochaine version du sprite
 */
 void rotatePiece(layout l,piece *p,pos a,int *compteur){
-  erasePieceAt(a,l,*p);
-  *p = makeFigure(*p).suivante;
-  displayPieceAt(a,l,*p);
+  if (canRotate(l,*p,a) == 1) {
+    erasePieceAt(a,l,*p);
+    *p = makeFigure(*p).suivante;
+    displayPieceAt(a,l,*p);
+  }
 }
 
 /*
@@ -221,7 +223,7 @@ int pieceIsOutOfLayout(piece p,pos a){
 
   res = 0;
 
-  if (a.y + fig.heigth >= GAME_HEIGHT || a.x + fig.width >= GAME_WIDTH) {
+  if (((a.y + (fig.heigth)) > GAME_HEIGHT-1) || ((a.x + (fig.width)) > GAME_WIDTH-1)) {
     res = 1;
   }
 
@@ -246,13 +248,28 @@ void copieLayout(layout a,layout b){
 */
 int pieceOverlap(piece p,pos a,layout l){
   layout copie;
+  piece p_suiv;
+  figure f_suiv,f_act;
+  int i,j,res;
 
   copieLayout(l,copie);
   erasePieceAt(a,copie,p);
 
+  f_act = makeFigure(p);
+  p_suiv = f_act.suivante;
+  f_suiv = makeFigure(p_suiv);
 
+  res = 0;
 
-  return 0;
+  for (i = 0; i < f_suiv.heigth; i++) {
+    for (j = 0; j < f_suiv.width; j++) {
+      if (f_suiv.forme[i][j] == '@' && copie[a.y + i][a.x + j] == '@') {
+        res = 1;
+      }
+    }
+  }
+
+  return res;
 }
 
 /*
@@ -276,11 +293,11 @@ int canRotate(layout l, piece p,pos a){
   f_act = makeFigure(p);
   p_suiv = f_act.suivante;
   f_suiv = makeFigure(p_suiv);
-
-  if (pieceIsOutOfLayout(p_suiv,a) == 1) {
+  res = 1;
+  if (pieceIsOutOfLayout(p_suiv,a) == 1 || pieceOverlap(p,a,l) == 1) {
     res = 0;
   }
-  return 0;
+  return res;
 }
 
 /*
