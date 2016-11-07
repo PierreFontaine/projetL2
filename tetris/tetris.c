@@ -230,6 +230,10 @@ void rotatePiece(layout l,piece *p,pos a,int *compteur){
 
 /*
 * retourne 1 si la piece est en dehors du layout sinon 0
+* @{param} piece [p]
+*   donne la piece sur laquel on effectue la verification
+* @{param} pos [a]
+*   donne la pos de la piece
 */
 int pieceIsOutOfLayout(piece p,pos a){
   figure fig;
@@ -248,6 +252,10 @@ int pieceIsOutOfLayout(piece p,pos a){
 
 /*
 * permet de copier le layout a dans le layout b
+* @{param} layout [a]
+*   donne le layout du jeu
+* @{param} layout [b]
+*   layout dans lequel on copie l'instance du jeu
 */
 void copieLayout(layout a,layout b){
   int i,j;
@@ -261,6 +269,12 @@ void copieLayout(layout a,layout b){
 
 /*
 * retourne 1 si la piece superpose une autre piece 0 sinon
+* @{param} piece [p]
+*   donne la piece sur laquel on effectue la verification
+* @{param} pos [a]
+*   donne la position de la piece à l'instant ou la fonction est appelée
+* @{param} layout [l]
+*   donne le layout du jeu
 */
 int pieceOverlap(piece p,pos a,layout l){
   layout copie;
@@ -333,10 +347,22 @@ void resume(){
   sleep(10);
 }
 
+/*
+* @{param} int* [score]
+*   donne le score à incrémenter
+*/
 void scoreUp(int *score){
   (*score) += 10;
 }
 
+/*
+* @{param} layout [l]
+*   donne le layout du jeu
+* @{param} piece [p]
+*   donne la piece qui doit atteindre la position la plus basse
+* @{param} pos* [a]
+*   donne la position de la piece à l'instant ou la fonction est appelée
+*/
 void reachFloor(layout l,piece p, pos *a){
   while(canMoveToward(p,SUD,*a,l) == 1){
     pieceMoveToward(p,SUD,a,l);
