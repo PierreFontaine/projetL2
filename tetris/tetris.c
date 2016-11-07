@@ -5,6 +5,7 @@
 #include "stdio.h"
 #include "data.h"
 #include "string.h"
+#include "termios.h"
 
 int createRandomNumberInRange(int max){
   unsigned int
@@ -220,7 +221,7 @@ int gameOver(layout l, piece p,pos a){
 * @{param} int [compteur]
 *   donne par ref la valeur du compteur pour connaitre la prochaine version du sprite
 */
-void rotatePiece(layout l,piece *p,pos a,int *compteur){
+void rotatePiece(layout l,piece *p,pos a){
   if (canRotate(l,*p,a) == 1) {
     erasePieceAt(a,l,*p);
     *p = makeFigure(*p).suivante;
@@ -366,5 +367,49 @@ void scoreUp(int *score){
 void reachFloor(layout l,piece p, pos *a){
   while(canMoveToward(p,SUD,*a,l) == 1){
     pieceMoveToward(p,SUD,a,l);
+  }
+}
+
+int game(layout l_jeu,piece *p_jeu,pos *p_posInit){
+  int score;
+  char key,underPiece;
+  figure f_jeu;
+
+  makeBackGround(l_jeu);
+  makeBorder(l_jeu);
+  displayGame(l_jeu);
+
+  score = 0;
+
+  while(1){
+    p_posInit->x = 5;
+    p_posInit->y = 0;
+
+    *p_jeu = selectPiece(); //selection d'une piece au hasard
+    f_jeu = makeFigure(*p_jeu); //mise en mémoire de cette piece pour accès aux params
+
+    clrscr();
+    displayPieceAt(*p_posInit,l_jeu,*p_jeu);//Affichage de la piece en haut
+    displayGame(l_jeu); //affichage du jeux
+    printf("score : %d\n",score);
+    clrscr(); //effacage écran
+    sleep(1);
+    if (gameOver(l_jeu,*p_jeu,*p_posInit)) {
+      printf("game over \n");
+      return 0;
+    }
+    while(canMoveToward(*p_jeu,SUD,*p_posInit,l_jeu) == 1){
+      pieceMoveToward(*p_jeu,SUD,p_posInit,l_jeu);
+      displayGame(l_jeu);
+      printf("score : %d\n",score);
+      clrscr();
+
+      if (isLineFull(l_jeu) != (-1)) {
+        eraseLine(isLineFull(l_jeu),l_jeu);
+        scoreUp(&score);
+      }
+
+      usleep(300000);
+    }
   }
 }

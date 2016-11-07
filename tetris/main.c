@@ -10,7 +10,6 @@
 layout l_jeu;
 piece p_jeu;
 pos p_posInit;
-int compteur;
 
 void *thread_1(void *arg){
   printf("Nous sommes dans le thread.\n");
@@ -24,7 +23,7 @@ void *thread_1(void *arg){
       pieceMoveToward(p_jeu,EST,&p_posInit,l_jeu);
     }
     if (touche == 'z') {
-      rotatePiece(l_jeu,&p_jeu,p_posInit,&compteur);
+      rotatePiece(l_jeu,&p_jeu,p_posInit);
     }
     if (touche == 'p') {
       resume();
@@ -41,9 +40,7 @@ void *thread_1(void *arg){
 
 int main(int argc, char const *argv[]) {
   static struct termios oldt, newt;
-  int score;
-  char key,underPiece;
-  figure f_jeu;
+
   pthread_t thread1;
 
   if(pthread_create(&thread1, NULL, thread_1, NULL) == -1) {
@@ -51,7 +48,6 @@ int main(int argc, char const *argv[]) {
   	return EXIT_FAILURE;
   }
 
-  score = 0;
   /**
   * Changement du comportement du terminal sur le buffer
   * On veut pouvoir dans le thread capturer le dernier caractère sans attendre le retour chariot
@@ -60,47 +56,12 @@ int main(int argc, char const *argv[]) {
   **/
   tcgetattr(STDIN_FILENO, &oldt);//On place les paramètre du terminal dans une struct termios
   newt = oldt; //initialisation de newt avec oldt
-  newt.c_lflag &= ~(ICANON | ECHO); //mise a jour du mode canonique sur newt
+  newt.c_lflag &= ~(ICANON); //mise a jour du mode canonique sur newt
   //TCSANOW change occurs immediately | cf : man tcsetattr
   tcsetattr(STDIN_FILENO, TCSANOW, &newt); //le terminal prend les paramètre de newt
 
-  makeBackGround(l_jeu);
-  makeBorder(l_jeu);
-  displayGame(l_jeu);
+  game(l_jeu,&p_jeu,&p_posInit);
 
-  while(1){
-    compteur = 0;
-    p_posInit.x = 5;
-    p_posInit.y = 0;
-
-    p_jeu = selectPiece(); //selection d'une piece au hasard
-    f_jeu = makeFigure(p_jeu); //mise en mémoire de cette piece pour accès aux params
-
-    clrscr();
-    displayPieceAt(p_posInit,l_jeu,p_jeu);//Affichage de la piece en haut
-    displayGame(l_jeu); //affichage du jeux
-    printf("score : %d\n",score);
-    clrscr(); //effacage écran
-    sleep(1);
-    if (gameOver(l_jeu,p_jeu,p_posInit)) {
-      printf("game over \n");
-      tcsetattr( STDIN_FILENO, TCSANOW, &oldt);
-      return 0;
-    }
-    while(canMoveToward(p_jeu,SUD,p_posInit,l_jeu) == 1){
-      pieceMoveToward(p_jeu,SUD,&p_posInit,l_jeu);
-      displayGame(l_jeu);
-      printf("score : %d\n",score);
-      clrscr();
-
-      if (isLineFull(l_jeu) != (-1)) {
-        eraseLine(isLineFull(l_jeu),l_jeu);
-        scoreUp(&score);
-      }
-
-      usleep(300000);
-    }
-  }
-
+  tcsetattr( STDIN_FILENO, TCSANOW, &oldt);
   return 0;
 }
