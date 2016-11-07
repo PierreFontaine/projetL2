@@ -302,6 +302,7 @@ int canRotate(layout l, piece p,pos a){
 
 /*
 * permet de mettre le jeu sur pose
+* Remarque : Ne fonctionne pas encore, il faudrait que le thread bloque le main
 */
 void resume(){
   char touche;
@@ -314,4 +315,14 @@ void resume(){
   printf("#REPRENDRE##########\n");
 
   sleep(10);
+}
+
+void scoreUp(int *score){
+  (*score) += 10;
+}
+
+void reachFloor(layout l,piece p, pos *a){
+  while(canMoveToward(p,SUD,*a,l) == 1){
+    pieceMoveToward(p,SUD,a,l);
+  }
 }
