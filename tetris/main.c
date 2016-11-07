@@ -98,7 +98,7 @@ int main(int argc, char const *argv[]) {
         scoreUp(&score);
       }
 
-      sleep(1);
+      usleep(300000);
     }
   }
 
