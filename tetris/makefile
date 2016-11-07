@@ -1,5 +1,5 @@
-all: affichage.o main.o tetris.o liste.o keyboard.o
-	gcc keyboard.o affichage.o liste.o main.o tetris.o -o programme -lpthread
+all: affichage.o main.o tetris.o keyboard.o
+	gcc keyboard.o affichage.o main.o tetris.o -o programme -lpthread
 
 main.o : main.c
 	gcc -c main.c -o main.o
@@ -9,9 +9,6 @@ affichage.o : affichage.c
 
 tetris.o : tetris.c
 	gcc -c tetris.c -o tetris.o
-
-liste.o : liste.c
-	gcc -c liste.c -o liste.o
 
 keyboard.o : keyboard.c
 	gcc -c keyboard.c -o keyboard.o

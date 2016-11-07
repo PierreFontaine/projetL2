@@ -5,6 +5,22 @@
 #include "stdio.h"
 #include "data.h"
 #include "string.h"
+
+int createRandomNumberInRange(int max){
+  unsigned int
+      // max <= RAND_MAX < ULONG_MAX, so this is okay.
+      num_bins = (unsigned int) max + 1,
+      num_rand = (unsigned int) RAND_MAX + 1,
+      bin_size = num_rand / num_bins,
+      defect   = num_rand % num_bins;
+
+      int x;
+      do{
+        x = random();
+      }while(num_rand - defect <= (unsigned int)x);
+  return x/bin_size;
+}
+
 /*
 * @{return} piece [res]
 *   retourne une piece choisie aléatoirement
@@ -13,8 +29,8 @@ piece selectPiece() {
   int alea;
   piece res;
 
-  srand(time(NULL));
-  alea = rand()%6;
+
+  alea = createRandomNumberInRange(7);
   printf("%d\n",alea);
   switch (alea) {
     case 0:
