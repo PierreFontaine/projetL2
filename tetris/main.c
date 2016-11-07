@@ -79,6 +79,7 @@ int main(int argc, char const *argv[]) {
     clrscr();
     displayPieceAt(p_posInit,l_jeu,p_jeu);//Affichage de la piece en haut
     displayGame(l_jeu); //affichage du jeux
+    printf("score : %d\n",score);
     clrscr(); //effacage écran
     sleep(1);
     if (gameOver(l_jeu,p_jeu,p_posInit)) {
@@ -89,6 +90,7 @@ int main(int argc, char const *argv[]) {
     while(canMoveToward(p_jeu,SUD,p_posInit,l_jeu) == 1){
       pieceMoveToward(p_jeu,SUD,&p_posInit,l_jeu);
       displayGame(l_jeu);
+      printf("score : %d\n",score);
       clrscr();
 
       if (isLineFull(l_jeu) != (-1)) {
