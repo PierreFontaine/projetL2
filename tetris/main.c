@@ -11,33 +11,6 @@ layout l_jeu;
 piece p_jeu;
 pos p_posInit;
 
-void *thread_1(void *arg){
-  printf("Nous sommes dans le thread.\n");
-  char touche;
-  while(1){
-    touche = fgetc(stdin);
-    if (touche == 'q') {
-      pieceMoveToward(p_jeu,WEST,&p_posInit,l_jeu);
-    }
-    if (touche == 'd') {
-      pieceMoveToward(p_jeu,EST,&p_posInit,l_jeu);
-    }
-    if (touche == 'z') {
-      rotatePiece(l_jeu,&p_jeu,p_posInit);
-    }
-    if (touche == 'p') {
-      resume();
-    }
-    if (touche == 's') {
-      reachFloor(l_jeu,p_jeu,&p_posInit);
-    }
-  }
-
-  /* Pour enlever le warning */
-  (void) arg;
-  pthread_exit(NULL);
-}
-
 int main(int argc, char const *argv[]) {
   static struct termios oldt, newt;
 
