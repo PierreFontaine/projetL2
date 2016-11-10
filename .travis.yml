@@ -4,6 +4,9 @@ language:
 compiler:
   - gcc
 
+install:
+  - apt-get install libsdl1.2-dev
+
 script:
   - cd ./tetris/
   - make

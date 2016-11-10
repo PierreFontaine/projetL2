@@ -1,14 +1,30 @@
+OS := $(shell uname)
+
+ifeq ($(OS),Darwin)
+#option de compilation
+CFLAGS = `sdl-config --cflags --libs`
+#option liens
+LDFLAGS = `sdl-config --libs`
+FRAMEWORK = -framework Cocoa
+#compilateur utilisé
+CC = gcc
+
+else
+CFLAGS = -lSDL -lSDL_mixer
+FRAMEWORK =
+endif
+
 all: affichage.o main.o tetris.o keyboard.o
-	gcc keyboard.o affichage.o main.o tetris.o -o programme -lpthread
+	${CC} keyboard.o affichage.o main.o tetris.o SDLMain.m -o programme ${CFLAGS} ${FRAMEWORK} -lpthread
 
 main.o : main.c
-	gcc -c main.c -o main.o
+	${CC}  -c  -lpthread main.c -o main.o ${CFLAGS} ${FRAMEWORK}
 
 affichage.o : affichage.c
-	gcc -c affichage.c -o affichage.o
+	${CC} -c  affichage.c -o affichage.o ${CFLAGS} ${FRAMEWORK}
 
 tetris.o : tetris.c
-	gcc -c tetris.c -o tetris.o
+	${CC} -c  tetris.c -o tetris.o ${CFLAGS} ${FRAMEWORK}
 
 keyboard.o : keyboard.c
-	gcc -c keyboard.c -o keyboard.o
+	${CC} -c keyboard.c -o keyboard.o ${CFLAGS} ${FRAMEWORK}

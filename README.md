@@ -20,6 +20,12 @@ Télechargez le dossier et accedez y avec le terminal !
 
 ## Tetris
 
+### SDL EN COURS DE PREPARATION
+
+  Création d'un makefile permettant la compilation aussi bien sur Linux que sur Mac OS X.
+
+  Problème d'utilisation de la Librairie Pthread et SDL, 64/32 bits
+
 ### Objectifs
 
   Dans un premier temps réaliser un Tetris en ASCII pour y jouer dans le terminal et dans un deuxième temps l'implémenter avec GTK+
@@ -30,7 +36,7 @@ Télechargez le dossier et accedez y avec le terminal !
 
   Utilisation d'un Thread pour la lecture des touches.
 
-  Création de bibliothèque sans problème de "circular depedencies"
+  Création de bibliothèque sans problèmes de "circular depedencies"
   <!-- -->
   Création du stuff
 
@@ -47,6 +53,7 @@ Télechargez le dossier et accedez y avec le terminal !
   - [ ] Fonctions spé liées à l'interaction H/M
     - [ ] Association des touches à un évenement
   - [x] makefile
+
 ### Problèmes actuels
 
 - débordement de tableau
