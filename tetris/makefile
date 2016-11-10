@@ -11,6 +11,7 @@ DEVLIB = SDLMain.m
 CC = gcc
 
 else
+CC = gcc
 CFLAGS = -lSDL -lSDL_mixer
 FRAMEWORK =
 DEVLIB =
