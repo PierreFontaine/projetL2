@@ -6,16 +6,18 @@ CFLAGS = `sdl-config --cflags --libs`
 #option liens
 LDFLAGS = `sdl-config --libs`
 FRAMEWORK = -framework Cocoa
+DEVLIB = SDLMain.m
 #compilateur utilisé
 CC = gcc
 
 else
 CFLAGS = -lSDL -lSDL_mixer
 FRAMEWORK =
+DEVLIB =
 endif
 
 all: affichage.o main.o tetris.o keyboard.o
-	${CC} keyboard.o affichage.o main.o tetris.o SDLMain.m -o programme ${CFLAGS} ${FRAMEWORK} -lpthread
+	${CC} keyboard.o affichage.o main.o tetris.o ${DEVLIB} -o programme ${CFLAGS} ${FRAMEWORK} -lpthread
 
 main.o : main.c
 	${CC}  -c  -lpthread main.c -o main.o ${CFLAGS} ${FRAMEWORK}
