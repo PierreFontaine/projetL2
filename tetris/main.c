@@ -6,7 +6,14 @@
 #include "unistd.h"
 //#include "pthread.h"
 #include "termios.h"
+
+#ifdef __APPLE__
 #include "SDL.h"
+#endif
+
+#ifdef __linux__
+#include "SDL/SDL.h"
+#endif
 
 layout l_jeu;
 piece p_jeu;
@@ -14,9 +21,6 @@ pos p_posInit;
 
 int main(int argc, char *argv[]) {
   static struct termios oldt, newt;
-  //pthread_t thread1;
-
-  SDL_Init(SDL_INIT_VIDEO);
 /*
   if(pthread_create(&thread1, NULL, thread_1, NULL) == -1){
   	perror("pthread_create");
