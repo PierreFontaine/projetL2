@@ -12,7 +12,7 @@ CC = gcc
 
 else
 CC = gcc
-CFLAGS = -lSDL -lSDL_mixer
+CFLAGS = `sdl-config --cflags --libs`
 FRAMEWORK =
 DEVLIB =
 endif
