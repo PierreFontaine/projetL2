@@ -10,7 +10,7 @@ Vous êtes sous UNIX (Linux ou Mac), et disposez de Make.
 
 ### Make fait le taff pour vous !
 
-Télechargez le dossier et accedez y avec le terminal !
+Télechargez le dossier et accèdez y avec le terminal !
 
 ```sh
   cd pathToDir/game/
@@ -19,8 +19,14 @@ Télechargez le dossier et accedez y avec le terminal !
 ```
 
 ## Tetris
+### historique d'issue
+#### [11 Nov 2016] SDL INITIALISEE
 
-### SDL EN COURS DE PREPARATION
+  Makefile amélioré pour OS X et Debian, sa modularité peut encore être amélioré.
+
+
+
+#### [9 Nov 2016] SDL EN COURS DE PREPARATION
 
   Création d'un makefile permettant la compilation aussi bien sur Linux que sur Mac OS X.
 
