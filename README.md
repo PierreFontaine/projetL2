@@ -7,6 +7,9 @@
 ### pré requis
 
 Vous êtes sous UNIX (Linux ou Mac), et disposez de Make.
+---
+WorkAround :
+La version terminal utilisera la librairie "pthread", la version graphique utilisera la SDL qui semble avoir un system de gestion signaux donc on se passera ici de "pthread" ce qui solutionnera les bugs
 
 ### Make fait le taff pour vous !
 
