@@ -7,11 +7,17 @@
 #include "pthread.h"
 #include "termios.h"
 #include "string.h"
+#include "save.h"
+
+
+int launchGame();
 
 layout l_jeu;
 piece p_jeu;
 pos p_posInit;
 int s_jeu;
+
+
 
 void menu(){
   int i,j,nbChoix;
@@ -26,7 +32,7 @@ void menu(){
   }
 
   strcpy(tab[0][1],"jouer");
-  strcpy(tab[1][1],"afficher score");
+  strcpy(tab[1][1],"afficher meilleurs scores");
   strcpy(tab[2][1],"quitter");
 
   *tab[0][0] = '>';
@@ -36,7 +42,7 @@ void menu(){
   do {
     system("clear");
     printf("##################\n");
-    printf("s : descendre\n");
+    printf("z : monter\n");
     printf("s : descendre\n");
     printf("c : choisir\n");
     printf("##################\n");
@@ -64,14 +70,22 @@ void menu(){
     }
 
   } while(select != 'c');
+  switch (nbChoix) {
+    case 0:
+      launchGame();
+      break;
+    case 1:
+      readScore();
+      break;
+    case 2:
+      printf("%s\n", "a bientot !");
+      break;
 
+  }
 }
 
-int main(int argc, char const *argv[]) {
+int launchGame(){
   static struct termios oldt, newt;
-
-  menu();
-
   pthread_t thread1;
 
   if(pthread_create(&thread1, NULL, thread_1, NULL) == -1) {
@@ -94,5 +108,9 @@ int main(int argc, char const *argv[]) {
   game(l_jeu,&p_jeu,&p_posInit,&s_jeu);
 
   tcsetattr( STDIN_FILENO, TCSANOW, &oldt);
+}
+
+int main(int argc, char const *argv[]) {
+  menu();
   return 0;
 }

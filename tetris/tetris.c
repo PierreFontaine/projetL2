@@ -6,6 +6,7 @@
 #include "data.h"
 #include "string.h"
 #include "termios.h"
+#include "save.h"
 
 int createRandomNumberInRange(int max){
   unsigned int
@@ -394,6 +395,11 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu){
   int score;
   char key,underPiece;
   figure f_jeu;
+  player joueur;
+
+  joueur.ligne = 0;
+  joueur.score = 0;
+  strcpy(joueur.nom,"pierre");
 
   makeBackGround(l_jeu);
   makeBorder(l_jeu);
@@ -416,6 +422,8 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu){
     clrscr(); //effacage écran
     sleep(1);
     if (gameOver(l_jeu,*p_jeu,*p_posInit)) {
+      joueur.score = score;
+      appendScore(&joueur);
       printf("game over \n");
       return 0;
     }
@@ -424,12 +432,11 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu){
       displayGame(l_jeu);
       printf("score : %d\n",score);
       clrscr();
-
       if (isLineFull(l_jeu) != (-1)) {
         eraseLine(isLineFull(l_jeu),l_jeu);
         scoreUp(&score);
+        joueur.ligne += 1;
       }
-
       usleep(*s_jeu);
     }
   }

@@ -4,7 +4,7 @@
 
 #define NB_PIECE 7
 
-typedef enum piece {
+typedef enum piece_str {
   S,S_90,
   Z,Z_90,
   L,L_90,L_180,L_270,
@@ -14,7 +14,13 @@ typedef enum piece {
   C,
   }piece;
 
-typedef enum direction {SUD,WEST,EST}direction;
+typedef enum direction_enum {SUD,WEST,EST}direction;
+
+typedef struct player_str{
+  char nom[100];
+  int score;
+  int ligne;
+}player;
 
 /* PARAMETRE DE JEU */
 #define GAME_HEIGHT         12
@@ -32,7 +38,7 @@ typedef enum direction {SUD,WEST,EST}direction;
 #define UNIX_COLOR_WHITE    "37"
 #define UNIX_COLOR_RESET    "0"
 
-typedef struct figure{
+typedef struct figure_str{
   int heigth;
   int width;
   char forme[PIECE_MAX_HEIGHT][PIECE_MAX_WIDTH];
@@ -40,7 +46,7 @@ typedef struct figure{
   piece precedente;
 }figure;
 
-typedef struct pos{
+typedef struct pos_str{
   int x;
   int y;
 }pos;
