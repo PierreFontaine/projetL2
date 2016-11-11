@@ -17,11 +17,16 @@ FRAMEWORK =
 DEVLIB =
 endif
 
-all: affichage.o main.o tetris.o keyboard.o
-	${CC} keyboard.o affichage.o main.o tetris.o ${DEVLIB} -o programme ${CFLAGS} ${FRAMEWORK} -lpthread
+all: affichage.o mainGraph.o main.o tetris.o keyboard.o
+	${CC} affichage.o mainGraph.o tetris.o ${DEVLIB} -o programmeGraph ${CFLAGS} ${FRAMEWORK}
+	${CC} keyboard.o affichage.o main.o tetris.o -o programme -lpthread
 
 main.o : main.c
-	${CC}  -c  -lpthread main.c -o main.o ${CFLAGS} ${FRAMEWORK}
+	${CC}  -c main.c -o main.o
+
+mainGraph.o : mainGraph.c
+	${CC} -c mainGraph.c -o mainGraph.o ${CFLAGS} ${FRAMEWORK}
+
 
 affichage.o : affichage.c
 	${CC} -c  affichage.c -o affichage.o ${CFLAGS} ${FRAMEWORK}
