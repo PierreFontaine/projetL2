@@ -390,7 +390,7 @@ void reachFloor(layout l,piece p, pos *a){
   }
 }
 
-int game(layout l_jeu,piece *p_jeu,pos *p_posInit){
+int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu){
   int score;
   char key,underPiece;
   figure f_jeu;
@@ -402,6 +402,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit){
   score = 0;
 
   while(1){
+    *s_jeu = 300000;
     p_posInit->x = 5;
     p_posInit->y = 0;
 
@@ -429,7 +430,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit){
         scoreUp(&score);
       }
 
-      usleep(300000);
+      usleep(*s_jeu);
     }
   }
 }

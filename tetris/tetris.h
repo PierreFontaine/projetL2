@@ -3,7 +3,7 @@
 
 #include "data.h"
 
-int game(layout l_jeu,piece *p_jeu,pos *p_posInit);
+int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu);
 void scoreUp(int *score);
 piece selectPiece();
 int isLineFull(layout l);

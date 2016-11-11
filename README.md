@@ -55,7 +55,7 @@ Télechargez le dossier et accèdez y avec le terminal !
     - [x] Affichage des pieces
     - [x] Suppression de pieces
   - [ ] Fonctions spé liées au fonctionnement du jeu
-    - [ ] rotation et verification
+    - [x] rotation et verification
     - [x] déplacement et verification
     - [ ] mise en pause
     - [ ] gestion du score

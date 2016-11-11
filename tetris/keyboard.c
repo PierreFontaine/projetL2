@@ -9,6 +9,7 @@ void *thread_1(void *arg){
   extern piece p_jeu;
   extern pos p_posInit;
   extern layout l_jeu;
+  extern s_jeu;
 
   printf("Nous sommes dans le thread.\n");
   char touche;
@@ -29,8 +30,11 @@ void *thread_1(void *arg){
     if (touche == 'p') {
       resume();
     }
-    if (touche == 's') {
+    if (touche == 'z') {
       reachFloor(l_jeu,p_jeu,&p_posInit);
+    }
+    if(touche == 's') {
+      s_jeu = 600000;
     }
   }
 

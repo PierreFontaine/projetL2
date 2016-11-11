@@ -16,8 +16,6 @@ typedef enum piece {
 
 typedef enum direction {SUD,WEST,EST}direction;
 
-/* SPRITE */
-
 /* PARAMETRE DE JEU */
 #define GAME_HEIGHT         12
 #define GAME_WIDTH          10
