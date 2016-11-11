@@ -7,9 +7,7 @@
 ### pré requis
 
 Vous êtes sous UNIX (Linux ou Mac), et disposez de Make.
----
-WorkAround :
-La version terminal utilisera la librairie "pthread", la version graphique utilisera la SDL qui semble avoir un system de gestion signaux donc on se passera ici de "pthread" ce qui solutionnera les bugs
+
 
 ### Make fait le taff pour vous !
 
@@ -26,7 +24,9 @@ Télechargez le dossier et accèdez y avec le terminal !
 #### [11 Nov 2016] SDL INITIALISEE
 
   Makefile amélioré pour OS X et Debian, sa modularité peut encore être amélioré.
-
+  ---
+  WorkAround :
+  La version terminal utilisera la librairie "pthread", la version graphique utilisera la SDL qui semble avoir un system de gestion signaux donc on se passera ici de "pthread" ce qui solutionnera les bugs
 
 
 #### [9 Nov 2016] SDL EN COURS DE PREPARATION
