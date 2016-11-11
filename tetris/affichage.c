@@ -75,6 +75,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[0]," @@");
       strcpy(res.forme[1],"@@ ");
       res.suivante = S_90;
+      res.precedente = S_90;
       break;
 
     case S_90:
@@ -84,6 +85,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[1],"@@");
       strcpy(res.forme[2]," @");
       res.suivante = S;
+      res.precedente = S;
       break;
     /*
       @@
@@ -95,6 +97,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[0],"@@ ");
       strcpy(res.forme[1]," @@");
       res.suivante = Z_90;
+      res.precedente = Z_90;
       break;
 
     case Z_90:
@@ -104,6 +107,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[1],"@@");
       strcpy(res.forme[2],"@ ");
       res.suivante = Z;
+      res.precedente = Z;
       break;
     /*
       @
@@ -117,6 +121,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[1],"@ ");
       strcpy(res.forme[2],"@@");
       res.suivante = L_90;
+      res.precedente = L_270;
       break;
     case L_90:
       res.heigth = 2;
@@ -124,6 +129,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[0],"  @");
       strcpy(res.forme[1],"@@@");
       res.suivante = L_180;
+      res.precedente = L;
       break;
     case L_180:
       res.heigth = 3;
@@ -131,13 +137,15 @@ figure makeFigure(piece name){
       strcpy(res.forme[0],"@@");
       strcpy(res.forme[1]," @");
       strcpy(res.forme[2]," @");
-      res.suivante = L_180;
+      res.suivante = L_270;
+      res.precedente = L_90;
     case L_270:
       res.heigth = 2;
       res.width = 3;
       strcpy(res.forme[0],"@@@");
       strcpy(res.forme[1],"@  ");
       res.suivante = L;
+      res.precedente = L_180;
       break;
     /*
        @
@@ -151,6 +159,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[1]," @");
       strcpy(res.forme[2],"@@");
       res.suivante = J_90;
+      res.precedente =J_270 ;
       break;
 
     case J_180:
@@ -160,6 +169,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[1],"@ ");
       strcpy(res.forme[2],"@ ");
       res.suivante = J_270;
+      res.precedente = J_90;
       break;
 
     case J_90:
@@ -168,6 +178,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[0],"@@@");
       strcpy(res.forme[1],"  @");
       res.suivante = J_180;
+      res.precedente = J;
       break;
 
     case J_270:
@@ -176,6 +187,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[0],"@  ");
       strcpy(res.forme[1],"@@@");
       res.suivante = J;
+      res.precedente = J_180;
       break;
 
     /*
@@ -188,6 +200,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[0],"@@@");
       strcpy(res.forme[1]," @ ");
       res.suivante = T_90;
+      res.precedente = T_270;
       break;
 
     case T_90:
@@ -197,6 +210,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[1],"@@");
       strcpy(res.forme[2],"@ ");
       res.suivante = T_180;
+      res.precedente = T;
       break;
 
     case T_180:
@@ -205,6 +219,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[0]," @ ");
       strcpy(res.forme[1],"@@@");
       res.suivante = T_270;
+      res.precedente = T_90;
       break;
 
     case T_270:
@@ -214,6 +229,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[1],"@@");
       strcpy(res.forme[2]," @");
       res.suivante = T;
+      res.precedente = T_180;
       break;
     /*
       @
@@ -228,6 +244,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[1],"@");
       strcpy(res.forme[2],"@");
       res.suivante = I_90;
+      res.precedente = I_90;
       break;
 
     case I_90:
@@ -235,6 +252,7 @@ figure makeFigure(piece name){
       res.width = 3;
       strcpy(res.forme[0],"@@@");
       res.suivante = I;
+      res.precedente = I;
       break;
     /*
     * @@
@@ -246,6 +264,7 @@ figure makeFigure(piece name){
       strcpy(res.forme[0],"@@");
       strcpy(res.forme[1],"@@");
       res.suivante = C;
+      res.precedente = C;
       break;
     default:
       printf("%s\n","error in piece choice");

@@ -39,6 +39,7 @@ typedef struct figure{
   int width;
   char forme[PIECE_MAX_HEIGHT][PIECE_MAX_WIDTH];
   piece suivante;
+  piece precedente;
 }figure;
 
 typedef struct pos{

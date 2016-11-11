@@ -221,12 +221,21 @@ int gameOver(layout l, piece p,pos a){
 * @{param} int [compteur]
 *   donne par ref la valeur du compteur pour connaitre la prochaine version du sprite
 */
-void rotatePiece(layout l,piece *p,pos a){
-  if (canRotate(l,*p,a) == 1) {
-    erasePieceAt(a,l,*p);
-    *p = makeFigure(*p).suivante;
-    displayPieceAt(a,l,*p);
+void rotatePiece(layout l,direction dir,piece *p,pos a){
+  if (dir == EST) {
+    if (canRotate(l,EST,*p,a) == 1) {
+      erasePieceAt(a,l,*p);
+      *p = makeFigure(*p).suivante;
+      displayPieceAt(a,l,*p);
+    }
+  } else {
+    if (canRotate(l,WEST,*p,a) == 1) {
+      erasePieceAt(a,l,*p);
+      *p = makeFigure(*p).precedente;
+      displayPieceAt(a,l,*p);
+    }
   }
+
 }
 
 /*
@@ -315,20 +324,31 @@ int pieceOverlap(piece p,pos a,layout l){
 * @{return} int
 *   retourne 1 si la piece peut faire une rotation 0 sinon
 */
-int canRotate(layout l, piece p,pos a){
+int canRotate(layout l,direction dir, piece p,pos a){
   //verification de débordement de jeu
   int res;
-  piece p_suiv;
-  figure f_suiv,f_act;
+  piece p_aux;
+  figure f_aux,f_act;
 
-  f_act = makeFigure(p);
-  p_suiv = f_act.suivante;
-  f_suiv = makeFigure(p_suiv);
-  res = 1;
-  if (pieceIsOutOfLayout(p_suiv,a) == 1 || pieceOverlap(p,a,l) == 1) {
-    res = 0;
+  if (dir == EST) {
+    f_act = makeFigure(p);
+    p_aux = f_act.suivante;
+    f_aux = makeFigure(p_aux);
+    res = 1;
+    if (pieceIsOutOfLayout(p_aux,a) == 1 || pieceOverlap(p,a,l) == 1) {
+      res = 0;
+    }
+    return res;
+  } else {
+    f_act = makeFigure(p);
+    p_aux = f_act.precedente;
+    f_aux = makeFigure(p_aux);
+    res = 1;
+    if (pieceIsOutOfLayout(p_aux,a) == 1 || pieceOverlap(p,a,l) == 1) {
+      res = 0;
+    }
+    return res;
   }
-  return res;
 }
 
 /*
