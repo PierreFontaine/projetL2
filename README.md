@@ -20,11 +20,12 @@ Télechargez le dossier et accèdez y avec le terminal !
 ```
 
 ## Tetris
-### historique d'issue
+### Historique d'issues
 #### [11 Nov 2016] SDL INITIALISEE
 
   Makefile amélioré pour OS X et Debian, sa modularité peut encore être amélioré.
-  ---
+
+
   WorkAround :
   La version terminal utilisera la librairie "pthread", la version graphique utilisera la SDL qui semble avoir un system de gestion signaux donc on se passera ici de "pthread" ce qui solutionnera les bugs
 
@@ -33,11 +34,15 @@ Télechargez le dossier et accèdez y avec le terminal !
 
   Création d'un makefile permettant la compilation aussi bien sur Linux que sur Mac OS X.
 
-  Problème d'utilisation de la Librairie Pthread et SDL, 64/32 bits
+  Problème d'utilisation de la Librairie Pthread et SDL, 64/32 bits #10
+
+#### [7 Nov 2016] Problème de génération de nbre aléa entre 0 et 6
+
+  La fonction random affichait toujours le même nombre pour 7, ceci est résolu. #5
 
 ### Objectifs
 
-  Dans un premier temps réaliser un Tetris en ASCII pour y jouer dans le terminal et dans un deuxième temps l'implémenter avec GTK+
+  Dans un premier temps réaliser un Tetris en ASCII pour y jouer dans le terminal et dans un deuxième temps l'implémenter avec ~~GTK+~~ SDL.
 
 ### En cours
 
@@ -59,15 +64,18 @@ Télechargez le dossier et accèdez y avec le terminal !
     - [x] déplacement et verification
     - [ ] mise en pause
     - [ ] gestion du score
-  - [ ] Fonctions spé liées à l'interaction H/M
-    - [ ] Association des touches à un évenement
+    - [ ] menu
+  - [x] Fonctions spé liées à l'interaction H/M
+    - [x] Association des touches à un évenement
   - [x] makefile
 
 ### Problèmes actuels
 
-- débordement de tableau
-- problème de rotation => changement de figure
-- fonction lancée du Thread ne bloque pas le main
+- ~~débordement de tableau~~
+- ~~problème de rotation => changement de figure~~
+- fonction lancée du Thread ne bloque pas le main, pb pour pause()
+- augmenter la vitesse de la pièce
+- suppression des lignes, il subsiste un bug
 
 
 ## Bataille Navale
