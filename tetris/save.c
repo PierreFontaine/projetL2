@@ -31,9 +31,10 @@ void readScore(){
     while (!feof(entree)) {
 			fread(&joueur,sizeof(player),1,entree);
 			if (!feof(entree)) {
-				printf("%s\n",joueur.nom);
-        printf("%d\n",joueur.score);
-        printf("%d\n",joueur.ligne);
+				printf("%s\t",joueur.nom);
+        printf("%d\t",joueur.score);
+        printf("%d\t",joueur.ligne);
+        printf("\n");
 			}
 		}
 		fclose(entree);
