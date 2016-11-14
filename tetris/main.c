@@ -16,7 +16,7 @@ layout l_jeu;
 piece p_jeu;
 pos p_posInit;
 int s_jeu;
-
+gameState etat;
 
 
 void menu(){
@@ -105,7 +105,7 @@ int launchGame(){
   //TCSANOW change occurs immediately | cf : man tcsetattr
   tcsetattr(STDIN_FILENO, TCSANOW, &newt); //le terminal prend les paramètre de newt
 
-  game(l_jeu,&p_jeu,&p_posInit,&s_jeu);
+  game(l_jeu,&p_jeu,&p_posInit,&s_jeu,&etat);
 
   tcsetattr( STDIN_FILENO, TCSANOW, &oldt);
 }

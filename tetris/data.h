@@ -1,7 +1,6 @@
 #ifndef data_h
 #define data_h
 
-
 #define NB_PIECE 7
 
 typedef enum piece_str {
@@ -13,6 +12,8 @@ typedef enum piece_str {
   I,I_90,
   C,
   }piece;
+
+typedef enum gameState_enum {PAUSE,RESUME}gameState;
 
 typedef enum direction_enum {SUD,WEST,EST}direction;
 

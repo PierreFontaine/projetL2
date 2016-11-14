@@ -356,9 +356,9 @@ int canRotate(layout l,direction dir, piece p,pos a){
 * permet de mettre le jeu sur pose
 * Remarque : Ne fonctionne pas encore, il faudrait que le thread bloque le main
 */
-void resume(){
+int resume(gameState *etat){
   char touche;
-  system("cls");
+  system("clear");
   printf("####################\n");
   printf("#######PAUSE########\n");
   printf("####################\n");
@@ -366,7 +366,10 @@ void resume(){
   printf("#TOUCHE POUR #######\n");
   printf("#REPRENDRE##########\n");
 
-  sleep(10);
+  while (*etat == PAUSE) {
+    
+  }
+  return 0;
 }
 
 /*
@@ -391,7 +394,7 @@ void reachFloor(layout l,piece p, pos *a){
   }
 }
 
-int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu){
+int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
   int score;
   char key,underPiece;
   figure f_jeu;
@@ -406,7 +409,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu){
   displayGame(l_jeu);
 
   score = 0;
-
+  *etat = RESUME;
   while(1){
     *s_jeu = 300000;
     p_posInit->x = 5;
@@ -428,6 +431,9 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu){
       return 0;
     }
     while(canMoveToward(*p_jeu,SUD,*p_posInit,l_jeu) == 1){
+      if(*etat == PAUSE){
+        resume(etat);
+      }
       pieceMoveToward(*p_jeu,SUD,p_posInit,l_jeu);
       displayGame(l_jeu);
       printf("score : %d\n",score);

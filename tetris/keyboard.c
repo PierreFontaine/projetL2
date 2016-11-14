@@ -9,7 +9,8 @@ void *thread_1(void *arg){
   extern piece p_jeu;
   extern pos p_posInit;
   extern layout l_jeu;
-  extern s_jeu;
+  extern int s_jeu;
+  extern gameState etat;
 
   printf("Nous sommes dans le thread.\n");
   char touche;
@@ -28,7 +29,11 @@ void *thread_1(void *arg){
       rotatePiece(l_jeu,EST,&p_jeu,p_posInit);
     }
     if (touche == 'p') {
-      resume();
+      if (etat == PAUSE) {
+        etat = RESUME;
+      } else {
+        etat = PAUSE;
+      }
     }
     if (touche == 'z') {
       reachFloor(l_jeu,p_jeu,&p_posInit);

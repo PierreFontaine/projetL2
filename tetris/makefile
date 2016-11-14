@@ -18,7 +18,7 @@ DEVLIB =
 endif
 
 all: affichage.o mainGraph.o main.o tetris.o keyboard.o save.o
-	${CC} affichage.o mainGraph.o tetris.o save.o ${DEVLIB} -o programmeGraph ${CFLAGS} ${FRAMEWORK}
+	#${CC} affichage.o mainGraph.o tetris.o save.o ${DEVLIB} -o programmeGraph ${CFLAGS} ${FRAMEWORK}
 	${CC} keyboard.o affichage.o main.o tetris.o save.o -o programme -lpthread
 
 main.o : main.c
