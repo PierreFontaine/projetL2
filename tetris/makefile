@@ -19,7 +19,7 @@ endif
 
 all: affichage.o mainGraph.o main.o tetris.o keyboard.o save.o
 	#${CC} affichage.o mainGraph.o tetris.o save.o ${DEVLIB} -o programmeGraph ${CFLAGS} ${FRAMEWORK}
-	${CC} keyboard.o affichage.o main.o tetris.o save.o -o programme -lpthread
+	${CC} keyboard.o affichage.o main.o tetris.o save.o -o programme -lpthread -lncurses
 
 main.o : main.c
 	${CC}  -c main.c -o main.o

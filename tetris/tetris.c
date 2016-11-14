@@ -7,6 +7,7 @@
 #include "string.h"
 #include "termios.h"
 #include "save.h"
+#include "ncurses.h"
 
 int createRandomNumberInRange(int max){
   unsigned int
@@ -367,7 +368,7 @@ int resume(gameState *etat){
   printf("#REPRENDRE##########\n");
 
   while (*etat == PAUSE) {
-    
+
   }
   return 0;
 }
