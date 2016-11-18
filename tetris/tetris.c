@@ -29,7 +29,7 @@ int createRandomNumberInRange(int max){
 *   retourne une piece choisie aléatoirement
 */
 piece selectPiece() {
-  int alea;
+  int alea,i;
   piece res;
   figure temp;
 
@@ -64,7 +64,7 @@ piece selectPiece() {
 
   alea = createRandomNumberInRange(4);
 
-  for (int i = 0; i < alea; i++) {
+  for (i = 0; i < alea; i++) {
     temp = makeFigure(res);
     res = temp.suivante;
   }
