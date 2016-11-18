@@ -17,4 +17,5 @@ int resume(gameState *etat);
 int pieceIsOutOfLayout(piece p,pos a);
 int pieceOverlap(piece p,pos a,layout l);
 void copyLayout(layout a,layout b);
+void keyboardListener();
 #endif

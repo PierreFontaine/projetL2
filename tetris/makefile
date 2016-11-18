@@ -32,7 +32,7 @@ affichage.o : affichage.c
 	${CC} -c  affichage.c -o affichage.o ${CFLAGS} ${FRAMEWORK}
 
 tetris.o : tetris.c
-	${CC} -c  tetris.c -o tetris.o ${CFLAGS} ${FRAMEWORK}
+	${CC} -c  tetris.c -o tetris.o -lncurses ${CFLAGS} ${FRAMEWORK}
 
 keyboard.o : keyboard.c
 	${CC} -c keyboard.c -o keyboard.o ${CFLAGS} ${FRAMEWORK}

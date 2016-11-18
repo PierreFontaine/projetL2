@@ -1,28 +1,29 @@
+/**
 #include "data.h"
 #include "keyboard.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "tetris.h"
 #include "pthread.h"
+#include "ncurses.h"
 
-void *thread_1(void *arg){
+void keyboardListener(){
   extern piece p_jeu;
   extern pos p_posInit;
   extern layout l_jeu;
   extern int s_jeu;
   extern gameState etat;
 
-  printf("Nous sommes dans le thread.\n");
-  char touche;
-  while(1){
-    touche = fgetc(stdin);
+  int touche;
+  //while(1){
+    touche = getch();
     if (touche == 'q') {
       pieceMoveToward(p_jeu,WEST,&p_posInit,l_jeu);
     }
-    if (touche == 'd') {
+    if (touche == KEY_RIGHT) {
       pieceMoveToward(p_jeu,EST,&p_posInit,l_jeu);
     }
-    if (touche == 'w') {
+    if (touche == KEY_LEFT) {
       rotatePiece(l_jeu,WEST,&p_jeu,p_posInit);
     }
     if (touche == 'x') {
@@ -41,9 +42,6 @@ void *thread_1(void *arg){
     if(touche == 's') {
       s_jeu = 600000;
     }
-  }
-
-  /* Pour enlever le warning */
-  (void) arg;
-  pthread_exit(NULL);
+  //}
 }
+**/

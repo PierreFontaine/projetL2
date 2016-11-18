@@ -381,6 +381,51 @@ void scoreUp(int *score){
   (*score) += 10;
 }
 
+void keyboardListener(){
+  extern piece p_jeu;
+  extern pos p_posInit;
+  extern layout l_jeu;
+  extern int s_jeu;
+  extern gameState etat;
+  initscr();
+  raw();				/* Line buffering disabled	*/
+  noecho();
+  cbreak();
+	keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
+  nodelay(stdscr, TRUE);
+
+  int touche;
+  touche = getch();
+  if (touche == 'q') {
+    pieceMoveToward(p_jeu,WEST,&p_posInit,l_jeu);
+  }
+  if (touche == KEY_RIGHT) {
+    pieceMoveToward(p_jeu,EST,&p_posInit,l_jeu);
+  }
+  if (touche == KEY_LEFT) {
+    rotatePiece(l_jeu,WEST,&p_jeu,p_posInit);
+  }
+  if (touche == 'x') {
+    rotatePiece(l_jeu,EST,&p_jeu,p_posInit);
+  }
+  if (touche == 'p') {
+    if (etat == PAUSE) {
+      etat = RESUME;
+    } else {
+      etat = PAUSE;
+    }
+  }
+  if (touche == 'z') {
+    reachFloor(l_jeu,p_jeu,&p_posInit);
+  }
+  if(touche == 's') {
+    s_jeu = 600000;
+  }
+  nodelay(stdscr, FALSE);
+  endwin();
+}
+
+
 /*
 * @{param} layout [l]
 *   donne le layout du jeu
@@ -432,13 +477,16 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
       return 0;
     }
     while(canMoveToward(*p_jeu,SUD,*p_posInit,l_jeu) == 1){
+
+      keyboardListener();
+
       if(*etat == PAUSE){
         resume(etat);
       }
       pieceMoveToward(*p_jeu,SUD,p_posInit,l_jeu);
       displayGame(l_jeu);
       printf("score : %d\n",score);
-      clrscr();
+      //clrscr();
       if (isLineFull(l_jeu) != (-1)) {
         eraseLine(isLineFull(l_jeu),l_jeu);
         scoreUp(&score);
