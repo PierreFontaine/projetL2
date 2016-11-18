@@ -387,10 +387,9 @@ void keyboardListener(){
   extern layout l_jeu;
   extern int s_jeu;
   extern gameState etat;
-  initscr();
-  raw();				/* Line buffering disabled	*/
+  initscr(); // initialiser la lib ncurses
   noecho();
-  cbreak();
+  cbreak(); //n'attend pas ENTREE
 	keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
   nodelay(stdscr, TRUE);
 
@@ -421,7 +420,7 @@ void keyboardListener(){
   if(touche == 's') {
     s_jeu = 600000;
   }
-  nodelay(stdscr, FALSE);
+  //nodelay(stdscr, FALSE);
   endwin();
 }
 
