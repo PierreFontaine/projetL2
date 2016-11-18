@@ -31,6 +31,7 @@ int createRandomNumberInRange(int max){
 piece selectPiece() {
   int alea;
   piece res;
+  figure temp;
 
 
   alea = createRandomNumberInRange(7);
@@ -59,6 +60,13 @@ piece selectPiece() {
       break;
     default:
       printf("error in tetris.c selectPiece()\n");
+  }
+
+  alea = createRandomNumberInRange(4);
+
+  for (int i = 0; i < alea; i++) {
+    temp = makeFigure(res);
+    res = temp.suivante;
   }
   return res;
 }
@@ -224,20 +232,17 @@ int gameOver(layout l, piece p,pos a){
 *   donne par ref la valeur du compteur pour connaitre la prochaine version du sprite
 */
 void rotatePiece(layout l,direction dir,piece *p,pos a){
+  erasePieceAt(a,l,*p);
   if (dir == EST) {
     if (canRotate(l,EST,*p,a) == 1) {
-      erasePieceAt(a,l,*p);
       *p = makeFigure(*p).suivante;
-      displayPieceAt(a,l,*p);
     }
   } else {
     if (canRotate(l,WEST,*p,a) == 1) {
-      erasePieceAt(a,l,*p);
       *p = makeFigure(*p).precedente;
-      displayPieceAt(a,l,*p);
     }
   }
-
+  displayPieceAt(a,l,*p);
 }
 
 /*
@@ -387,11 +392,11 @@ void keyboardListener(){
   extern layout l_jeu;
   extern int s_jeu;
   extern gameState etat;
-  initscr(); // initialiser la lib ncurses
-  noecho();
-  cbreak(); //n'attend pas ENTREE
-	keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
-  nodelay(stdscr, TRUE);
+  //initscr(); // initialiser la lib ncurses
+  //noecho();
+  //cbreak(); //n'attend pas ENTREE
+	//keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
+  //nodelay(stdscr, TRUE);
 
   int touche;
   touche = getch();
@@ -421,7 +426,7 @@ void keyboardListener(){
     s_jeu = 600000;
   }
   //nodelay(stdscr, FALSE);
-  endwin();
+  //endwin();
 }
 
 
@@ -485,7 +490,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
       pieceMoveToward(*p_jeu,SUD,p_posInit,l_jeu);
       displayGame(l_jeu);
       printf("score : %d\n",score);
-      //clrscr();
+      clrscr();
       if (isLineFull(l_jeu) != (-1)) {
         eraseLine(isLineFull(l_jeu),l_jeu);
         scoreUp(&score);
