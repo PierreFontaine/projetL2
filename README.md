@@ -21,6 +21,11 @@ Télechargez le dossier et accèdez y avec le terminal !
 
 ## Tetris
 ### Historique d'issues
+
+#### [18 Nov 2016] Amelioration et nouveautés
+
+  Prise en compte des observation du mail, ajout de la libraire "ncurses" mais problème à l'affichage, en effet c'est comme si "\n" n'était pas pris en compte
+  
 #### [11 Nov 2016] SDL INITIALISEE
 
   Makefile amélioré pour OS X et Debian, sa modularité peut encore être amélioré.
@@ -29,9 +34,7 @@ Télechargez le dossier et accèdez y avec le terminal !
   WorkAround :
   La version terminal utilisera la librairie "pthread", la version graphique utilisera la SDL qui semble avoir un system de gestion signaux donc on se passera ici de "pthread" ce qui solutionnera les bugs
 
-#### [18 Nov 2016] Amelioration et nouveautés
 
-  Prise en compte des observation du mail, ajout de la libraire "ncurses" mais problème à l'affichage, en effet c'est comme si "\n" n'était pas pris en compte
 
 #### [9 Nov 2016] SDL EN COURS DE PREPARATION
 
