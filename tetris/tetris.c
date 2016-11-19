@@ -5,6 +5,7 @@
 #include "stdio.h"
 #include "data.h"
 #include "string.h"
+#include "unistd.h"
 #include "termios.h"
 #include "save.h"
 #include "ncurses.h"
@@ -386,47 +387,37 @@ void scoreUp(int *score){
   (*score) += 10;
 }
 
+/*
+* Gere l'écoute du clavier
+*/
 void keyboardListener(){
   extern piece p_jeu;
   extern pos p_posInit;
   extern layout l_jeu;
   extern int s_jeu;
   extern gameState etat;
-  //initscr(); // initialiser la lib ncurses
-  //noecho();
-  //cbreak(); //n'attend pas ENTREE
-	//keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
-  //nodelay(stdscr, TRUE);
 
   int touche;
   touche = getch();
   if (touche == 'q') {
     pieceMoveToward(p_jeu,WEST,&p_posInit,l_jeu);
-  }
-  if (touche == KEY_RIGHT) {
+  } else if (touche == 'd') {
     pieceMoveToward(p_jeu,EST,&p_posInit,l_jeu);
-  }
-  if (touche == KEY_LEFT) {
+  } else if (touche == 'l') {
     rotatePiece(l_jeu,WEST,&p_jeu,p_posInit);
-  }
-  if (touche == 'x') {
+  } else if (touche == 'x') {
     rotatePiece(l_jeu,EST,&p_jeu,p_posInit);
-  }
-  if (touche == 'p') {
+  } else if (touche == 'p') {
     if (etat == PAUSE) {
       etat = RESUME;
     } else {
       etat = PAUSE;
     }
-  }
-  if (touche == 'z') {
+  } else if (touche == 'z') {
     reachFloor(l_jeu,p_jeu,&p_posInit);
-  }
-  if(touche == 's') {
+  } else if(touche == 's') {
     s_jeu = 600000;
   }
-  //nodelay(stdscr, FALSE);
-  //endwin();
 }
 
 
@@ -454,6 +445,12 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
   joueur.score = 0;
   strcpy(joueur.nom,"pierre");
 
+  initscr();			/* Start curses mode 		*/
+	raw();				/* Line buffering disabled	*/
+	keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
+	noecho();			/* Don't echo() while we do getch */
+  nodelay(stdscr,TRUE);
+
   makeBackGround(l_jeu);
   makeBorder(l_jeu);
   displayGame(l_jeu);
@@ -471,15 +468,18 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
     clrscr();
     displayPieceAt(*p_posInit,l_jeu,*p_jeu);//Affichage de la piece en haut
     displayGame(l_jeu); //affichage du jeux
-    printf("score : %d\n",score);
-    clrscr(); //effacage écran
+    //printf("score : %d\n",score);
+    clear(); //effacage écran
     sleep(1);
+
     if (gameOver(l_jeu,*p_jeu,*p_posInit)) {
       joueur.score = score;
       appendScore(&joueur);
-      printf("game over \n");
+      printw("game over \n");
+      endwin();
       return 0;
     }
+
     while(canMoveToward(*p_jeu,SUD,*p_posInit,l_jeu) == 1){
 
       keyboardListener();
@@ -487,15 +487,18 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
       if(*etat == PAUSE){
         resume(etat);
       }
+
       pieceMoveToward(*p_jeu,SUD,p_posInit,l_jeu);
       displayGame(l_jeu);
-      printf("score : %d\n",score);
-      clrscr();
+      //printf("score : %d\n",score);
+      clear();
+
       if (isLineFull(l_jeu) != (-1)) {
         eraseLine(isLineFull(l_jeu),l_jeu);
         scoreUp(&score);
         joueur.ligne += 1;
       }
+
       usleep(*s_jeu);
     }
   }

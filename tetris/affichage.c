@@ -2,6 +2,7 @@
 #include "stdio.h"
 #include "string.h"
 #include "data.h"
+#include "ncurses.h"
 /*
   @{param} layout [l]
     donne le layout sur lequel on travail
@@ -44,16 +45,17 @@ void displayGame(layout l){
   for (i = 0; i < GAME_HEIGHT; i++) {
     for (j = 0; j < GAME_WIDTH; j++) {
       if (l[i][j] == '#') {
-        couleur(UNIX_COLOR_BLUE);
+        //couleur(UNIX_COLOR_BLUE);
       }
       if (l[i][j] == '|') {
-        couleur(UNIX_COLOR_RED);
+        //couleur(UNIX_COLOR_RED);
       }
-      printf("%c ", l[i][j]);
-      couleur(UNIX_COLOR_RESET);
+      printw("%c ", l[i][j]);
+      //couleur(UNIX_COLOR_RESET);
     }
-    printf("\n");
+    printw("\n");
   }
+  refresh();
 }
 
 /*
