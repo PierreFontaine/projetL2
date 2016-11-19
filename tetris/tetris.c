@@ -399,11 +399,11 @@ void keyboardListener(){
 
   int touche;
   touche = getch();
-  if (touche == 'q') {
+  if (touche == KEY_LEFT) {
     pieceMoveToward(p_jeu,WEST,&p_posInit,l_jeu);
-  } else if (touche == 'd') {
+  } else if (touche == KEY_RIGHT) {
     pieceMoveToward(p_jeu,EST,&p_posInit,l_jeu);
-  } else if (touche == 'l') {
+  } else if (touche == 'w') {
     rotatePiece(l_jeu,WEST,&p_jeu,p_posInit);
   } else if (touche == 'x') {
     rotatePiece(l_jeu,EST,&p_jeu,p_posInit);
