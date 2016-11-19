@@ -1,21 +1,39 @@
+#include <ncurses.h>
 
-#include <ncurses.h>			/* ncurses.h includes stdio.h */
-#include <string.h>
+void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string);
+int main(int argc, char *argv[])
+{	initscr();			/* Start curses mode 		*/
+	if(has_colors() == FALSE)
+	{	endwin();
+		printf("Your terminal does not support color\n");
+		exit(1);
+	}
+	start_color();			/* Start color 			*/
+	init_pair(1, COLOR_RED, COLOR_BLACK);
 
-int main()
-{
- char mesg[]="Enter a string: ";		/* message to be appeared on the screen */
- char str[80];
- int row,col;				/* to store the number of rows and *
-					 * the number of colums of the screen */
- initscr();				/* start the curses mode */
- getmaxyx(stdscr,row,col);		/* get the number of rows and columns */
- mvprintw(row/2,(col-strlen(mesg))/2,"%s",mesg);
-                     		/* print the message at the center of the screen */
- getstr(str);
- mvprintw(LINES - 2, 0, "You Entered: %s", str);
- getch();
- endwin();
+	attron(COLOR_PAIR(1));
+	print_in_middle(stdscr, LINES / 2, 0, 0, "Viola !!! In color ...");
+	attroff(COLOR_PAIR(1));
+    	getch();
+	endwin();
+}
+void print_in_middle(WINDOW *win, int starty, int startx, int width, char *string)
+{	int length, x, y;
+	float temp;
 
- return 0;
+	if(win == NULL)
+		win = stdscr;
+	getyx(win, y, x);
+	if(startx != 0)
+		x = startx;
+	if(starty != 0)
+		y = starty;
+	if(width == 0)
+		width = 80;
+
+	length = strlen(string);
+	temp = (width - length)/ 2;
+	x = startx + (int)temp;
+	mvwprintw(win, y, x, "%s", string);
+	refresh();
 }

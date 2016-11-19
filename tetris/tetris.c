@@ -365,16 +365,16 @@ int canRotate(layout l,direction dir, piece p,pos a){
 */
 int resume(gameState *etat){
   char touche;
-  system("clear");
-  printf("####################\n");
-  printf("#######PAUSE########\n");
-  printf("####################\n");
-  printf("#APPUYEZ SUR UNE ###\n");
-  printf("#TOUCHE POUR #######\n");
-  printf("#REPRENDRE##########\n");
+  clear();
+  printw("####################\n");
+  printw("#######PAUSE########\n");
+  printw("####################\n");
+  printw("#APPUYEZ SUR UNE ###\n");
+  printw("#TOUCHE POUR #######\n");
+  printw("#REPRENDRE##########\n");
 
   while (*etat == PAUSE) {
-
+    keyboardListener();
   }
   return 0;
 }
@@ -435,28 +435,39 @@ void reachFloor(layout l,piece p, pos *a){
   }
 }
 
-int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
-  int score;
-  char key,underPiece;
-  figure f_jeu;
-  player joueur;
-
-  joueur.ligne = 0;
-  joueur.score = 0;
-  strcpy(joueur.nom,"pierre");
-
+void init_ncurses(){
   initscr();			/* Start curses mode 		*/
 	raw();				/* Line buffering disabled	*/
 	keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
 	noecho();			/* Don't echo() while we do getch */
   nodelay(stdscr,TRUE);
+}
 
+void init_save(player *joueur){
+  joueur->ligne = 0;
+  joueur->score = 0;
+  strcpy(joueur->nom,"pierre");
+}
+
+void init_game(int *score,layout l_jeu,gameState *etat){
   makeBackGround(l_jeu);
   makeBorder(l_jeu);
-  displayGame(l_jeu);
-
-  score = 0;
+  *score = 0;
   *etat = RESUME;
+}
+
+int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
+  int score;
+  char key,underPiece;
+  figure f_jeu;
+  player joueur;
+  long t;
+
+  init_save(&joueur);
+  init_ncurses();
+  displayGame(l_jeu);
+  init_game(&score,l_jeu,etat);
+
   while(1){
     *s_jeu = 300000;
     p_posInit->x = 5;
@@ -465,7 +476,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
     *p_jeu = selectPiece(); //selection d'une piece au hasard
     f_jeu = makeFigure(*p_jeu); //mise en mémoire de cette piece pour accès aux params
 
-    clrscr();
+    clear();
     displayPieceAt(*p_posInit,l_jeu,*p_jeu);//Affichage de la piece en haut
     displayGame(l_jeu); //affichage du jeux
     //printf("score : %d\n",score);
@@ -481,9 +492,14 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
     }
 
     while(canMoveToward(*p_jeu,SUD,*p_posInit,l_jeu) == 1){
-
-      keyboardListener();
-
+      displayGame(l_jeu);
+      t = time(NULL);
+      while(time(NULL) - t < 0.5){
+        keyboardListener();
+      }
+      clear();
+      displayGame(l_jeu);
+      clear();
       if(*etat == PAUSE){
         resume(etat);
       }
