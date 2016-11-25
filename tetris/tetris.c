@@ -363,7 +363,7 @@ int canRotate(layout l,direction dir, piece p,pos a){
 * permet de mettre le jeu sur pose
 * Remarque : Ne fonctionne pas encore, il faudrait que le thread bloque le main
 */
-int resume(gameState *etat){
+int resume(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
   char touche;
   clear();
   printw("####################\n");
@@ -374,7 +374,7 @@ int resume(gameState *etat){
   printw("#REPRENDRE##########\n");
 
   while (*etat == PAUSE) {
-    keyboardListener();
+    keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat);
   }
   return 0;
 }
@@ -390,33 +390,27 @@ void scoreUp(int *score){
 /*
 * Gere l'écoute du clavier
 */
-void keyboardListener(){
-  extern piece p_jeu;
-  extern pos p_posInit;
-  extern layout l_jeu;
-  extern int s_jeu;
-  extern gameState etat;
-
+void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
   int touche;
   touche = getch();
   if (touche == KEY_LEFT) {
-    pieceMoveToward(p_jeu,WEST,&p_posInit,l_jeu);
+    pieceMoveToward(*p_jeu,WEST,p_posInit,l_jeu);
   } else if (touche == KEY_RIGHT) {
-    pieceMoveToward(p_jeu,EST,&p_posInit,l_jeu);
+    pieceMoveToward(*p_jeu,EST,p_posInit,l_jeu);
   } else if (touche == 'w') {
-    rotatePiece(l_jeu,WEST,&p_jeu,p_posInit);
+    rotatePiece(l_jeu,WEST,p_jeu,*p_posInit);
   } else if (touche == 'x') {
-    rotatePiece(l_jeu,EST,&p_jeu,p_posInit);
+    rotatePiece(l_jeu,EST,p_jeu,*p_posInit);
   } else if (touche == 'p') {
     if (etat == PAUSE) {
-      etat = RESUME;
+      *etat = RESUME;
     } else {
-      etat = PAUSE;
+      *etat = PAUSE;
     }
   } else if (touche == 'z') {
-    reachFloor(l_jeu,p_jeu,&p_posInit);
+    reachFloor(l_jeu,*p_jeu,p_posInit);
   } else if(touche == 's') {
-    s_jeu = 600000;
+    *s_jeu = 600000;
   }
 }
 
@@ -495,13 +489,13 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
       displayGame(l_jeu);
       t = time(NULL);
       while(time(NULL) - t < 0.5){
-        keyboardListener();
+        keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat);
       }
       clear();
       displayGame(l_jeu);
       clear();
       if(*etat == PAUSE){
-        resume(etat);
+        resume(l_jeu,p_jeu,p_posInit,s_jeu,etat);
       }
 
       pieceMoveToward(*p_jeu,SUD,p_posInit,l_jeu);

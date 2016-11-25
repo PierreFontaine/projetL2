@@ -13,9 +13,9 @@ void pieceMoveToward(piece p,direction dir,pos *a,layout l);
 void rotatePiece(layout l,direction dir,piece *p,pos a);
 int canRotate(layout l,direction dir, piece p,pos a);
 void reachFloor(layout l,piece p, pos *a);
-int resume(gameState *etat);
+int resume(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat);
 int pieceIsOutOfLayout(piece p,pos a);
 int pieceOverlap(piece p,pos a,layout l);
 void copyLayout(layout a,layout b);
-void keyboardListener();
+void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat);
 #endif

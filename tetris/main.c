@@ -13,13 +13,6 @@
 
 int launchGame();
 
-layout l_jeu;
-piece p_jeu;
-pos p_posInit;
-int s_jeu;
-gameState etat;
-
-
 void menu(){
   int i,j,nbChoix;
   char select;
@@ -86,6 +79,12 @@ void menu(){
 }
 
 int launchGame(){
+  layout l_jeu;
+  piece p_jeu;
+  pos p_posInit;
+  int s_jeu;
+  gameState etat;
+
   game(l_jeu,&p_jeu,&p_posInit,&s_jeu,&etat);
   return 1;
 }
