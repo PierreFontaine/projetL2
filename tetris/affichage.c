@@ -19,42 +19,25 @@ void makeBackGround(layout l){
 
 /*
   @{param} layout [l]
-    donne le layout sur lequel on travail
-*/
-void makeBorder(layout l){
-  int i,j;
-
-  //de 0 à GAME_HEIGHT - 2 car on laisse une ligne pour les #
-  for (i = 0; i < GAME_HEIGHT - 1; i++) {
-    l[i][0] = '|';
-    l[i][GAME_WIDTH - 1] = '|';
-  }
-
-  for (j = 0; j < GAME_WIDTH; j++) {
-    l[GAME_HEIGHT - 1][j] = '#';
-  }
-}
-
-/*
-  @{param} layout [l]
     spécifie le layout à afficher
 */
 void displayGame(layout l){
   int i,j;
 
   for (i = 0; i < GAME_HEIGHT; i++) {
+    printw("|");
     for (j = 0; j < GAME_WIDTH; j++) {
-      if (l[i][j] == '#') {
-        //couleur(UNIX_COLOR_BLUE);
-      }
-      if (l[i][j] == '|') {
-        //couleur(UNIX_COLOR_RED);
-      }
+
       printw("%c ", l[i][j]);
-      //couleur(UNIX_COLOR_RESET);
     }
+    printw("|");
     printw("\n");
   }
+  printw(" ");
+  for (i = 0; i < GAME_WIDTH; i++) {
+    printw("# ");
+  }
+  printw("\n");
   refresh();
 }
 

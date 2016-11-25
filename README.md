@@ -22,10 +22,19 @@ Télechargez le dossier et accèdez y avec le terminal !
 ## Tetris
 ### Historique d'issues
 
+#### [25 Nov 2016] Rectifications
+
+  Semaine de code refractoring :
+
+  - plus de var glob
+  - meilleur gestion de la grille d'aff, # et | enlevés
+
+  - nouveau bug de segmentation pas très net ...
+
 #### [18 Nov 2016] Amelioration et nouveautés
 
   Prise en compte des observation du mail, ajout de la libraire "ncurses" mais problème à l'affichage, en effet c'est comme si "\n" n'était pas pris en compte
-  
+
 #### [11 Nov 2016] SDL INITIALISEE
 
   Makefile amélioré pour OS X et Debian, sa modularité peut encore être amélioré.

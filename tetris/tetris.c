@@ -137,7 +137,7 @@ int canMoveToward(piece p,direction dir,pos a, layout l){
         while((f.forme[j][i] != '@') && j > 0){
           j--;
         }
-        if (l[a.y + j+1][a.x + i] == '@' || l[a.y + j+1][a.x + i] == '#') {
+        if (l[a.y + j+1][a.x + i] == '@' || a.y + j  == GAME_HEIGHT - 1) {
           canMove = 0;
         }
         i++;
@@ -151,7 +151,7 @@ int canMoveToward(piece p,direction dir,pos a, layout l){
         while ((f.forme[j][i] != '@') && i > 0) {
           i--;
         }
-        if (l[a.y + j][a.x + i+1] == '@' || l[a.y + j][a.x + i+1] == '|') {
+        if (l[a.y + j][a.x + i+1] == '@' || a.x + i == GAME_WIDTH - 1) {
           canMove = 0;
         }
         j++;
@@ -165,7 +165,7 @@ int canMoveToward(piece p,direction dir,pos a, layout l){
         while ((f.forme[j][i] != '@') && i < f.width){
           i++;
         }
-        if(l[a.y + j][a.x +i-1] == '@' || l[a.y + j][a.x + i-1] == '|'){
+        if(l[a.y + j][a.x +i-1] == '@' || a.x + i == 0){
           canMove = 0;
         }
         j++;
@@ -445,7 +445,7 @@ void init_save(player *joueur){
 
 void init_game(int *score,layout l_jeu,gameState *etat){
   makeBackGround(l_jeu);
-  makeBorder(l_jeu);
+  //makeBorder(l_jeu);
   *score = 0;
   *etat = RESUME;
 }
@@ -467,6 +467,10 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
     p_posInit->x = 5;
     p_posInit->y = 0;
 
+    //printw("selection select\n");
+
+    refresh();
+    sleep(1);
     *p_jeu = selectPiece(); //selection d'une piece au hasard
     f_jeu = makeFigure(*p_jeu); //mise en mémoire de cette piece pour accès aux params
 
@@ -503,13 +507,16 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
       //printf("score : %d\n",score);
       clear();
 
-      if (isLineFull(l_jeu) != (-1)) {
-        eraseLine(isLineFull(l_jeu),l_jeu);
-        scoreUp(&score);
-        joueur.ligne += 1;
-      }
+
 
       usleep(*s_jeu);
+    }
+    refresh();
+    sleep(1);
+    if (isLineFull(l_jeu) != (-1)) {
+      eraseLine(isLineFull(l_jeu),l_jeu);
+      scoreUp(&score);
+      joueur.ligne += 1;
     }
   }
 }

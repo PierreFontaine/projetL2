@@ -18,4 +18,7 @@ int pieceIsOutOfLayout(piece p,pos a);
 int pieceOverlap(piece p,pos a,layout l);
 void copyLayout(layout a,layout b);
 void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat);
+void init_ncurses();
+void init_save(player *joueur);
+void init_game(int *score,layout l_jeu,gameState *etat);
 #endif
