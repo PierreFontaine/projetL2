@@ -9,73 +9,75 @@
 #include "string.h"
 #include "save.h"
 #include "ncurses.h"
+#include "menu.h"
 
+#define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
+#define CTRLD 	4
 
 int launchGame();
 
 void menu(){
-  int i,j,nbChoix;
-  char select;
+  //tableaux des options
+  char *choices[] = {
+    "jouer",
+    "score",
+    "quitter",
+  };
 
-  char *tab[3][2];
-  nbChoix = 0;
-  for (i = 0; i < 3; i++) {
-    for (j = 0; j < 2; j++) {
-      tab[i][j] = malloc(100*sizeof(char));
-    }
+  ITEM **my_items;
+	int c;
+	MENU *my_menu;
+	int n_choices, i;
+	ITEM *cur_item;
+  int choix;
+
+  choix = 1;
+
+	n_choices = ARRAY_SIZE(choices); //recuperation de la taille du tableau
+	my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));  //allocation des items
+  //affichage des items
+	for(i = 0; i < n_choices; ++i){
+    my_items[i] = new_item("    ",choices[i]);
   }
 
-  strcpy(tab[0][1],"jouer");
-  strcpy(tab[1][1],"afficher meilleurs scores");
-  strcpy(tab[2][1],"quitter");
+	my_items[n_choices] = (ITEM *)NULL;
 
-  *tab[0][0] = '>';
-  *tab[1][0] = ' ';
-  *tab[2][0] = ' ';
+	my_menu = new_menu((ITEM **)my_items);
+	mvprintw(LINES - 2, 0, "F1 to Exit");
+	post_menu(my_menu);
+	refresh();
 
-  do {
-    system("clear");
-    printf("##################\n");
-    printf("z : monter\n");
-    printf("s : descendre\n");
-    printf("c : choisir\n");
-    printf("##################\n");
-    for (i = 0; i < 3; i++) {
-      for (j = 0; j < 2; j++) {
-        printf("%s",tab[i][j]);
-      }
-      printf("\n");
-    }
-    scanf("%c%*c",&select);
-    switch (select) {
-      case 's':
-        *tab[nbChoix][0] = ' ';
-        nbChoix = (nbChoix + 1)%3;
-        *tab[nbChoix][0] = '>';
-        break;
-      case 'z':
-        *tab[nbChoix][0] = ' ';
-        if (nbChoix == 0) {
-          nbChoix = 2;
-        } else {
-          nbChoix -= 1;
+	while((c = getch()) != KEY_F(1)){
+    switch(c){
+      case KEY_DOWN:
+		    menu_driver(my_menu, REQ_DOWN_ITEM);
+        if (choix < n_choices) {
+          choix ++;
         }
-        *tab[nbChoix][0] = '>';
-    }
+				break;
+			case KEY_UP:
+				menu_driver(my_menu, REQ_UP_ITEM);
+        if (choix > 1) {
+          choix--;
+        }
+				break;
+      case 10:{
+        if(choix == 1){
+          launchGame();
+        } else if (choix == 2) {
 
-  } while(select != 'c');
-  switch (nbChoix) {
-    case 0:
-      launchGame();
-      break;
-    case 1:
-      readScore();
-      break;
-    case 2:
-      printf("%s\n", "a bientot !");
-      break;
+        } else {
+          break;
+        }
+      }
+		}
+	}
 
-  }
+
+  //Liberation des espaces mémoires
+	free_item(my_items[0]);
+	free_item(my_items[1]);
+	free_menu(my_menu);
 }
 
 int launchGame(){
@@ -90,6 +92,8 @@ int launchGame(){
 }
 
 int main(int argc, char const *argv[]) {
+  init_ncurses();
   menu();
+  endwin();
   return 0;
 }

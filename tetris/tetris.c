@@ -429,14 +429,6 @@ void reachFloor(layout l,piece p, pos *a){
   }
 }
 
-void init_ncurses(){
-  initscr();			/* Start curses mode 		*/
-	raw();				/* Line buffering disabled	*/
-	keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
-	noecho();			/* Don't echo() while we do getch */
-  nodelay(stdscr,TRUE);
-}
-
 void init_save(player *joueur){
   joueur->ligne = 0;
   joueur->score = 0;
@@ -458,7 +450,6 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
   long t;
 
   init_save(&joueur);
-  init_ncurses();
   displayGame(l_jeu);
   init_game(&score,l_jeu,etat);
 
@@ -466,8 +457,6 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
     *s_jeu = 300000;
     p_posInit->x = 5;
     p_posInit->y = 0;
-
-    //printw("selection select\n");
 
     refresh();
     sleep(1);
@@ -477,7 +466,6 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
     clear();
     displayPieceAt(*p_posInit,l_jeu,*p_jeu);//Affichage de la piece en haut
     displayGame(l_jeu); //affichage du jeux
-    //printf("score : %d\n",score);
     clear(); //effacage écran
     sleep(1);
 
@@ -485,7 +473,6 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
       joueur.score = score;
       appendScore(&joueur);
       printw("game over \n");
-      endwin();
       return 0;
     }
 
@@ -501,18 +488,14 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
       if(*etat == PAUSE){
         resume(l_jeu,p_jeu,p_posInit,s_jeu,etat);
       }
-
       pieceMoveToward(*p_jeu,SUD,p_posInit,l_jeu);
       displayGame(l_jeu);
       //printf("score : %d\n",score);
       clear();
-
-
-
       usleep(*s_jeu);
     }
     refresh();
-    sleep(1);
+    //sleep(1);
     if (isLineFull(l_jeu) != (-1)) {
       eraseLine(isLineFull(l_jeu),l_jeu);
       scoreUp(&score);

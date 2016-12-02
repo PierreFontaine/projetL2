@@ -15,5 +15,5 @@ void eraseLine(int n,layout l);
 void displayGame(layout l);
 void erasePieceAt(pos a,layout l, piece name);
 int getCharAt(pos a,layout l,char *res);
-
+void init_ncurses();
 #endif
