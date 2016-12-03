@@ -81,9 +81,9 @@ Amélioration du menu, il reste des problèmes d'affichage et un segmentation fa
   - [ ] Fonctions spé liées au fonctionnement du jeu
     - [x] rotation et verification
     - [x] déplacement et verification
-    - [ ] mise en pause
+    - [x] mise en pause
     - [ ] gestion du score
-    - [ ] menu
+    - [x] menu
   - [x] Fonctions spé liées à l'interaction H/M
     - [x] Association des touches à un évenement
   - [x] makefile
