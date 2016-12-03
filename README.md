@@ -22,6 +22,10 @@ Télechargez le dossier et accèdez y avec le terminal !
 ## Tetris
 ### Historique d'issues
 
+#### [3 Dec 2016] menu améliorations
+
+Amélioration du menu, il reste des problèmes d'affichage et un segmentation fault qui vient surement de ncurses.
+
 #### [25 Nov 2016] Rectifications
 
   Semaine de code refractoring :
