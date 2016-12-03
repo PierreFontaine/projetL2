@@ -65,7 +65,7 @@ void menu(){
         if(choix == 1){
           launchGame();
         } else if (choix == 2) {
-
+          readScore();
         } else {
           break;
         }

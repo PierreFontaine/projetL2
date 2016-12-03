@@ -494,8 +494,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
       clear();
       usleep(*s_jeu);
     }
-    refresh();
-    //sleep(1);
+
     if (isLineFull(l_jeu) != (-1)) {
       eraseLine(isLineFull(l_jeu),l_jeu);
       scoreUp(&score);
