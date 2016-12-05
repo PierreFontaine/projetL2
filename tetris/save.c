@@ -4,6 +4,7 @@
 #include "stdlib.h"
 #include "fcntl.h"
 #include "data.h"
+#include "ncurses.h"
 
 void appendScore(player *joueur){
   printf("%s\n","on rentre dans la fonction");

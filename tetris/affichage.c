@@ -23,7 +23,7 @@ void makeBackGround(layout l){
 */
 void displayGame(layout l){
   int i,j;
-
+  clear();
   for (i = 0; i < GAME_HEIGHT; i++) {
     printw("|");
     for (j = 0; j < GAME_WIDTH; j++) {

@@ -1,5 +1,4 @@
 #include "affichage.h"
-//#include "keyboard.h"
 #include "tetris.h"
 #include "stdlib.h"
 #include "stdio.h"

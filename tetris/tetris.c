@@ -83,19 +83,16 @@ piece selectPiece() {
 int isLineFull(layout l){
   int i,j;
   int isFull;
-
   //initialisation boucle externe
-  i = 1;
-
+  i = 0;
   isFull = 0; //Iniatialisation à 0
   //Warn: l[GAME_HEIGHT - 1][x] vaut '#' pour tout x
-  while(isFull == 0 && i < GAME_HEIGHT-1){
+  while(isFull == 0 && i < GAME_HEIGHT){
     //tant qu'on a pas prouvé le contraire c'est vrai
     isFull = 1;
     //initialisation boucle interne
-    j = 1;
-    //Warn: l[x][GAME_WIDTH - 1] vaut '|' pour tout x
-    while (isFull == 1 && j < GAME_WIDTH-1) {
+    j = 0;
+    while (isFull == 1 && j < GAME_WIDTH) {
       if (l[i][j] != '@') {
         isFull = 0;
       }
@@ -103,6 +100,7 @@ int isLineFull(layout l){
     }
     i++;
   }
+
   if (isFull == 1) {
     return i;
   } else {
@@ -392,6 +390,7 @@ void scoreUp(int *score){
 */
 void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
   int touche;
+  refresh();
   touche = getch();
   if (touche == KEY_LEFT) {
     pieceMoveToward(*p_jeu,WEST,p_posInit,l_jeu);
@@ -412,6 +411,8 @@ void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameSt
   } else if(touche == 's') {
     *s_jeu = 600000;
   }
+  clrtoeol();
+  refresh();
 }
 
 
@@ -448,57 +449,45 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
   figure f_jeu;
   player joueur;
   long t;
-
   init_save(&joueur);
   displayGame(l_jeu);
   init_game(&score,l_jeu,etat);
+  *s_jeu = 300000;
 
   while(1){
-    *s_jeu = 300000;
     p_posInit->x = 5;
     p_posInit->y = 0;
-
-    refresh();
-    sleep(1);
     *p_jeu = selectPiece(); //selection d'une piece au hasard
     f_jeu = makeFigure(*p_jeu); //mise en mémoire de cette piece pour accès aux params
-
-    clear();
     displayPieceAt(*p_posInit,l_jeu,*p_jeu);//Affichage de la piece en haut
     displayGame(l_jeu); //affichage du jeux
-    clear(); //effacage écran
-    sleep(1);
-
     if (gameOver(l_jeu,*p_jeu,*p_posInit)) {
       joueur.score = score;
       appendScore(&joueur);
       printw("game over \n");
       return 0;
     }
-
     while(canMoveToward(*p_jeu,SUD,*p_posInit,l_jeu) == 1){
       displayGame(l_jeu);
       t = time(NULL);
       while(time(NULL) - t < 0.5){
         keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat);
       }
-      clear();
       displayGame(l_jeu);
-      clear();
       if(*etat == PAUSE){
         resume(l_jeu,p_jeu,p_posInit,s_jeu,etat);
       }
       pieceMoveToward(*p_jeu,SUD,p_posInit,l_jeu);
       displayGame(l_jeu);
-      //printf("score : %d\n",score);
-      clear();
       usleep(*s_jeu);
     }
-
-    if (isLineFull(l_jeu) != (-1)) {
+    displayGame(l_jeu);
+    while(isLineFull(l_jeu) != (-1)) {
+      printw("ligne complète");
       eraseLine(isLineFull(l_jeu),l_jeu);
       scoreUp(&score);
       joueur.ligne += 1;
     }
+    displayGame(l_jeu);
   }
 }
