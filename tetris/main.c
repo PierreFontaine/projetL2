@@ -94,7 +94,7 @@ int launchGame(){
 
 int main(int argc, char *argv[]) {
   SDL_Init(SDL_INIT_AUDIO);
-  if(Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) == -1) {
+  if(Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) == -1) {
     printf("%s", Mix_GetError());
   }
   Mix_Music *musique;

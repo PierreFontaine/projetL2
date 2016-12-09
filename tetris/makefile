@@ -4,7 +4,7 @@ ifeq ($(OS),Darwin)
 #option de compilation
 CFLAGS =`sdl-config --cflags --libs`
 #option liens
-LDFLAGS =`sdl-config --libs`
+LDFLAGS =`sdl-config --libs` -lSDLmain -lSDL
 FRAMEWORK =-framework Cocoa
 DEVLIB = SDLMain.m
 #compilateur utilisé
