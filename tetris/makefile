@@ -12,7 +12,7 @@ CC = gcc
 
 else
 CC = gcc
-LDFLAGS = -lSDL_main
+LDFLAGS = -lSDLmain -lSDL
 CFLAGS =
 FRAMEWORK =
 DEVLIB =
