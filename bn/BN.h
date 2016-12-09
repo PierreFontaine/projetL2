@@ -6,6 +6,7 @@
 #include <string.h>
 #include <SDL/SDL.h>
 
+#define Taille 10
 
 typedef struct save_str{
 	int nbj;
@@ -30,36 +31,36 @@ typedef struct bat_str{
 	int Nbc;
 }
 
-int Postionnavire(int Taille,int grille[Taille][Taille]);
+int Postionnavire(/*int Taille,*/int grille[Taille][Taille]);
 
-void initialiserGrille(int Taille,int grille[Taille][Taille]);
+void initialiserGrille(/*int Taille,*/int grille[Taille][Taille]);
 
-void afficherGrille(int Taille,int grille[Taille][Taille]);
+void afficherGrille(/*int Taille,*/int grille[Taille][Taille]);
 
 int alea(int a, int b);
 
-int modeAuto(int Taille,int grille[Taille][Taille]);
+int modeAuto(/*int Taille,*/int grille[Taille][Taille]);
 
-int bateauxgrilleauto(int Taille,int grille[Taille][Taille], int Nbc, int bat);
+int bateauxgrilleauto(/*int Taille,*/int grille[Taille][Taille], int Nbc, int bat);
 
-int modeManuel(int Taille,int grille[Taille][Taille]);
+int modeManuel(/*int Taille,*/int grille[Taille][Taille]);
 
-int bateauxgrillemanuel(int Taille,int grille[Taille][Taille], int Nbc, int bat);
+int bateauxgrillemanuel(/*int Taille,*/int grille[Taille][Taille], int Nbc, int bat);
 
-int jeuJVsOrdi(int Taille,int joueur,int jeuj1[Taille][Taille],int jeuj2[Taille][Taille],int grillej1[Taille][Taille],int grillej2[Taille][Taille],int *scorej1,int *scorej2,int batcoulej1, int batcoulej2,int nbj);
+int jeuJVsOrdi(/*int Taille,*/int joueur,int jeuj1[Taille][Taille],int jeuj2[Taille][Taille],int grillej1[Taille][Taille],int grillej2[Taille][Taille],int *scorej1,int *scorej2,int batcoulej1, int batcoulej2,int nbj);
 
-int jeuOrdi(int Taille,int *batcoule, int jeu[Taille][Taille],int grille[Taille][Taille],int Bateau,int a,int b, int *joue);
+int jeuOrdi(/*int Taille,*/int *batcoule, int jeu[Taille][Taille],int grille[Taille][Taille],int Bateau,int a,int b, int *joue);
 
-int jeuDeuxJ(int Taille,int joueur,int jeuj1[Taille][Taille],int jeuj2[Taille][Taille],int grillej1[Taille][Taille],int grillej2[Taille][Taille],int *scorej1,int *scorej2,int batcoulej1, int batcoulej2,int nbj);
+int jeuDeuxJ(/*int Taille,*/int joueur,int jeuj1[Taille][Taille],int jeuj2[Taille][Taille],int grillej1[Taille][Taille],int grillej2[Taille][Taille],int *scorej1,int *scorej2,int batcoulej1, int batcoulej2,int nbj);
 
-int choisirCase(int Taille,int jeu[Taille][Taille],int grille[Taille][Taille],int *a,int *b,int joueur);
+int choisirCase(/*int Taille,*/int jeu[Taille][Taille],int grille[Taille][Taille],int *a,int *b,int joueur);
 
-int tcr(int Taille,int *batcoule,int jeu [Taille][Taille],int grille[Taille][Taille],int a,int b);
+int tcr(/*int Taille,*/int *batcoule,int jeu [Taille][Taille],int grille[Taille][Taille],int a,int b);
 
 void saveJeu(save *sauvegarde);
 
-void sauvegardeJeu(int Taille,int joueur,int jeuj1[Taille][Taille],int jeuj2[Taille][Taille],int grillej1[Taille][Taille],int grillej2[Taille][Taille],int scorej1,int scorej2,int batcoulej1, int batcoulej2,int nbj);
+void sauvegardeJeu(/*int Taille,*/int joueur,int jeuj1[Taille][Taille],int jeuj2[Taille][Taille],int grillej1[Taille][Taille],int grillej2[Taille][Taille],int scorej1,int scorej2,int batcoulej1, int batcoulej2,int nbj);
 
-int lesOptions(int Taille);
+int lesOptions();
 
 #endif

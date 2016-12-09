@@ -1,9 +1,9 @@
 #include "BN.h"
 
 
-int lesOptions(int Taille){
+int lesOptions(){
 	int opt;
-	
+
 	printf("Options:\n");
 	printf("1. Taille grille\n");
 	printf("2. Bateaux en diagonales\n");
@@ -16,7 +16,7 @@ int lesOptions(int Taille){
 	printf("9. Quitter option\n");
 	do{
 		scanf("%d%*c", &opt);
-		printf("\n"); 
+		printf("\n");
 		switch (opt)
 		{
 			case 1:
@@ -47,7 +47,7 @@ int lesOptions(int Taille){
 			case 9:
 				sauvegardeOptions(Taille);
 				return 0;
-			break;		
+			break;
        			default:
        				printf("Erreur redonnez un nombre entre 1 et 9");
 		}

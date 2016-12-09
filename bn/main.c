@@ -11,9 +11,6 @@ int main (int argc, char *argv[]) {
 	FILE *fichier = NULL;
 	fichier = fopen("score.txt","r+");
 
-
-
-	int Taille=10;
 	int grillej1 [Taille][Taille];
 	int grillej2 [Taille][Taille];
 	int jeuj1 [Taille][Taille];
@@ -27,16 +24,19 @@ int main (int argc, char *argv[]) {
 	int savescore;
 	int sauvPartie;
 	save sauvegarde;
+	opts options;
 
-	/*FILE *enter;
-	enter=fopen("options.txt","r");
+	FILE *enter;
+	if(enter=fopen("options.txt","r") == NULL){
+		printf("%s\n","on a pas trouvé le fichier !");
+	}
 	if(!(feof(enter))){
 		fseek(enter,0,SEEK_SET);
 		while(!feof(enter)){
 			fread(&options,sizeof(opts),1,enter);
 			}
 	}
-	//Taille=options.Taille;*/
+
 	initialiserGrille(Taille,jeuj1);
 	initialiserGrille(Taille,jeuj2);
 

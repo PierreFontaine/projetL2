@@ -11,7 +11,7 @@ void saveJeu(save *sauvegarde){
 }
 
 
-void sauvegardeJeu(int Taille,int joueur,int jeuj1[Taille][Taille],int jeuj2[Taille][Taille],int grillej1[Taille][Taille],int grillej2[Taille][Taille],int scorej1,int scorej2,int batcoulej1, int batcoulej2,int nbj){
+void sauvegardeJeu(/*int Taille,*/int joueur,int jeuj1[Taille][Taille],int jeuj2[Taille][Taille],int grillej1[Taille][Taille],int grillej2[Taille][Taille],int scorej1,int scorej2,int batcoulej1, int batcoulej2,int nbj){
 	sauvegarde.nbj=nbj;
 	sauvegarde.Taille=Taille;
 	sauvegarde.joueur=joueur;
@@ -46,4 +46,3 @@ void sauvegardeOptions(int Taille){
 	options.Taille=Taille;
 	saveOptions(&options);
 }
-

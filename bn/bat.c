@@ -3,33 +3,33 @@
 
 //Initialiser la grille
 
-void initialiserGrille(int Taille,int grille[Taille][Taille]){
+void initialiserGrille(/*int Taille,*/int grille[Taille][Taille]){
 
 	int i;
 	int j;
-	for(i=0;i<Taille;i++){		
-		for(j=0;j<Taille;j++){		
+	for(i=0;i<Taille;i++){
+		for(j=0;j<Taille;j++){
 			grille[i][j]=0;
 		}
-	}	
+	}
 }
 
 
 //Afficher la grille
 
-void afficherGrille(int Taille,int grille[Taille][Taille]){
+void afficherGrille(/*int Taille,*/int grille[Taille][Taille]){
 
 	int i;
 	int j;
 	int k;
 	printf(" |");
 	for(k=0;k<Taille;k++){
-		printf(" %d |",k);	
+		printf(" %d |",k);
 	}
 	printf("\n");
 	printf("-|");
 	for(k=0;k<Taille;k++){
-		printf("---|");	
+		printf("---|");
 	}
 	printf("\n");
 	for(i=0;i<Taille;i++){
@@ -47,11 +47,11 @@ void afficherGrille(int Taille,int grille[Taille][Taille]){
 		printf("-|");
 		for(k=0;k<Taille;k++){
 			printf("---|");
-			
+
 		}
 		printf("\n");
-		
-	}	
+
+	}
 }
 
 
@@ -64,7 +64,7 @@ int alea(int a, int b){
 
 //Positionnement navire
 
-int Postionnavire(int Taille,int grille [Taille][Taille]){
+int Postionnavire(/*int Taille,*/int grille [Taille][Taille]){
 	int posnav;
 	int content;
 	printf("Positionnement navire:\n");
@@ -72,7 +72,7 @@ int Postionnavire(int Taille,int grille [Taille][Taille]){
 	printf("2. Manuel\n");
 	do{
 		scanf("%d%*c", &posnav);
-		printf("\n"); 
+		printf("\n");
 		switch (posnav)
 		{
 			case 1:
@@ -106,14 +106,14 @@ int Postionnavire(int Taille,int grille [Taille][Taille]){
 		}
 	}while((posnav!=1)&&(posnav!=2));
 	printf("\n");
-}	
+}
 
 
 //Les bateaux :
 
 // Bateaux automatique
 
-int modeAuto(int Taille,int grille[Taille][Taille]){
+int modeAuto(/*/*int Taille,*/*/int grille[Taille][Taille]){
 	//Porte Avion
 	int bat1=1;
 	int Nbc1=5;
@@ -134,11 +134,11 @@ int modeAuto(int Taille,int grille[Taille][Taille]){
 	int bat5=5;
 	int Nbc5=2;
 	bateauxgrilleauto(Taille,grille,Nbc5,bat5);
-	
-} 
+
+}
 
 
-int bateauxgrilleauto(int Taille,int grille [Taille][Taille], int Nbc, int bat){
+int bateauxgrilleauto(/*int Taille,*/int grille [Taille][Taille], int Nbc, int bat){
 	int a;
 	int b;
 	int c;
@@ -146,7 +146,7 @@ int bateauxgrilleauto(int Taille,int grille [Taille][Taille], int Nbc, int bat){
 	int j;
 	int houv;
 	c = (Taille-Nbc);
-        houv=alea(1,3); 
+        houv=alea(1,3);
 	switch (houv)
 	{
 		case 1:
@@ -156,7 +156,7 @@ int bateauxgrilleauto(int Taille,int grille [Taille][Taille], int Nbc, int bat){
         			//colonne
         			b = alea(0,c);
 			}while(grille[a][b]!=0);
-			i=b;	
+			i=b;
 			while((i>=b)&&(i<(b+Nbc))){
 				if(grille[a][i]==0){
 					grille[a][i]=bat;
@@ -169,7 +169,7 @@ int bateauxgrilleauto(int Taille,int grille [Taille][Taille], int Nbc, int bat){
         				a = alea(0,Taille);
         				//colonne
         				b = alea(0,c);
-					i=b;	
+					i=b;
 				}
 			}
 		break;
@@ -180,7 +180,7 @@ int bateauxgrilleauto(int Taille,int grille [Taille][Taille], int Nbc, int bat){
         			//colonne
         			b = alea(0,Taille);
 			}while(grille[a][b]!=0);
-			i=a;	
+			i=a;
 			while((i>=a)&&(i<(a+Nbc))){
 				if(grille[i][b]==0){
 					grille[i][b]=bat;
@@ -193,7 +193,7 @@ int bateauxgrilleauto(int Taille,int grille [Taille][Taille], int Nbc, int bat){
         				a = alea(0,c);
         				//lcolonne
         				b = alea(0,Taille);
-					i=a;	
+					i=a;
 				}
 			}
        		break;
@@ -203,7 +203,7 @@ int bateauxgrilleauto(int Taille,int grille [Taille][Taille], int Nbc, int bat){
 
 //Bateaux manuels
 
-int modeManuel(int Taille,int grille [Taille][Taille]){
+int modeManuel(/*int Taille,*/int grille [Taille][Taille]){
 	int Nbc;
 	int bat;
 	//Porte Avion
@@ -239,17 +239,17 @@ int modeManuel(int Taille,int grille [Taille][Taille]){
 }
 
 
-int bateauxgrillemanuel(int Taille,int grille [Taille][Taille], int Nbc, int bat ){
+int bateauxgrillemanuel(/*int Taille,*/int grille [Taille][Taille], int Nbc, int bat ){
 	int a;
 	int b;
 	int i;
 	int j;
 	int houv;
-	
+
 	printf("Positionnement bateau:\n");
 	printf("1. Horizontal\n");
 	printf("2. Vertical\n");
-	do{ 
+	do{
 		scanf("%d%*c", &houv);
 		printf("\n");
 		switch (houv)
@@ -265,7 +265,7 @@ int bateauxgrillemanuel(int Taille,int grille [Taille][Taille], int Nbc, int bat
 						printf("Erreur, redonnez les coordonées de la première case.");
 					}
 				}while((grille[a][b]!=0)||(b>(Taille-Nbc)));
-				i=b;	
+				i=b;
 				while((i>=b)&&(i<(b+Nbc))){
 					if(grille[a][i]==0){
 						grille[a][i]=bat;
@@ -280,10 +280,10 @@ int bateauxgrillemanuel(int Taille,int grille [Taille][Taille], int Nbc, int bat
 						printf("Donnez une colonne pour la première case");
 						scanf("%d%*c",&b);
 						i=b;
-						
+
 					}
 				printf("\n");
-	
+
 				}
 			break;
 			case 2:
@@ -297,7 +297,7 @@ int bateauxgrillemanuel(int Taille,int grille [Taille][Taille], int Nbc, int bat
 						printf("Erreur, redonnez les coordonées de la première case.");
 					}
 				}while((grille[a][b]!=0)||(a>(Taille-Nbc)));
-				i=a;	
+				i=a;
 				while((i>=a)&&(i<(a+Nbc))){
 					if(grille[i][b]==0){
 						grille[i][b]=bat;
@@ -312,13 +312,13 @@ int bateauxgrillemanuel(int Taille,int grille [Taille][Taille], int Nbc, int bat
 						printf("Donnez une colonne pour la première case");
 						scanf("%d%*c",&b);
 						i=a;
-						
+
 					}
 				printf("\n");
-	
+
 				}
        			break;
        			}
 		}while((houv!=1)&&(houv!=2));
-	printf("\n");		
+	printf("\n");
 }
