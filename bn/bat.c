@@ -79,9 +79,9 @@ int Postionnavire(/*int Taille,*/int grille [Taille][Taille]){
 				printf("Vous avez choisi le mode automatique\n");
 				do{
 					// Initialisation de la grille
-					initialiserGrille(Taille,grille);
-					modeAuto(Taille,grille);
-					afficherGrille(Taille,grille);
+					initialiserGrille(/*Taille,*/grille);
+					modeAuto(/*Taille,*/grille);
+					afficherGrille(/*Taille,*/grille);
 					printf("Etes-vous satisfait du placement?\n0.Oui\n1.Non\n");
 					scanf("%d%*c", &content);
 				}while(content!=0);
@@ -90,13 +90,13 @@ int Postionnavire(/*int Taille,*/int grille [Taille][Taille]){
        				printf("Vous avez choisi le mode manuel\n");
        				do{
 					// Initialisation de la grille
-					initialiserGrille(Taille,grille);
+					initialiserGrille(/*Taille,*/grille);
 					// Affichage de la grille vide
 					printf("Grille vide:\n \n");
-					afficherGrille(Taille,grille);
+					afficherGrille(/*Taille,*/grille);
        					// Demander à l'utilisateur les bateaux
 					printf("Placer les bateaux:\n \n");
-					modeManuel(Taille,grille);
+					modeManuel(/*Taille,*/grille);
 					printf("Etes-vous satisfait du placement?\n0.Oui\n1.Non\n");
 					scanf("%d%*c", &content);
 				}while(content!=0);
@@ -113,27 +113,27 @@ int Postionnavire(/*int Taille,*/int grille [Taille][Taille]){
 
 // Bateaux automatique
 
-int modeAuto(/*/*int Taille,*/*/int grille[Taille][Taille]){
+int modeAuto(/*int Taille,*/int grille[Taille][Taille]){
 	//Porte Avion
 	int bat1=1;
 	int Nbc1=5;
-	bateauxgrilleauto(Taille,grille,Nbc1,bat1);
+	bateauxgrilleauto(/*Taille,*/grille,Nbc1,bat1);
 	//Croiseur
 	int bat2=2;
 	int Nbc2=4;
-	bateauxgrilleauto(Taille,grille,Nbc2,bat2);
+	bateauxgrilleauto(/*Taille,*/grille,Nbc2,bat2);
 	//contre torpilleurs
 	int bat3=3;
 	int Nbc3=3;
-	bateauxgrilleauto(Taille,grille,Nbc3,bat3);
+	bateauxgrilleauto(/*Taille,*/grille,Nbc3,bat3);
 	//sous marin
 	int bat4=4;
 	int Nbc4=3;
-	bateauxgrilleauto(Taille,grille,Nbc4,bat4);
+	bateauxgrilleauto(/*Taille,*/grille,Nbc4,bat4);
 	//torpilleur
 	int bat5=5;
 	int Nbc5=2;
-	bateauxgrilleauto(Taille,grille,Nbc5,bat5);
+	bateauxgrilleauto(/*Taille,*/grille,Nbc5,bat5);
 
 }
 
@@ -210,32 +210,32 @@ int modeManuel(/*int Taille,*/int grille [Taille][Taille]){
 	printf("Porte avion(5 cases):\n");
 	bat=1;
 	Nbc=5;
-	bateauxgrillemanuel(Taille,grille,Nbc,bat);
-	afficherGrille(Taille,grille);
+	bateauxgrillemanuel(/*Taille,*/grille,Nbc,bat);
+	afficherGrille(/*Taille,*/grille);
 	//Croiseur
 	printf("croiseur(4 cases):\n");
 	bat++;
 	Nbc=4;
-	bateauxgrillemanuel(Taille,grille,Nbc,bat);
-	afficherGrille(Taille,grille);
+	bateauxgrillemanuel(/*Taille,*/grille,Nbc,bat);
+	afficherGrille(/*Taille,*/grille);
 	//contre torpilleurs
 	printf("contre torpilleurs(3 cases):\n");
 	bat++;
 	Nbc=3;
-	bateauxgrillemanuel(Taille,grille,Nbc,bat);
-	afficherGrille(Taille,grille);
+	bateauxgrillemanuel(/*Taille,*/grille,Nbc,bat);
+	afficherGrille(/*Taille,*/grille);
 	//sous marin
 	printf("sous marin(3 cases):\n");
 	bat++;
 	Nbc=3;
-	bateauxgrillemanuel(Taille,grille,Nbc,bat);
-	afficherGrille(Taille,grille);
+	bateauxgrillemanuel(/*Taille,*/grille,Nbc,bat);
+	afficherGrille(/*Taille,*/grille);
 	//torpilleur
 	printf("torpilleur(2 cases):\n");
 	bat++;
 	Nbc=2;
-	bateauxgrillemanuel(Taille,grille,Nbc,bat);
-	afficherGrille(Taille,grille);
+	bateauxgrillemanuel(/*Taille,*/grille,Nbc,bat);
+	afficherGrille(/*Taille,*/grille);
 }
 
 

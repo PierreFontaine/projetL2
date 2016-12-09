@@ -37,8 +37,8 @@ int main (int argc, char *argv[]) {
 			}
 	}
 
-	initialiserGrille(Taille,jeuj1);
-	initialiserGrille(Taille,jeuj2);
+	initialiserGrille(/*Taille,*/jeuj1);
+	initialiserGrille(/*Taille,*/jeuj2);
 
 	do{
 		system("clear");
@@ -70,10 +70,10 @@ int main (int argc, char *argv[]) {
         						joueur = alea(1,3);
         						printf("Le joueur %d commence\n",joueur);
         						printf("Le joueur 1 positionne ces navires\n");
-							Postionnavire(Taille,grillej1);
-							initialiserGrille(Taille,grillej2);
-							modeAuto(Taille,grillej2);
-							jeuJVsOrdi(Taille,joueur,jeuj1,jeuj2,grillej1,grillej2,&scorej1,&scorej2,batcoulej1,batcoulej2,nbj);
+							Postionnavire(/*Taille,*/grillej1);
+							initialiserGrille(/*Taille,*/grillej2);
+							modeAuto(/*Taille,*/grillej2);
+							jeuJVsOrdi(/*Taille,*/joueur,jeuj1,jeuj2,grillej1,grillej2,&scorej1,&scorej2,batcoulej1,batcoulej2,nbj);
 							printf("Voulez vous jouer une autre partie?\n1. Oui\n2. Non");
 							scanf("%d%*c",&continuer);
 						}while(continuer==1);
@@ -95,20 +95,20 @@ int main (int argc, char *argv[]) {
         						printf("Le joueur %d commence.\n",joueur);
         						if(joueur==1){
 								printf("Le joueur 1 positionne ces navires\n");
-								Postionnavire(Taille,grillej1);
+								Postionnavire(/*Taille,*/grillej1);
 								system("clear");
 								printf("Le joueur 2 positionne ces navires\n");
-								Postionnavire(Taille,grillej2);
+								Postionnavire(/*Taille,*/grillej2);
 								system("clear");
 							}else{
 								printf("Le joueur 2 positionne ces navires\n");
-								Postionnavire(Taille,grillej2);
+								Postionnavire(/*Taille,*/grillej2);
 								system("clear");
 								printf("Le joueur 1 positionne ces navires\n");
-								Postionnavire(Taille,grillej1);
+								Postionnavire(/*Taille,*/grillej1);
 								system("clear");
 							}
-							jeuDeuxJ(Taille,joueur,jeuj1,jeuj2,grillej1,grillej2,&scorej1,&scorej2,batcoulej1,batcoulej2,nbj);
+							jeuDeuxJ(/*Taille,*/joueur,jeuj1,jeuj2,grillej1,grillej2,&scorej1,&scorej2,batcoulej1,batcoulej2,nbj);
 							printf("Voulez vous jouer une autre partie?\n1. Oui\n2. Non");
 							scanf("%d%*c",&continuer);
 						}while(continuer==1);
@@ -146,9 +146,9 @@ int main (int argc, char *argv[]) {
 					afficherGrille(sauvegarde.Taille,sauvegarde.jeuj1);
 					afficherGrille(sauvegarde.Taille,sauvegarde.jeuj2);
 					if((sauvegarde.nbj)==1){
-						jeuJVsOrdi(sauvegarde.Taille,sauvegarde.joueur,sauvegarde.jeuj1,sauvegarde.jeuj2,sauvegarde.grillej1,sauvegarde.grillej2,&(sauvegarde.scorej1),&(sauvegarde.scorej2),sauvegarde.batcoulej1,sauvegarde.batcoulej2,sauvegarde.nbj);
+						jeuJVsOrdi(/*sauvegarde.Taille,*/sauvegarde.joueur,sauvegarde.jeuj1,sauvegarde.jeuj2,sauvegarde.grillej1,sauvegarde.grillej2,&(sauvegarde.scorej1),&(sauvegarde.scorej2),sauvegarde.batcoulej1,sauvegarde.batcoulej2,sauvegarde.nbj);
 					}else if((sauvegarde.nbj)==2){
-						jeuDeuxJ(sauvegarde.Taille,sauvegarde.joueur,sauvegarde.jeuj1,sauvegarde.jeuj2,sauvegarde.grillej1,sauvegarde.grillej2,&(sauvegarde.scorej1),&(sauvegarde.scorej2),sauvegarde.batcoulej1,sauvegarde.batcoulej2,sauvegarde.nbj);
+						jeuDeuxJ(/*sauvegarde.Taille,*/sauvegarde.joueur,sauvegarde.jeuj1,sauvegarde.jeuj2,sauvegarde.grillej1,sauvegarde.grillej2,&(sauvegarde.scorej1),&(sauvegarde.scorej2),sauvegarde.batcoulej1,sauvegarde.batcoulej2,sauvegarde.nbj);
 					}else{
 						printf("Pas de sauvegarde");
 					}
@@ -157,7 +157,7 @@ int main (int argc, char *argv[]) {
        			break;
        			case 3:
 				printf("Les options:\n");
-				lesOptions(Taille);
+				lesOptions(/*Taille*/);
        			break;
        			case 4:
 				printf("Vous quittez la partie\n");
