@@ -2,11 +2,11 @@ OS := $(shell uname)
 
 ifeq ($(OS),Darwin)
 #option de compilation
-CFLAGS =
+CFLAGS =`sdl-config --cflags --libs`
 #option liens
-LDFLAGS =
-FRAMEWORK =
-DEVLIB =
+LDFLAGS =`sdl-config --libs`
+FRAMEWORK =-framework Cocoa
+DEVLIB = SDLMain.m
 #compilateur utilisé
 CC = gcc
 
@@ -18,15 +18,14 @@ DEVLIB =
 endif
 
 all: affichage.o main.o tetris.o save.o
-	#${CC} affichage.o mainGraph.o tetris.o save.o ${DEVLIB} -o programmeGraph ${CFLAGS} ${FRAMEWORK}
-	${CC} affichage.o main.o tetris.o save.o -o programme -lpthread -lncurses -lmenu
+	${CC} affichage.o main.o tetris.o save.o -o programme -lncurses -lmenu -lSDL_mixer
 	rm *.o
 
 main.o : main.c
 	${CC}  -c main.c -o main.o
 
-#mainGraph.o : mainGraph.c
-#	${CC} -c mainGraph.c -o mainGraph.o ${CFLAGS} ${FRAMEWORK}
+mainGraph.o : mainGraph.c
+	${CC} -c mainGraph.c -o mainGraph.o
 
 
 affichage.o : affichage.c

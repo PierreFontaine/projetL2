@@ -9,6 +9,7 @@
 #include "save.h"
 #include "ncurses.h"
 #include "menu.h"
+#include <SDL/SDL_mixer.h>
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 #define CTRLD 	4
@@ -91,6 +92,10 @@ int launchGame(){
 }
 
 int main(int argc, char const *argv[]) {
+  SDL_Init();
+  if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1) {
+    printf("%s", Mix_GetError());
+  }
   init_ncurses();
   menu();
   endwin();

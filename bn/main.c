@@ -10,9 +10,10 @@ int main (int argc, char *argv[]) {
 	srand(time(NULL));
 	FILE *fichier = NULL;
 	fichier = fopen("score.txt","r+");
-	
-	
-	
+
+
+
+	int Taille=10;
 	int grillej1 [Taille][Taille];
 	int grillej2 [Taille][Taille];
 	int jeuj1 [Taille][Taille];
@@ -25,9 +26,8 @@ int main (int argc, char *argv[]) {
 	int choix;
 	int savescore;
 	int sauvPartie;
-	int Taille=10;
 	save sauvegarde;
-	
+
 	/*FILE *enter;
 	enter=fopen("options.txt","r");
 	if(!(feof(enter))){
@@ -147,7 +147,7 @@ int main (int argc, char *argv[]) {
 					afficherGrille(sauvegarde.Taille,sauvegarde.jeuj2);
 					if((sauvegarde.nbj)==1){
 						jeuJVsOrdi(sauvegarde.Taille,sauvegarde.joueur,sauvegarde.jeuj1,sauvegarde.jeuj2,sauvegarde.grillej1,sauvegarde.grillej2,&(sauvegarde.scorej1),&(sauvegarde.scorej2),sauvegarde.batcoulej1,sauvegarde.batcoulej2,sauvegarde.nbj);
-					}else if((sauvegarde.nbj)==2){	
+					}else if((sauvegarde.nbj)==2){
 						jeuDeuxJ(sauvegarde.Taille,sauvegarde.joueur,sauvegarde.jeuj1,sauvegarde.jeuj2,sauvegarde.grillej1,sauvegarde.grillej2,&(sauvegarde.scorej1),&(sauvegarde.scorej2),sauvegarde.batcoulej1,sauvegarde.batcoulej2,sauvegarde.nbj);
 					}else{
 						printf("Pas de sauvegarde");

@@ -483,7 +483,6 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
     }
     displayGame(l_jeu);
     while(isLineFull(l_jeu) != (-1)) {
-      printw("ligne complète");
       eraseLine(isLineFull(l_jeu),l_jeu);
       scoreUp(&score);
       joueur.ligne += 1;

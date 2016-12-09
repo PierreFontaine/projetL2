@@ -1,66 +1,29 @@
-#include "affichage.h"
 #include "tetris.h"
 #include "stdlib.h"
 #include "stdio.h"
 #include "unistd.h"
-#include "termios.h"
-#ifdef __APPLE__
-#include "SDL.h"
-#endif
+#include <gtk/gtk.h>
 
-#ifdef __linux__
-#include "SDL/SDL.h"
-#endif
+int main( int   argc,char *argv[] ){
+    GtkWidget *window;
+    GtkWidget *button_quit;
+    GtkWidget* hbox1;
+    GtkWidget* label;
 
-void pause_game();
+    button_quit = gtk_button_new_with_label("Quitter");
+    hbox1 = gtk_hbox_new (TRUE, 10);
+    label = gtk_label_new( "Grille TETRIS" );
+    g_signal_connect(button_quit,"clicked",G_CALLBACK(gtk_main_quit),NULL);
+    gtk_container_add(GTK_CONTAINER(window),button_quit);
+    gtk_container_add ( GTK_CONTAINER (hbox1), label );
+    gtk_widget_show(button_quit);
 
-int main(int argc, char *argv[]) {
-  SDL_Surface *ecran = NULL, *rectangle = NULL;
-  SDL_Rect position;
+    /* Passe les arguments à GTK, pour qu'il extrait ceux qui le concernent. */
+    gtk_init (&argc, &argv);
+    window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    gtk_widget_show  (window);
 
-  SDL_Init(SDL_INIT_VIDEO);
 
-  ecran = SDL_SetVideoMode(640, 480, 32, SDL_HWSURFACE);
-  if (ecran == NULL) {
-    printf("y'a une couille dans le potage\n");
-  }
-  // Allocation de la surface
-  rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, 220, 180, 32, 0, 0, 0, 0);
-  if (rectangle == NULL) {
-    printf("y'a une couille dans le potage2\n");
-  }
-  SDL_WM_SetCaption("Ma super fenêtre SDL !", NULL);
-
-  SDL_FillRect(ecran, NULL, SDL_MapRGB(ecran->format, 17, 206, 112));
-
-  position.x = 0; // Les coordonnées de la surface seront (0, 0)
-  position.y = 0;
-  // Remplissage de la surface avec du blanc
-  SDL_FillRect(rectangle, NULL, SDL_MapRGB(ecran->format, 255, 255, 255));
-  SDL_BlitSurface(rectangle, NULL, ecran, &position); // Collage de la surface sur l'écran
-
-  SDL_Flip(ecran); // Mise à jour de l'écran
-
-  pause();
-
-  SDL_FreeSurface(rectangle); // Libération de la surface
-  SDL_Quit();
-
-  return EXIT_SUCCESS;
-}
-
-void pause_game()
-{
-    int continuer = 1;
-    SDL_Event event;
-
-    while (continuer)
-    {
-        SDL_WaitEvent(&event);
-        switch(event.type)
-        {
-            case SDL_QUIT:
-                continuer = 0;
-        }
-    }
+    gtk_main ();
+    return 0;
 }
