@@ -142,10 +142,10 @@ int main (int argc, char *argv[]) {
 						}
 					}
 					fclose(entree);
-					afficherGrille(sauvegarde.Taille,sauvegarde.grillej1);
+					/*afficherGrille(sauvegarde.Taille,sauvegarde.grillej1);
 					afficherGrille(sauvegarde.Taille,sauvegarde.grillej2);
 					afficherGrille(sauvegarde.Taille,sauvegarde.jeuj1);
-					afficherGrille(sauvegarde.Taille,sauvegarde.jeuj2);
+					afficherGrille(sauvegarde.Taille,sauvegarde.jeuj2);*/
 					if((sauvegarde.nbj)==1){
 						jeuJVsOrdi(/*sauvegarde.Taille,*/sauvegarde.joueur,sauvegarde.jeuj1,sauvegarde.jeuj2,sauvegarde.grillej1,sauvegarde.grillej2,&(sauvegarde.scorej1),&(sauvegarde.scorej2),sauvegarde.batcoulej1,sauvegarde.batcoulej2,sauvegarde.nbj);
 					}else if((sauvegarde.nbj)==2){
