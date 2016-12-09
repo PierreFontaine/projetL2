@@ -1,5 +1,5 @@
 #include "BN.h"
-
+//https://www.youtube.com/watch?v=hDcTiaiz2eg
 
 int main (int argc, char *argv[]) {
 	SDL_Init((SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER));
@@ -27,14 +27,15 @@ int main (int argc, char *argv[]) {
 	opts options;
 
 	FILE *enter;
-	if(enter=fopen("options.txt","r") == NULL){
+	enter=fopen("options.txt","r");
 		printf("%s\n","on a pas trouvé le fichier !");
-	}
 	if(!(feof(enter))){
 		fseek(enter,0,SEEK_SET);
 		while(!feof(enter)){
 			fread(&options,sizeof(opts),1,enter);
 			}
+	} else {
+		printf("lol\n");
 	}
 
 	initialiserGrille(Taille,jeuj1);
