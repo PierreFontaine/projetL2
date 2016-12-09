@@ -9,6 +9,7 @@
 #include "save.h"
 #include "ncurses.h"
 #include "menu.h"
+#include <SDL/SDL.h>
 #include <SDL/SDL_mixer.h>
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
@@ -91,13 +92,19 @@ int launchGame(){
   return 1;
 }
 
-int main(int argc, char const *argv[]) {
-  SDL_Init();
-  if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1) {
+int main(int argc, char *argv[]) {
+  SDL_Init(SDL_INIT_AUDIO);
+  if(Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024) == -1) {
     printf("%s", Mix_GetError());
   }
+  Mix_Music *musique;
+  musique = Mix_LoadMUS("./assets/reputation.mp3");
+  Mix_PlayMusic(musique, -1);
   init_ncurses();
   menu();
   endwin();
+  Mix_FreeMusic(musique);
+  Mix_CloseAudio();
+  SDL_Quit();
   return 0;
 }

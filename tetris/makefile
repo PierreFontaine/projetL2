@@ -12,17 +12,18 @@ CC = gcc
 
 else
 CC = gcc
+LDFLAGS = -lSDL_main
 CFLAGS =
 FRAMEWORK =
 DEVLIB =
 endif
 
 all: affichage.o main.o tetris.o save.o
-	${CC} affichage.o main.o tetris.o save.o -o programme -lncurses -lmenu -lSDL_mixer
+	${CC} affichage.o main.o tetris.o save.o -o programme -lncurses -lmenu -lSDL_mixer ${LDFLAGS}
 	rm *.o
 
 main.o : main.c
-	${CC}  -c main.c -o main.o
+	${CC}  -c main.c -o main.o -lSDL_mixer
 
 mainGraph.o : mainGraph.c
 	${CC} -c mainGraph.c -o mainGraph.o
