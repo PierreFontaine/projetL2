@@ -48,7 +48,7 @@ void menu(){
 	post_menu(my_menu);
 	refresh();
 
-	while((c = getch()) != KEY_F(1)){
+	while((c = getch()) != KEY_F(2)){
     switch(c){
       case KEY_DOWN:
 		    menu_driver(my_menu, REQ_DOWN_ITEM);
