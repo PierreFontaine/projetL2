@@ -25,6 +25,11 @@ typedef struct option_str{
 	int Taille;
 }opts;
 
+typedef struct bat_str{
+	int bat;
+	int Nbc;
+}
+
 int Postionnavire(int Taille,int grille[Taille][Taille]);
 
 void initialiserGrille(int Taille,int grille[Taille][Taille]);
