@@ -475,7 +475,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
     while(canMoveToward(*p_jeu,SUD,*p_posInit,l_jeu) == 1){
       displayGame(l_jeu);
       t = time(NULL);
-      while(time(NULL) - t < 2){
+      while((time(NULL) - t) < 2){
         keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat);
       }
       displayGame(l_jeu);

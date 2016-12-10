@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
     printf("%s", Mix_GetError());
   }
   Mix_Music *musique;
-  musique = Mix_LoadMUS("./assets/reputation.mp3");
+  musique = Mix_LoadMUS("./assets/reputation.wav");
   Mix_PlayMusic(musique, -1);
   init_ncurses();
   menu();
