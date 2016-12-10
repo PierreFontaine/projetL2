@@ -452,7 +452,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
   init_save(&joueur);
   displayGame(l_jeu);
   init_game(&score,l_jeu,etat);
-  *s_jeu = 300000;
+  *s_jeu = 3000;
 
   while(1){
     p_posInit->x = 5;
@@ -464,13 +464,18 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
     if (gameOver(l_jeu,*p_jeu,*p_posInit)) {
       joueur.score = score;
       appendScore(&joueur);
+      clear();
+      refresh();
       printw("game over \n");
+      sleep(3);
+      clear();
+      refresh();
       return 0;
     }
     while(canMoveToward(*p_jeu,SUD,*p_posInit,l_jeu) == 1){
       displayGame(l_jeu);
       t = time(NULL);
-      while(time(NULL) - t < 0.5){
+      while(time(NULL) - t < 2){
         keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat);
       }
       displayGame(l_jeu);
@@ -479,7 +484,6 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
       }
       pieceMoveToward(*p_jeu,SUD,p_posInit,l_jeu);
       displayGame(l_jeu);
-      usleep(*s_jeu);
     }
     displayGame(l_jeu);
     while(isLineFull(l_jeu) != (-1)) {

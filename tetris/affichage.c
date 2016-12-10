@@ -343,6 +343,9 @@ void eraseLine(int n,layout l){
   }
 }
 
+/*
+* Initialiser l'affichage en ncurses
+*/
 void init_ncurses(){
   initscr();			/* Start curses mode 		*/
 	raw();				/* Line buffering disabled	*/

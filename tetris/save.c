@@ -6,6 +6,10 @@
 #include "data.h"
 #include "ncurses.h"
 
+/*
+* @{param} joueur [player]
+*   permet d'écrire à la fin du fichier des scores
+*/
 void appendScore(player *joueur){
   printf("%s\n","on rentre dans la fonction");
   FILE *sortie;
@@ -19,6 +23,9 @@ void appendScore(player *joueur){
   }
 }
 
+/*
+*   permet d'afficher les scores contenus dans score.data
+*/
 void readScore(){
   FILE *entree;
   player joueur;
