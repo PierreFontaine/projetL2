@@ -97,5 +97,5 @@ Amélioration du menu, il reste des problèmes d'affichage et un segmentation fa
 - ~~débordement de tableau~~
 - ~~problème de rotation => changement de figure~~
 - ~~fonction lancée du Thread ne bloque pas le main, pb pour pause()~~
-- augmenter la vitesse de la pièce
+- ~~augmenter la vitesse de la pièce~~
 - ~~suppression des lignes, il subsiste un bug~~
