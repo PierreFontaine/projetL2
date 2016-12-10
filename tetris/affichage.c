@@ -21,7 +21,7 @@ void makeBackGround(layout l){
   @{param} layout [l]
     spécifie le layout à afficher
 */
-void displayGame(layout l){
+void displayGame(layout l,int score){
   int i,j;
   clear();
   for (i = 0; i < GAME_HEIGHT; i++) {
@@ -38,6 +38,7 @@ void displayGame(layout l){
     printw("# ");
   }
   printw("\n");
+  mvprintw(LINES - 2, 0, "Score : %d ",score);
   refresh();
 }
 

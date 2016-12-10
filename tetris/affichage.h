@@ -10,9 +10,8 @@ void makeBackGround(layout l); //creer une matrice hauteur+1*largeur+1 de type c
 void makeBorder(layout l); //remplis les contours de la matrice pour délimiter
 figure makeFigure(piece name); //creer des figures avec la bonne forme
 void displayPieceAt(pos a,layout l, piece name); //affiche une piece à la pos{x,y}
-void displayScore(); //permet d'afficher le score sur le terminal
 void eraseLine(int n,layout l);
-void displayGame(layout l);
+void displayGame(layout l,int score);
 void erasePieceAt(pos a,layout l, piece name);
 int getCharAt(pos a,layout l,char *res);
 void init_ncurses();

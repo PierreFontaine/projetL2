@@ -19,21 +19,21 @@ DEVLIB =
 endif
 
 all: affichage.o main.o tetris.o save.o
-	${CC} affichage.o main.o tetris.o save.o -o programme -lncurses -lmenu -lSDL_mixer ${LDFLAGS}
+	${CC} -std=c99 affichage.o main.o tetris.o save.o -o programme -lncurses -lmenu -lSDL_mixer ${LDFLAGS}
 	rm *.o
 
 main.o : main.c
-	${CC}  -c main.c -o main.o -lSDL_mixer
+	${CC} -std=c99  -c main.c -o main.o -lSDL_mixer
 
 mainGraph.o : mainGraph.c
-	${CC} -c mainGraph.c -o mainGraph.o
+	${CC} -std=c99 -c mainGraph.c -o mainGraph.o
 
 
 affichage.o : affichage.c
-	${CC} -c  affichage.c -o affichage.o ${CFLAGS} ${FRAMEWORK}
+	${CC} -std=c99 -c  affichage.c -o affichage.o ${CFLAGS} ${FRAMEWORK}
 
 tetris.o : tetris.c
-	${CC} -c  tetris.c -o tetris.o -lncurses ${CFLAGS} ${FRAMEWORK}
+	${CC} -std=c99 -c  tetris.c -o tetris.o -lncurses ${CFLAGS} ${FRAMEWORK}
 
 save.o : save.c
-	${CC} -c save.c -o save.o ${CFLAGS} ${FRAMEWORK}
+	${CC} -std=c99 -c save.c -o save.o ${CFLAGS} ${FRAMEWORK}

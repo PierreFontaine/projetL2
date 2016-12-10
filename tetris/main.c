@@ -17,7 +17,7 @@
 
 int launchGame();
 
-void menu(){
+int menu(){
   //tableaux des options
   char *choices[] = {
     "jouer",
@@ -31,6 +31,9 @@ void menu(){
 	int n_choices, i;
 	ITEM *cur_item;
   int choix;
+  bool quitter;
+
+  quitter = false;
 
   choix = 1;
 
@@ -48,7 +51,7 @@ void menu(){
 	post_menu(my_menu);
 	refresh();
 
-	while((c = getch()) != KEY_F(2)){
+	while((c = getch()) != quitter){
     switch(c){
       case KEY_DOWN:
 		    menu_driver(my_menu, REQ_DOWN_ITEM);
@@ -71,8 +74,11 @@ void menu(){
           readScore();
           erase();
           refresh();
-        } else {
-          break;
+        } else  if (choix == 3){
+          free_item(my_items[0]);
+        	free_item(my_items[1]);
+        	free_menu(my_menu);
+          return 0;
         }
       }
 		}
@@ -83,6 +89,7 @@ void menu(){
 	free_item(my_items[0]);
 	free_item(my_items[1]);
 	free_menu(my_menu);
+  return 0;
 }
 
 int launchGame(){

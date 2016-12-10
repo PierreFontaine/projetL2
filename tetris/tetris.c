@@ -471,7 +471,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
   figure f_jeu;
   player joueur;
   init_save(&joueur);
-  displayGame(l_jeu);
+  displayGame(l_jeu,score);
   init_game(&score,l_jeu,etat);
 
   coeffVitesse = 1;
@@ -482,7 +482,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
     *p_jeu = selectPiece(); //selection d'une piece au hasard
     f_jeu = makeFigure(*p_jeu); //mise en mémoire de cette piece pour accès aux params
     displayPieceAt(*p_posInit,l_jeu,*p_jeu);//Affichage de la piece en haut
-    displayGame(l_jeu); //affichage du jeux
+    displayGame(l_jeu,score); //affichage du jeux
     if (gameOver(l_jeu,*p_jeu,*p_posInit)) {
       joueur.score = score;
       appendScore(&joueur);
@@ -495,27 +495,27 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
       return 0;
     }
     while(canMoveToward(*p_jeu,SUD,*p_posInit,l_jeu) == 1){
-      displayGame(l_jeu);
+      displayGame(l_jeu,score);
       t_1 = clock();
       t_2 = clock();
       while(((float)(t_2 - t_1) / 1000000.0F ) * 1000 < (*s_jeu)){
         keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat);
         t_2 = clock();
       }
-      displayGame(l_jeu);
+      displayGame(l_jeu,score);
       if(*etat == PAUSE){
         resume(l_jeu,p_jeu,p_posInit,s_jeu,etat);
       }
       pieceMoveToward(*p_jeu,SUD,p_posInit,l_jeu);
-      displayGame(l_jeu);
+      displayGame(l_jeu,score);
     }
-    displayGame(l_jeu);
+    displayGame(l_jeu,score);
     while(isLineFull(l_jeu) != (-1)) {
       eraseLine(isLineFull(l_jeu),l_jeu);
       scoreUp(&score);
       joueur.ligne += 1;
       coeffVitesse /= 1.1 ;
     }
-    displayGame(l_jeu);
+    displayGame(l_jeu,score);
   }
 }

@@ -39,6 +39,15 @@ typedef struct player_str{
 #define UNIX_COLOR_WHITE    "37"
 #define UNIX_COLOR_RESET    "0"
 
+#define COLOR_BLACK   0
+#define COLOR_RED     1
+#define COLOR_GREEN   2
+#define COLOR_YELLOW  3
+#define COLOR_BLUE    4
+#define COLOR_MAGENTA 5
+#define COLOR_CYAN    6
+#define COLOR_WHITE   7
+
 typedef struct figure_str{
   int heigth;
   int width;
