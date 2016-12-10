@@ -430,12 +430,24 @@ void reachFloor(layout l,piece p, pos *a){
   }
 }
 
+/*
+* @{param} player* [joueur]
+*   permet de gérer la sauvegarde avec la struct joueur
+*/
 void init_save(player *joueur){
   joueur->ligne = 0;
   joueur->score = 0;
   strcpy(joueur->nom,"pierre");
 }
 
+/*
+* @{param} layout [l]
+*   donne le layout du jeu
+* @{param} int* [score]
+*   donne le socre à initialiser
+* @{param} gameState* [etat]
+*   initialise l'état du jeu
+*/
 void init_game(int *score,layout l_jeu,gameState *etat){
   makeBackGround(l_jeu);
   //makeBorder(l_jeu);
@@ -443,6 +455,14 @@ void init_game(int *score,layout l_jeu,gameState *etat){
   *etat = RESUME;
 }
 
+/*
+* @{param} layout [l]
+*   donne le layout du jeu
+* @{param} piece [p]
+*   donne la piece qui doit atteindre la position la plus basse
+* @{param} pos* [a]
+*   donne la position de la piece à l'instant ou la fonction est appelée
+*/
 int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
   float coeffVitesse;
   int score;
