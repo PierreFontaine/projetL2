@@ -361,7 +361,7 @@ int canRotate(layout l,direction dir, piece p,pos a){
 * permet de mettre le jeu sur pose
 * Remarque : Ne fonctionne pas encore, il faudrait que le thread bloque le main
 */
-int resume(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
+int resume(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat,int *wasDropped){
   char touche;
   erase();
   printw("####################\n");
@@ -372,7 +372,7 @@ int resume(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat
   printw("#REPRENDRE##########\n");
 
   while (*etat == PAUSE) {
-    keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat);
+    keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat,wasDropped);
   }
   return 0;
 }
@@ -381,14 +381,25 @@ int resume(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat
 * @{param} int* [score]
 *   donne le score à incrémenter
 */
-void scoreUp(int *score){
-  (*score) += 10;
+void scoreUp(int *score,int wasDropped,int comboLine){
+  if (comboLine == 1) {
+    *score = (int)*score *1.25;
+  } else if (comboLine == 2){
+    *score = (int)*score *1.50;
+  } else if (comboLine >= 3){
+    *score = (int)*score *1.75;
+  }
+  if (wasDropped == 1) {
+    (*score) += 30;
+  } else {
+    (*score) += 10;
+  }
 }
 
 /*
 * Gere l'écoute du clavier
 */
-void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
+void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat,int *wasDropped){
   int touche;
   refresh();
   touche = getch();
@@ -408,6 +419,7 @@ void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,game
     }
   } else if (touche == 'z') {
     reachFloor(l_jeu,*p_jeu,p_posInit);
+    *wasDropped = 1;
   } else if(touche == 's') {
     *s_jeu = *s_jeu - 100;
   }
@@ -467,6 +479,8 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
   float coeffVitesse;
   int score;
   char key,underPiece;
+  int wasDropped;
+  int comboLine;
   clock_t t_1,t_2;
   figure f_jeu;
   player joueur;
@@ -476,6 +490,8 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
 
   coeffVitesse = 1;
   while(1){
+    comboLine = 0;
+    wasDropped = 0;
     *s_jeu = 1000 * coeffVitesse;
     p_posInit->x = 5;
     p_posInit->y = 0;
@@ -499,23 +515,26 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
       t_1 = clock();
       t_2 = clock();
       while(((float)(t_2 - t_1) / 1000000.0F ) * 1000 < (*s_jeu)){
-        keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat);
+        keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat,&wasDropped);
         t_2 = clock();
       }
       displayGame(l_jeu,score);
       if(*etat == PAUSE){
-        resume(l_jeu,p_jeu,p_posInit,s_jeu,etat);
+        resume(l_jeu,p_jeu,p_posInit,s_jeu,etat,&wasDropped);
       }
       pieceMoveToward(*p_jeu,SUD,p_posInit,l_jeu);
       displayGame(l_jeu,score);
+      scoreUp(&score,wasDropped,comboLine);
     }
     displayGame(l_jeu,score);
     while(isLineFull(l_jeu) != (-1)) {
+      comboLine ++;
       eraseLine(isLineFull(l_jeu),l_jeu);
-      scoreUp(&score);
       joueur.ligne += 1;
       coeffVitesse /= 1.1 ;
     }
     displayGame(l_jeu,score);
+    scoreUp(&score,wasDropped,comboLine);
+    
   }
 }
