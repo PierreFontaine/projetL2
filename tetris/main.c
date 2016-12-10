@@ -10,7 +10,7 @@
 #include "ncurses.h"
 #include "menu.h"
 #include <SDL/SDL.h>
-#include <SDL/SDL_mixer.h>
+#include <SDL_mixer-1.2.12/SDL_mixer.h>
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 #define CTRLD 	4
