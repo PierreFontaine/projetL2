@@ -65,8 +65,12 @@ void menu(){
       case 10:{
         if(choix == 1){
           launchGame();
+          erase();
+          refresh();
         } else if (choix == 2) {
           readScore();
+          erase();
+          refresh();
         } else {
           break;
         }
@@ -85,7 +89,7 @@ int launchGame(){
   layout l_jeu;
   piece p_jeu;
   pos p_posInit;
-  int s_jeu;
+  float s_jeu;
   gameState etat;
 
   game(l_jeu,&p_jeu,&p_posInit,&s_jeu,&etat);

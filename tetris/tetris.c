@@ -361,9 +361,9 @@ int canRotate(layout l,direction dir, piece p,pos a){
 * permet de mettre le jeu sur pose
 * Remarque : Ne fonctionne pas encore, il faudrait que le thread bloque le main
 */
-int resume(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
+int resume(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
   char touche;
-  clear();
+  erase();
   printw("####################\n");
   printw("#######PAUSE########\n");
   printw("####################\n");
@@ -388,7 +388,7 @@ void scoreUp(int *score){
 /*
 * Gere l'écoute du clavier
 */
-void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
+void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
   int touche;
   refresh();
   touche = getch();
@@ -409,7 +409,7 @@ void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameSt
   } else if (touche == 'z') {
     reachFloor(l_jeu,*p_jeu,p_posInit);
   } else if(touche == 's') {
-    *s_jeu = 600000;
+    *s_jeu = *s_jeu - 100;
   }
   clrtoeol();
   refresh();
@@ -443,18 +443,20 @@ void init_game(int *score,layout l_jeu,gameState *etat){
   *etat = RESUME;
 }
 
-int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
+int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
+  float coeffVitesse;
   int score;
   char key,underPiece;
+  clock_t t_1,t_2;
   figure f_jeu;
   player joueur;
-  long t;
   init_save(&joueur);
   displayGame(l_jeu);
   init_game(&score,l_jeu,etat);
-  *s_jeu = 3000;
 
+  coeffVitesse = 1;
   while(1){
+    *s_jeu = 1000 * coeffVitesse;
     p_posInit->x = 5;
     p_posInit->y = 0;
     *p_jeu = selectPiece(); //selection d'une piece au hasard
@@ -464,19 +466,21 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
     if (gameOver(l_jeu,*p_jeu,*p_posInit)) {
       joueur.score = score;
       appendScore(&joueur);
-      clear();
+      erase();
       refresh();
       printw("game over \n");
       sleep(3);
-      clear();
+      erase();
       refresh();
       return 0;
     }
     while(canMoveToward(*p_jeu,SUD,*p_posInit,l_jeu) == 1){
       displayGame(l_jeu);
-      t = time(NULL);
-      while((time(NULL) - t) < 2){
+      t_1 = clock();
+      t_2 = clock();
+      while(((float)(t_2 - t_1) / 1000000.0F ) * 1000 < (*s_jeu)){
         keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat);
+        t_2 = clock();
       }
       displayGame(l_jeu);
       if(*etat == PAUSE){
@@ -490,6 +494,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,int *s_jeu,gameState *etat){
       eraseLine(isLineFull(l_jeu),l_jeu);
       scoreUp(&score);
       joueur.ligne += 1;
+      coeffVitesse /= 1.1 ;
     }
     displayGame(l_jeu);
   }
