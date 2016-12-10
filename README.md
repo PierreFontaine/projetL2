@@ -22,6 +22,10 @@ Télechargez le dossier et accèdez y avec le terminal !
 ## Tetris
 ### Historique d'issues
 
+#### [9 Dec 2016] Son et résolutions de bugs
+
+Ajout du son et code refractoring.
+
 #### [3 Dec 2016] menu améliorations
 
 Amélioration du menu, il reste des problèmes d'affichage et un segmentation fault qui vient surement de ncurses.
@@ -92,9 +96,6 @@ Amélioration du menu, il reste des problèmes d'affichage et un segmentation fa
 
 - ~~débordement de tableau~~
 - ~~problème de rotation => changement de figure~~
-- fonction lancée du Thread ne bloque pas le main, pb pour pause()
+- ~~fonction lancée du Thread ne bloque pas le main, pb pour pause()~~
 - augmenter la vitesse de la pièce
-- suppression des lignes, il subsiste un bug
-
-
-## Bataille Navale
+- ~~suppression des lignes, il subsiste un bug~~
