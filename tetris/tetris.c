@@ -20,7 +20,8 @@ int createRandomNumberInRange(int max){
 
       int x;
       do{
-        x = random();
+        srand(time(NULL));
+        x = rand();
       }while(num_rand - defect <= (unsigned int)x);
   return x/bin_size;
 }
@@ -535,6 +536,6 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
     }
     displayGame(l_jeu,score);
     scoreUp(&score,wasDropped,comboLine);
-    
+
   }
 }
