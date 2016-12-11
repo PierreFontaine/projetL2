@@ -82,11 +82,11 @@ Amélioration du menu, il reste des problèmes d'affichage et un segmentation fa
     - [x] Layout
     - [x] Affichage des pieces
     - [x] Suppression de pieces
-  - [ ] Fonctions spé liées au fonctionnement du jeu
+  - [x] Fonctions spé liées au fonctionnement du jeu
     - [x] rotation et verification
     - [x] déplacement et verification
     - [x] mise en pause
-    - [ ] gestion du score
+    - [x] gestion du score
     - [x] menu
   - [x] Fonctions spé liées à l'interaction H/M
     - [x] Association des touches à un évenement
