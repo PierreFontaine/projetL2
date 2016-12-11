@@ -22,6 +22,10 @@ Télechargez le dossier et accèdez y avec le terminal !
 ## Tetris
 ### Historique d'issues
 
+#### [11 Dec 2016] Début du mode de jeu alternatif
+
+Commencement du mode de jeux alternatif, pas mal de correction, des couleurs et de l'animation sur le game over ! 
+
 #### [9 Dec 2016] Son et résolutions de bugs
 
 Ajout du son et code refractoring.
