@@ -98,7 +98,7 @@ void sortScore(){
   for(i = 0; i < length - 1; i++){
     min = i;
     for (j = i+1; j < length; j++) {
-      if(joueurTab[j].score < joueurTab[min].score){
+      if(joueurTab[j].score > joueurTab[min].score){
         min = j;
       }
     }
@@ -112,7 +112,7 @@ void sortScore(){
   printw("\tTOP TEN\n");
   printw("\t#######\n\n");
   printw("%s\t%s\t%s\n","nom","score","ligne");
-  for (i = 0; i < length; i++) {
+  for (i = 0; i < length && i< 10; i++) {
     printw("%s\t%d\t%d\n",joueurTab[i].nom,joueurTab[i].score,joueurTab[i].ligne);
   }
 

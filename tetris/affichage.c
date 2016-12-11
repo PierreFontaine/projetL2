@@ -3,6 +3,7 @@
 #include "string.h"
 #include "data.h"
 #include "ncurses.h"
+#include "stdlib.h"
 /*
   @{param} layout [l]
     donne le layout sur lequel on travail
@@ -353,4 +354,24 @@ void init_ncurses(){
 	keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
 	noecho();			/* Don't echo() while we do getch */
   nodelay(stdscr,TRUE);
+}
+
+void gameOverAnim(){
+  FILE *entree;
+  char *line = NULL;
+  size_t len = 0;
+  ssize_t read;
+  entree = fopen("assets/bomb.txt","r");
+
+  if (entree == NULL)
+    exit(EXIT_FAILURE);
+
+    while ((read = getline(&line, &len, entree)) != -1) {
+      //printf("Retrieved line of length %zu :\n", read);
+      printw("%s", line);
+      refresh();
+      sleep(1);
+    }
+    free(line);
+    fclose(entree);
 }

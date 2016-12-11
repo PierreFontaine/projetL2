@@ -503,8 +503,9 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
       joueur.score = score;
       appendScore(&joueur);
       erase();
-      refresh();
       printw("game over \n");
+      gameOverAnim();
+      refresh();
       sleep(3);
       erase();
       refresh();
@@ -516,6 +517,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
       t_2 = clock();
       while(((float)(t_2 - t_1) / 1000000.0F ) * 1000 < (*s_jeu)){
         keyboardListener(l_jeu,p_jeu,p_posInit,s_jeu,etat,&wasDropped);
+        displayGame(l_jeu,score);
         t_2 = clock();
       }
       displayGame(l_jeu,score);

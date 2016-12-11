@@ -15,4 +15,5 @@ void displayGame(layout l,int score);
 void erasePieceAt(pos a,layout l, piece name);
 int getCharAt(pos a,layout l,char *res);
 void init_ncurses();
+void gameOverAnim();
 #endif
