@@ -20,8 +20,7 @@ int createRandomNumberInRange(int max){
 
       int x;
       do{
-        srand(time(NULL));
-        x = rand();
+        x = random();
       }while(num_rand - defect <= (unsigned int)x);
   return x/bin_size;
 }

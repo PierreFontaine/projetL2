@@ -73,23 +73,48 @@ int getNbScore(){
 }
 
 void sortScore(){
-  int min,length,i;
-  player joueur;
+  int min,length;
+  player joueur,aux;
   player *joueurTab;
+  int i,j;
 
-  length = getNbScore();
   i = 0;
-  joueurTab = (player*)malloc(length*sizeof(player));
 
+  length = getNbScore();//on recupt la longueur du fichier
+  joueurTab = (player*)malloc(length*sizeof(player));//on créé un tableau de taille suffisante
+
+  //on met le fichier dans un tableau
   FILE *fichier;
   fichier = fopen("score.data","r");
   fseek(fichier,0,SEEK_SET);//position du la ligne 0
   while(!(feof(fichier))){
     fread(&joueur,sizeof(player),1,fichier);
-    strcpy(joueurTab[i].nom,joueur.nom);
-    joueurTab[i].score = joueur.score;
-    joueurTab[i].ligne = joueur.ligne;
+    joueurTab[i] = joueur;
+    i++;
   }
   fclose(fichier);
+
+  //on trie le tableau par insertion
+  for(i = 0; i < length - 1; i++){
+    min = i;
+    for (j = i+1; j < length; j++) {
+      if(joueurTab[j].score < joueurTab[min].score){
+        min = j;
+      }
+    }
+    if (min != i) {
+      aux = joueurTab[min];
+      joueurTab[min] = joueurTab[i];
+      joueurTab[i] = aux;
+    }
+  }
+  printw("\t#######\n");
+  printw("\tTOP TEN\n");
+  printw("\t#######\n\n");
+  printw("%s\t%s\t%s\n","nom","score","ligne");
+  for (i = 0; i < length; i++) {
+    printw("%s\t%d\t%d\n",joueurTab[i].nom,joueurTab[i].score,joueurTab[i].ligne);
+  }
+
 
 }

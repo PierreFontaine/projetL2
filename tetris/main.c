@@ -36,7 +36,8 @@ int menu(){
   quitter = false;
 
   choix = 1;
-
+  erase();
+  refresh();
 	n_choices = ARRAY_SIZE(choices); //recuperation de la taille du tableau
 	my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));  //allocation des items
   //affichage des items
@@ -71,8 +72,8 @@ int menu(){
           erase();
           refresh();
         } else if (choix == 2) {
-          readScore();
           erase();
+          sortScore();
           refresh();
         } else  if (choix == 3){
           free_item(my_items[0]);
