@@ -4,6 +4,7 @@
 #include "data.h"
 #include "ncurses.h"
 #include "stdlib.h"
+#include "sys/types.h"
 /*
   @{param} layout [l]
     donne le layout sur lequel on travail
