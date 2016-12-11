@@ -25,18 +25,29 @@ void makeBackGround(layout l){
 */
 void displayGame(layout l,int score){
   int i,j;
+
   clear();
   for (i = 0; i < GAME_HEIGHT; i++) {
+    if((i/2) == 1){
+      init_pair(1, COLOR_GREEN, COLOR_BLACK);
+    }else{
+      init_pair(1, COLOR_RED, COLOR_BLACK);
+    }
+    attron(COLOR_PAIR(1));
     printw("|");
+    attroff(COLOR_PAIR(1));
     for (j = 0; j < GAME_WIDTH; j++) {
 
       printw("%c ", l[i][j]);
     }
+    attron(COLOR_PAIR(1));
     printw("|");
+    attroff(COLOR_PAIR(1));
     printw("\n");
   }
   printw(" ");
   for (i = 0; i < GAME_WIDTH; i++) {
+
     printw("# ");
   }
   printw("\n");
@@ -355,6 +366,7 @@ void init_ncurses(){
 	keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/
 	noecho();			/* Don't echo() while we do getch */
   nodelay(stdscr,TRUE);
+  start_color();
 }
 
 void gameOverAnim(){
@@ -368,8 +380,10 @@ void gameOverAnim(){
     exit(EXIT_FAILURE);
 
     while ((read = getline(&line, &len, entree)) != -1) {
-      //printf("Retrieved line of length %zu :\n", read);
+      init_pair(1, COLOR_RED, COLOR_BLACK);
+      attron(COLOR_PAIR(1));
       printw("%s", line);
+      attroff(COLOR_PAIR(1));
       refresh();
       sleep(1);
     }

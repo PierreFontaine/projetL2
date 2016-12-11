@@ -1,14 +1,5 @@
 #include "tetris.h"
-#include "affichage.h"
-#include "time.h"
-#include "stdlib.h"
-#include "stdio.h"
-#include "data.h"
-#include "string.h"
-#include "unistd.h"
-#include "termios.h"
-#include "save.h"
-#include "ncurses.h"
+
 
 int createRandomNumberInRange(int max){
   unsigned int
@@ -462,9 +453,20 @@ void init_save(player *joueur){
 */
 void init_game(int *score,layout l_jeu,gameState *etat){
   makeBackGround(l_jeu);
-  //makeBorder(l_jeu);
   *score = 0;
   *etat = RESUME;
+}
+
+void remplirMat(int n, layout l_jeu){
+  int nb;
+  for (int i = GAME_HEIGHT - (n); i < GAME_HEIGHT; i++) {
+    for (int j = 0; j < GAME_WIDTH; j++) {
+      nb = createRandomNumberInRange(1);
+      if(nb == 1){
+        l_jeu[i][j] = '@';
+      }
+    }
+  }
 }
 
 /*
@@ -487,7 +489,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
   init_save(&joueur);
   displayGame(l_jeu,score);
   init_game(&score,l_jeu,etat);
-
+  remplirMat(3,l_jeu);
   coeffVitesse = 1;
   while(1){
     comboLine = 0;

@@ -35,8 +35,6 @@ int menu(){
   quitter = false;
 
   choix = 1;
-  erase();
-  refresh();
 	n_choices = ARRAY_SIZE(choices); //recuperation de la taille du tableau
 	my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));  //allocation des items
   //affichage des items
@@ -47,7 +45,9 @@ int menu(){
 	my_items[n_choices] = (ITEM *)NULL;
 
 	my_menu = new_menu((ITEM **)my_items);
+  attron(COLOR_PAIR(1));
 	mvprintw(LINES - 2, 0, "F1 to Exit");
+  attroff(COLOR_PAIR(1));
 	post_menu(my_menu);
 	refresh();
 
@@ -98,7 +98,6 @@ int launchGame(){
   pos p_posInit;
   float s_jeu;
   gameState etat;
-
   game(l_jeu,&p_jeu,&p_posInit,&s_jeu,&etat);
   return 1;
 }

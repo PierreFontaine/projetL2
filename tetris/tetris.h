@@ -2,6 +2,16 @@
 #define tetris_h
 
 #include "data.h"
+#include "affichage.h"
+#include "time.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "data.h"
+#include "string.h"
+#include "unistd.h"
+#include "termios.h"
+#include "save.h"
+#include "ncurses.h"
 
 int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat);
 void scoreUp(int *score,int wasDropped,int comboLine);
@@ -21,4 +31,5 @@ void keyboardListener(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,game
 void init_ncurses();
 void init_save(player *joueur);
 void init_game(int *score,layout l_jeu,gameState *etat);
+void remplirMat(int n,layout l_jeu);
 #endif
