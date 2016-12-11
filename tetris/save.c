@@ -50,3 +50,46 @@ void readScore(){
 		fclose(entree);
   }
 }
+
+int getNbScore(){
+  FILE *fichier;
+
+  player joueur;
+  int i;
+
+  i = 0;
+
+  fichier = fopen("score.data","r");
+  fseek(fichier,0,SEEK_SET);//position du la ligne 0
+  while(!(feof(fichier))){
+    fread(&joueur,sizeof(player),1,fichier);
+    if(!feof(fichier)){
+      i++;
+    }
+  }
+  fclose(fichier);
+  return i;
+
+}
+
+void sortScore(){
+  int min,length,i;
+  player joueur;
+  player *joueurTab;
+
+  length = getNbScore();
+  i = 0;
+  joueurTab = (player*)malloc(length*sizeof(player));
+
+  FILE *fichier;
+  fichier = fopen("score.data","r");
+  fseek(fichier,0,SEEK_SET);//position du la ligne 0
+  while(!(feof(fichier))){
+    fread(&joueur,sizeof(player),1,fichier);
+    strcpy(joueurTab[i].nom,joueur.nom);
+    joueurTab[i].score = joueur.score;
+    joueurTab[i].ligne = joueur.ligne;
+  }
+  fclose(fichier);
+
+}

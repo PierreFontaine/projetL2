@@ -5,6 +5,9 @@
 
 void readScore();
 void appendScore(player *joueur);
+void sortScore();
+void get10FirstScore();
+int getNbScore();
 
 
 #endif
