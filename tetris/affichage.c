@@ -5,6 +5,7 @@
 #include "ncurses.h"
 #include "stdlib.h"
 #include "sys/types.h"
+#include "unistd.h"
 /*
   @{param} layout [l]
     donne le layout sur lequel on travail
@@ -237,25 +238,26 @@ figure makeFigure(piece name){
       @
     */
     case I:
-      res.heigth = 3;
+      res.heigth = 4;
       res.width = 1;
       strcpy(res.forme[0],"@");
       strcpy(res.forme[1],"@");
       strcpy(res.forme[2],"@");
+      strcpy(res.forme[3],"@");
       res.suivante = I_90;
       res.precedente = I_90;
       break;
 
     case I_90:
       res.heigth = 1;
-      res.width = 3;
-      strcpy(res.forme[0],"@@@");
+      res.width = 4;
+      strcpy(res.forme[0],"@@@@");
       res.suivante = I;
       res.precedente = I;
       break;
     /*
     * @@
-    * @@z
+    * @@
     */
     case C:
       res.heigth = 2;
@@ -348,11 +350,11 @@ void eraseLine(int n,layout l){
   int i,j;
 
   for (i = n-1; i > 0; i--) {
-    for (j = 1; j < GAME_WIDTH-1; j++) {
+    for (j = 0; j < GAME_WIDTH; j++) {
       l[i][j] = l[i-1][j];
     }
   }
-  for (i = 1; i < GAME_WIDTH-1; i++) {
+  for (i = 0; i < GAME_WIDTH; i++) {
     l[0][i] = ' ';
   }
 }
@@ -369,6 +371,9 @@ void init_ncurses(){
   start_color();
 }
 
+/*
+* afficher une petite anim de fin de jeu
+*/
 void gameOverAnim(){
   FILE *entree;
   char *line = NULL;
@@ -385,8 +390,17 @@ void gameOverAnim(){
       printw("%s", line);
       attroff(COLOR_PAIR(1));
       refresh();
-      sleep(1);
+      usleep(500000);
     }
     free(line);
     fclose(entree);
+}
+
+/*
+* Cette fonction s'exe quand le joueur efface 4 lignes
+*/
+void tetris(){
+  int col,row;
+  mvprintw(row/2,(col/2) - 10,"%s","TETRIS");
+  refresh();
 }

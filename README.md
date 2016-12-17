@@ -22,9 +22,16 @@ Télechargez le dossier et accèdez y avec le terminal !
 ## Tetris
 ### Historique d'issues
 
+
+#### [17 Dec 2016] Améliorations affichage et sauvegarde
+
+Le programme demande maintenant le pseudo du joueur pour la sauvegarde dans un encart au milieu de la fenêtre.
+
+Ajout de la fonction tetris qui quand 4 ligne sont remplis informe le joueur qu'il a effectué un tetris !
+
 #### [11 Dec 2016] Début du mode de jeu alternatif
 
-Commencement du mode de jeux alternatif, pas mal de correction, des couleurs et de l'animation sur le game over ! 
+Commencement du mode de jeux alternatif, pas mal de correction, des couleurs et de l'animation sur le game over !
 
 #### [9 Dec 2016] Son et résolutions de bugs
 

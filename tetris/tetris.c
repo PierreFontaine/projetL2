@@ -506,7 +506,7 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat,i
     *s_jeu = 1000 * coeffVitesse;
     p_posInit->x = 5;
     p_posInit->y = 0;
-    *p_jeu = selectPiece(); //selection d'une piece au hasard
+    *p_jeu = I;//selectPiece(); //selection d'une piece au hasard
     f_jeu = makeFigure(*p_jeu); //mise en mémoire de cette piece pour accès aux params
     displayPieceAt(*p_posInit,l_jeu,*p_jeu);//Affichage de la piece en haut
     displayGame(l_jeu,score); //affichage du jeux
@@ -556,6 +556,9 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat,i
       eraseLine(isLineFull(l_jeu),l_jeu);
       joueur.ligne += 1;
       coeffVitesse /= 1.1 ;
+    }
+    if (comboLine > 0) {
+      tetris();
     }
     displayGame(l_jeu,score);
     scoreUp(&score,wasDropped,comboLine);

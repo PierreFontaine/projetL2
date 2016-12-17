@@ -26,8 +26,8 @@ typedef struct player_str{
 /* PARAMETRE DE JEU */
 #define GAME_HEIGHT         12
 #define GAME_WIDTH          10
-#define PIECE_MAX_WIDTH     4
-#define PIECE_MAX_HEIGHT    4
+#define PIECE_MAX_WIDTH     5
+#define PIECE_MAX_HEIGHT    5
 
 #define UNIX_COLOR_BLACK    "30"
 #define UNIX_COLOR_RED      "31"
