@@ -13,7 +13,7 @@
 #include "save.h"
 #include "ncurses.h"
 
-int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat);
+int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat,int mode);
 void scoreUp(int *score,int wasDropped,int comboLine);
 piece selectPiece();
 int isLineFull(layout l);

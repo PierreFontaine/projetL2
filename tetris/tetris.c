@@ -440,7 +440,6 @@ void reachFloor(layout l,piece p, pos *a){
 void init_save(player *joueur){
   joueur->ligne = 0;
   joueur->score = 0;
-  strcpy(joueur->nom,"pierre");
 }
 
 /*
@@ -457,6 +456,12 @@ void init_game(int *score,layout l_jeu,gameState *etat){
   *etat = RESUME;
 }
 
+/*
+* @{param} layout [l_jeu]
+*   donne le layout du jeu
+* @{param} int [n]
+*   donne le nombre de ligne à remplir
+*/
 void remplirMat(int n, layout l_jeu){
   int nb;
   for (int i = GAME_HEIGHT - (n); i < GAME_HEIGHT; i++) {
@@ -477,19 +482,23 @@ void remplirMat(int n, layout l_jeu){
 * @{param} pos* [a]
 *   donne la position de la piece à l'instant ou la fonction est appelée
 */
-int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
+int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat,int mode){
   float coeffVitesse;
   int score;
   char key,underPiece;
   int wasDropped;
-  int comboLine;
+  int comboLine,row,col;
+  char mesg[]="entrer pseudo: ";
   clock_t t_1,t_2;
   figure f_jeu;
   player joueur;
   init_save(&joueur);
   displayGame(l_jeu,score);
   init_game(&score,l_jeu,etat);
-  remplirMat(3,l_jeu);
+  if (mode == 2) {
+    remplirMat(3,l_jeu);
+  }
+
   coeffVitesse = 1;
   while(1){
     comboLine = 0;
@@ -503,9 +512,20 @@ int game(layout l_jeu,piece *p_jeu,pos *p_posInit,float *s_jeu,gameState *etat){
     displayGame(l_jeu,score); //affichage du jeux
     if (gameOver(l_jeu,*p_jeu,*p_posInit)) {
       joueur.score = score;
+      erase();
+      refresh();
+      noraw();
+      echo();
+      nodelay(stdscr,FALSE);
+      getmaxyx(stdscr,row,col);
+      mvprintw(row/2,col/2,"%s",mesg);
+      getstr(joueur.nom);
       appendScore(&joueur);
       erase();
       printw("game over \n");
+      raw();
+      noecho();
+      nodelay(stdscr,TRUE);
       gameOverAnim();
       refresh();
       sleep(3);

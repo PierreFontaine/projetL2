@@ -21,6 +21,7 @@ int menu(){
   char *choices[] = {
     "jouer",
     "score",
+    "mode 2",
     "quitter",
   };
 
@@ -67,14 +68,18 @@ int menu(){
 				break;
       case 10:{
         if(choix == 1){
-          launchGame();
+          launchGame(1);
           erase();
           refresh();
         } else if (choix == 2) {
           erase();
           sortScore();
           refresh();
-        } else  if (choix == 3){
+        } else if (choix == 3){
+          launchGame(2);
+          erase();
+          refresh();
+        } else  if (choix == 4){
           free_item(my_items[0]);
         	free_item(my_items[1]);
         	free_menu(my_menu);
@@ -92,13 +97,13 @@ int menu(){
   return 0;
 }
 
-int launchGame(){
+int launchGame(int mode){
   layout l_jeu;
   piece p_jeu;
   pos p_posInit;
   float s_jeu;
   gameState etat;
-  game(l_jeu,&p_jeu,&p_posInit,&s_jeu,&etat);
+  game(l_jeu,&p_jeu,&p_posInit,&s_jeu,&etat,mode);
   return 1;
 }
 
